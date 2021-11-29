@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <!-- Meta -->
+    <meta charset="UTF-8" />
+
+    <!-- Titulo -->
+    <title> Mercadinhx </title>
+
+    <!-- GOOGLE FONTS OPEN SANS-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap"
+        rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/estilo_com_sass.css" />
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <!-- CABEÇALHO -->
+    <!-- Cria um container -->
+    <header class="container-fluid">
+        <!-- Cria uma linha para ser dividida em colunas -->
+        <div class="row">
+            <!-- Classe de navegação -->
+            <nav class="navbar navbar-expand-lg cabecalho">
+                <!-- Limita o conteudo até 4/12 colunad da linha -->
+                <div class="col-12 col-md-4 ">
+                    <!-- Link que leva a página principal do site -->
+                    <a href="index.html" class="navbar-brand">
+                        <!-- Logo do mercadinhx -->
+                        <img src="img/logo_circulo.png" alt="Mercado">
+                        <span>Mercadinhx</span>
+                    </a>
+                </div>
+                <!-- Limita a 8 colunas das colunas restantes -->
+                <div class="col-12 col-md-8">
+                    <!-- Botão que só aparece no mobile que mostra as opções de navegação quando acionado -->
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbar-items" aria-controls="navbar-items" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <!-- Icon de lista -->
+                        <i class="bi bi-list"></i>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbar-items">
+                        <div class="col-12 col-md-6 nav-item">
+                            <form class="col-md-12 d-flex align-items-center  barra-de-pesquisa">
+                                <input class="form-control me-2" type="search" placeholder="Pesquisar"
+                                    aria-label="Search">
+                                <!-- Botão e icon de pesquisar -->
+                                <button class="btn btn-outline-success" type="submit"><i
+                                        class="bi bi-search"></i></button>
+                            </form>
+                        </div>
+                        <div class="col-12 col-md-3 nav-item">
+                            <!-- Link para assinatura pró -->
+                            <a href="assinatura_pro.html" class="nav-link primeira-cor" aria-current="page">Seja
+                                Assinante</a>
+                        </div>
+                        <div class="col-12 col-md-3 nav-item">
+                            <!-- Link para login -->
+                            <a href="login.html" class="nav-link primeira-cor" aria-current="page">Login</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- INFO -->
+    <!-- EXPLICAÇÕES DAS ASSINATURAS -->
+    <div class="conteiner primeira-cor conteiner-assinatura">
+        <!-- Cria linha, para ser dividida em colunas, centralizada -->
+        <!--Título-->
+        <div class="row justify-content-center  ">
+            <div class="col 12 col-md-10 fundo-amarelo ">
+                <h2 class="titulo">Entenda melhor nossa proposta de assinatura!</h2>
+            </div>
+        </div>
+
+        <!--Descrição da assinatura-->
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 fundo-amarelo tipos-de-assinatura">
+                <p>Todos nós, em algum momento da vida, já passamos por aquela situação que precisamos fazer uma compra
+                    rápida, mas até conseguirmos ir ao mercado, procurar os produtos, esperar a fila do caixa para
+                    pagar... uma eternidade já passou, certo?</p>
+                <p> Isso pode ser ainda pior quando nem se quer encontramos o produto que estavamos desejamos. Um tempo
+                    gasto que não volta, viagem perdida...</p>
+                <p>Nós acreditamos ter uma solução simples para aliviar esses seus problemas!*</p>
+                <p>A proposta do nosso site é oferecer lista de todos os produtos do nosso mercado, além de outras
+                    informações relevantes que você pode querer saber para fazer suas compras com mais comodidade.
+                    Dentre essas informações, vamos ter:</p>
+                <ul>
+                    <li>
+                        <p>Nossos produtos, organizados por categoria</p>
+                    </li>
+                    <li>
+                        <p>O estoque atual dos produtos**</p>
+                    </li>
+                    <li>
+                        <p>Previsão de reposição de estoque, caso o produto tenha acabado</p>
+                    </li>
+                    <li>
+                        <p>Preço do produto</p>
+                    </li>
+                    <li>
+                        <p>Produtos em promoção, destacados para você</p>
+                    </li>
+                </ul>
+                <p>Além disso, também vamos oferecer um serviço de assinatura, onde você pode selecionar os produtos que
+                    você deseja, pagar pelo próprio site e apenas ir buscar no mercado que sua cesta de produtos estará
+                    prontinhas esperando por você!***</p>
+            </div>
+        </div>
+        <!--Observações-->
+        <div class="row justify-content-center explicacoes">
+            <div class="col-12 col-md-10 fundo-amarelo">
+                <p>*Nem todas as funcionalidades estão disponíveis ainda, aguarde por próximas atualizações</p>
+                <p>**Devido a questões operacionais, podem haver alguns atrasos no valor apresentado</p>
+                <p>***O usuário será avisado quando a cesta de compras estiver disponível para a retirada</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- TIPOS DE ASSINATURAS -->
+    <div class="conteiner " id="conteiner-tipos-de-assinatura">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-4 imagem-assinatura">
+                <!-- Imagem do produto -->
+                <img src="img/folder_assinatura.jpg" alt="Informações da empresa">
+            </div>
+
+            <!-- Informações sobre a assinatura -->
+            <div class="col-12 col-md-6">
+                <div class="row row-tipos-assinatura">
+                    <div class="col-12 fundo-amarelo">
+                        <h2 class="titulo primeira-cor">Nossos planos de assinatura*:</h2>
+                        <ul>
+                            <li class="tipos-de-assinatura">
+                                <div class="row justify-content-between">
+                                    <div class="col-12">
+                                        <h3 class="primeira-cor">Bronze</h3>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <p>Quantidade de pedidos: 1</p>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <p>Preço: R$ 10,00</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="tipos-de-assinatura">
+                                <div class="row justify-content-between">
+                                    <div class="col-12">
+                                        <h3 class="primeira-cor">Silver</h3>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <p>Quantidade de pedidos: 2</p>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <p>Preço: R$ 18,00</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="tipos-de-assinatura">
+                                <div class="row justify-content-between">
+                                    <div class="col-12">
+                                        <h3 class="primeira-cor">Gold</h3>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <p>Quantidade de pedidos: 4</p>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <p>Preço: R$ 30,00</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="tipos-de-assinatura">
+                                <div class="row justify-content-between">
+                                    <div class="col-12">
+                                        <h3 class="primeira-cor">Platinum</h3>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <p>Quantidade de pedidos: 10</p>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <p>Preço: R$ 60,00</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="tipos-de-assinatura">
+                                <div class="row justify-content-between">
+                                    <div class="col-12">
+                                        <h3 class="primeira-cor">Diamond</h3>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <p>Quantidade de pedidos: 20</p>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <p>Preço: R$ 100,00</p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <!--Botão para criar conta-->
+                        <div class="col-12 centralizar">
+                            <button onclick="window.location.href='cadastro.html'">Crie uma conta</button>
+                        </div>
+
+                        <!--Observações-->
+                        <div class="row justify-content-center explicacoes">
+                            <div class="col-12 col-md-10 fundo-amarelo">
+                                <p>*Nem todas as funcionalidades estão disponíveis ainda, aguarde por próximas
+                                    atualizações</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Banner promoção -->
+    <div class="container" id="featured-container">
+        <div id="featured-images">
+            <div class="col-12">
+                <img src="img/promocao.png" alt="Economize">
+                <div class="banner-content">
+                    <button onclick="window.location.href='lista_de_produtos.html'" class="btn-outline-success btn-lg">Vá para promoções</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RODAPÉ -->
+    <footer class="container-fluid segundo-fundo" id="rodape">
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-12" id="rodape-cima">
+                        <div class="row">
+                            <!--Coluna com formulário para ficar por dentro das novidades-->
+                            <div class="col-12 col-md-4 coluna-rodape-cima">
+                                <h4>Fique por dentro das novidades</h4>
+                                <p>Inscreva-se para saber em primeira mão</p>
+                                <!--Cria um formulário-->
+                                <form>
+                                    <div class="mb-3">
+                                        <input type="email" class="form-control" placeholder="Digite o seu e-mail">
+                                    </div>
+                                    <button class="btn btn-dark" type="submit">Inscrever-se</button>
+                                </form>
+                            </div>
+
+                            <!--Coluna das formas de contato-->
+                            <div class="col-12 col-md-4 coluna-rodape-cima" id="rodape-cima-centro">
+                                <h4>Formas de contato</h4>
+                                <p> (xx)xxxx-xxxx</p>
+                                <p> contato@mercadinhx.com</p>
+                                <a href="fale_conosco.html">Fale conosco</a>
+                            </div>
+
+                            <!--Coluna de colaboradores-->
+                            <div class="col-12 col-md-4 coluna-rodape-cima">
+                                <div class="row">
+                                    <h4>Colaboradores <i class="bi bi-heart"></i> :</h4>
+                                    <div class="col-12">
+                                        <!--Cria uma lista-->
+                                        <ul class="list-unstyled">
+                                            <li>
+                                                <p>Bruno Pereira Fornaro</p>
+                                            </li>
+                                            <li>
+                                                <p>Daniel Ambrosim Falqueto</p>
+                                            </li>
+                                            <li>
+                                                <p>Lorenzo Aguiar de Alencastro Guimarães</p>
+                                            </li>
+                                            <li>
+                                                <p>Vanessa Berwanger Wille</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PARTE DE BAIXO DO RODAPÉ -->
+                <div class="row justify-content-around" id="rodape-baixo">
+                    <div class="col-12 col-md-3">
+                        <!--Logos de redes sociais (não são ativos)-->
+                        <i class="bi bi-facebook"></i>
+                        <i class="bi bi-instagram"></i>
+                        <i class="bi bi-twitter"></i>
+                        <i class="bi bi-youtube"></i>
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <p>Mercadinhx &copy; 2021</p>
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <p>
+                            <!-- Link que direciona para a página "Quem somos" -->
+                            <a href="Quem_somos.html">Quem somos</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
