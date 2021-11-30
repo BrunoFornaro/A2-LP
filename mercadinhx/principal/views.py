@@ -23,3 +23,9 @@ def quem_somos(request):
 
 def recuperar_senha(request):
     return render(request, "recuperar_senha.html")
+
+def login(request):
+    return render(request, "login.html")
+
+def produtos(request):
+    return render(request, "produtos.html")
