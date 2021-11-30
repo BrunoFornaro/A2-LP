@@ -1,12 +1,13 @@
 from django.urls import path
+from mercadinhx.principal.views import assinatura, cadastro, fale_conosco, lista_produtos, quem_somos, recuperar_senha
 from principal import views 
 
 urlpatterns = [
     path("home/", views.home, name="home")
-    # path("index/", views.index, name="index"),
-    # path("pagina2/", views.pagina2, name="pagina2"),
-    # path("pagina3/", views.pagina3, name="pagina3"),
-    # path("dinamica/<int:param>", views.dinamica, name="view-dinamica-int"), 
-    # path("redireciona/<int:param>", views.redireciona, name="view-redireciona"),
-    # path("pagina_dinamica/", views.pagina_dinamica, name="view-pagina-dinamica")  
+    path("lista_produtos/", views.lista_produtos, name="lista_de_produtos"),
+    path("assinatura/", views.assinatura, name="assinatura"),
+    path("cadastro/", views.cadastro, name="cadastro"),
+    path("fale_conosco/", views.fale_conosco, name="fale_conosco"), 
+    path("quem_somos/", views.quem_somos, name="quem_somos"),
+    path("recuperar_senha/", views.recuperar_senha, name="recuperar_senha")  
 ]
