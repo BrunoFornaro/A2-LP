@@ -151,7 +151,7 @@
 
                         <!--Botão para criar conta-->
                         <div class="col-12 centralizar">
-                            <button onclick="window.location.href='cadastro.html'"
+                            <button onclick="window.location.href='{% url 'cadastro' %}'"
                                 class="btn-outline-success btn-lg">Crie uma conta</button>
                         </div>
 
@@ -174,7 +174,7 @@
             <div class="col-12">
                 <img src="{% static 'img/promocao.png' %}" alt="Economize">
                 <div class="banner-content">
-                    <button onclick="window.location.href='lista_de_produtos.html'"
+                    <button onclick="window.location.href='lista_de_{% url 'produtos' %}'"
                         class="btn-outline-success btn-lg">Veja já as promoções</button>
                 </div>
             </div>
