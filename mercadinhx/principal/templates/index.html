@@ -2,6 +2,7 @@
 <html lang="pt-br">
 
 <head>
+    {% load static %}
     <!-- Meta -->
     <meta charset="UTF-8" />
 
@@ -23,7 +24,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="css/estilo_com_sass.css" />
+    <!-- link rel="stylesheet" href="css/estilo_com_sass.css" /-->
+    
+
+    <link rel="stylesheet" type="text/css" href="{% static 'estilo_com_sass.css' %}">
 
     <!-- JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
@@ -45,7 +49,7 @@
                     <!-- Link que leva a página principal do site -->
                     <a href="index.html" class="navbar-brand">
                         <!-- Logo do mercadinhx -->
-                        <img src="img/logo_circulo.png" alt="Mercado">
+                        <img src="{% static 'img/logo_circulo.png' %}" alt="Mercado">
                         <span>Mercadinhx</span>
                     </a>
                 </div>
@@ -100,10 +104,10 @@
                     <!-- Adiciona os dois banners -->
                     <div class="carousel-inner ">
                         <div class="carousel-item active ">
-                            <img src="img/banner_1.png" alt="Economize dinheiro com o mercadinhx">
+                            <img src="{% static 'img/banner_1.png' %}" alt="Economize dinheiro com o mercadinhx">
                         </div>
                         <div class="carousel-item">
-                            <img src="img/banner_2.png" alt="Diversas funções que ajudam você">
+                            <img src="{% static 'img/banner_2.png' %}" alt="Diversas funções que ajudam você">
                         </div>
                     </div>
                     <!-- Cria o botão de anterior -->
@@ -128,7 +132,7 @@
                 <div class="row g-4">
                     <div class="col-12 promocoes">
                         <!-- Imagem do banner de promoçoes -->
-                        <img src="img/promocao.png" alt="Clique para ir">
+                        <img src="{% static 'img/promocao.png' %}" alt="Clique para ir">
                         <div class="banner-content">
                             <!-- Botão que leva a pag de promoções 
                             <button class="btn btn-dark" type="button">
@@ -142,27 +146,27 @@
                     </div>
                     <!-- No mobile ocupa a tela toda (12/12 colunas) em telas maiores ocupa 3/12 colunas da tela -->
                     <div class="col-12 col-md-3">
-                        <img src="img/padaria2.png" alt="Clique para ir">
+                        <img src="{% static 'img/padaria2.png' %}" alt="Clique para ir">
                         <div class="banner-content">
                             <button onclick="window.location.href='lista_de_produtos.html'" class="btn-outline-success btn-lg">Padaria</button>
                         </div>
                     </div>
                     <div class="col-12 col-md-3">
-                        <img src="img/acougue2.JPEG.png" alt="Clique para ir">
+                        <img src="{% static 'img/acougue2.JPEG.png' %}" alt="Clique para ir">
                         <div class="banner-content">
                             <button onclick="window.location.href='lista_de_produtos.html'" class="btn-outline-success btn-lg">Açougue</button>
                         </div>
                     </div>
 
                     <div class="col-12 col-md-3">
-                        <img src="img/alimentos2.JPEG.png" alt="Clique para ir">
+                        <img src="{% static 'img/alimentos2.JPEG.png' %}" alt="Clique para ir">
                         <div class="banner-content">
                             <button onclick="window.location.href='lista_de_produtos.html'" class="btn-outline-success btn-lg">Alimentos</button>
                         </div>
                     </div>
 
                     <div class="col-12 col-md-3">
-                        <img src="img/produtos_de_limpeza2.jpg.png" alt="Clique para ir">
+                        <img src="{% static 'img/produtos_de_limpeza2.jpg.png' %}" alt="Clique para ir">
                         <div class="banner-content">
                             <button onclick="window.location.href='lista_de_produtos.html'" class="btn-outline-success btn-lg">Produtos de limpeza</button>
                             <!--<a href="lista_de_produtos.html" class="btn btn-primary btn-lg disabled" tabindex="-1" role="button" aria-disabled="true">Produtos de limpeza</a>-->
