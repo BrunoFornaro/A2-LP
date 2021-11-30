@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+    {% load static %}
 
 <head>
     <!-- Meta -->
@@ -23,7 +24,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="css/estilo_com_sass.css" />
+    <link rel="stylesheet" href="{% static 'estilo_com_sass.css' %}" />
 
     <!-- JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
@@ -45,7 +46,7 @@
                     <!-- Link que leva a página principal do site -->
                     <a href="index.html" class="navbar-brand">
                         <!-- Logo do mercadinhx -->
-                        <img src="img/logo_circulo.png" alt="Mercado">
+                        <img src="{% static 'img/logo_circulo.png' %}" alt="Mercado">
                         <span>Mercadinhx</span>
                     </a>
                 </div>
@@ -92,7 +93,7 @@
         <!-- Coloca o card  -->
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="img/alimentos_geral.png" alt="Mercadinhx" class="d-block">
+                <img src="{% static 'img/alimentos_geral.png' %}" alt="Mercadinhx" class="d-block">
             </div>
         </div>
 
@@ -171,7 +172,7 @@
                     <!-- Classe que não limita a tela no mobile mas limita a área da imagem em telas maiores à 3/12 da linha -->
                     <div class="col-12 col-md-3">
                         <!-- Imagem go produto -->
-                        <img src="img/morango-alt.png" alt="Morango">
+                        <img src="{% static 'img/morango-alt.png' %}" alt="Morango">
                         <div class="banner-content">
                             <!-- Imformações do produto -->
                             <button onclick="window.location.href='produtos.html'"
@@ -184,7 +185,7 @@
                     </div>
 
                     <div class="col-12 col-md-3">
-                        <img src="img/melancia.jpg" alt="Melancia">
+                        <img src="{% static 'img/melancia.jpg' %}" alt="Melancia">
                         <div class="banner-content">
                             <button onclick="window.location.href='produtos.html'"
                                 class="btn-outline-success btn-lg">Melancia</button>
@@ -196,7 +197,7 @@
                     </div>
 
                     <div class="col-12 col-md-3">
-                        <img src="img/banana.png" alt="Banana">
+                        <img src="{% static 'img/banana.png' %}" alt="Banana">
                         <div class="banner-content">
                             <button onclick="window.location.href='produtos.html'"
                                 class="btn-outline-success btn-lg">Banana</button>
@@ -208,7 +209,7 @@
                     </div>
 
                     <div class="col-12 col-md-3">
-                        <img src="img/uva-alt.png" alt="Uva">
+                        <img src="{% static 'img/uva-alt.png' %}" alt="Uva">
                         <div class="banner-content">
                             <button onclick="window.location.href='produtos.html'"
                                 class="btn-outline-success btn-lg">Uva</button>
@@ -220,7 +221,7 @@
                     </div>
 
                     <div class="col-12 col-md-3">
-                        <img src="img/batata.JPEG" alt="Batata">
+                        <img src="{% static 'img/batata.JPEG' %}" alt="Batata">
                         <div class="banner-content">
                             <button onclick="window.location.href='produtos.html'"
                                 class="btn-outline-success btn-lg">Batata</button>
@@ -233,7 +234,7 @@
                     </div>
 
                     <div class="col-12 col-md-3">
-                        <img src="img/beringela.jpg" alt="Berinjela">
+                        <img src="{% static 'img/beringela.jpg' %}" alt="Berinjela">
                         <div class="banner-content">
                             <button onclick="window.location.href='produtos.html'"
                                 class="btn-outline-success btn-lg">Berinjela</button>
@@ -245,7 +246,7 @@
                     </div>
 
                     <div class="col-12 col-md-3">
-                        <img src="img/abobrinha.JPEG" alt="Abobrinha">
+                        <img src="{% static 'img/abobrinha.JPEG' %}" alt="Abobrinha">
                         <div class="banner-content">
                             <button onclick="window.location.href='produtos.html'"
                                 class="btn-outline-success btn-lg">Abobrinha</button>
@@ -257,7 +258,7 @@
                     </div>
 
                     <div class="col-12 col-md-3">
-                        <img src="img/alface.png" alt="Alface">
+                        <img src="{% static 'img/alface.png' %}" alt="Alface">
                         <div class="banner-content">
                             <button onclick="window.location.href='produtos.html'"
                                 class="btn-outline-success btn-lg">Alface</button>
@@ -270,7 +271,7 @@
                     </div>
 
                     <div class="col-12 col-md-3">
-                        <img src="img/couve-flor.png" alt="Couve-flor">
+                        <img src="{% static 'img/couve-flor.png' %}" alt="Couve-flor">
                         <div class="banner-content">
                             <button onclick="window.location.href='produtos.html'"
                                 class="btn-outline-success btn-lg">Couve-flor</button>
@@ -282,7 +283,7 @@
                         </div>
                     </div>
                     <div class="col-12 col-md-3">
-                        <img src="img/feijao.png" alt="Feijão">
+                        <img src="{% static 'img/feijao.png' %}" alt="Feijão">
                         <div class="banner-content">
                             <button onclick="window.location.href='produtos.html'"
                                 class="btn-outline-success btn-lg">Feijão</button>
@@ -294,7 +295,7 @@
                         </div>
                     </div>
                     <div class="col-12 col-md-3">
-                        <img src="img/arroz.png" alt="Arroz">
+                        <img src="{% static 'img/arroz.png' %}" alt="Arroz">
                         <div class="banner-content">
                             <button onclick="window.location.href='produtos.html'"
                                 class="btn-outline-success btn-lg">Arroz</button>
@@ -306,7 +307,7 @@
                         </div>
                     </div>
                     <div class="col-12 col-md-3">
-                        <img src="img/macarrao.jpg" alt="Macarrão">
+                        <img src="{% static 'img/macarrao.png' %}" alt="Macarrão">
                         <div class="banner-content">
                             <button onclick="window.location.href='produtos.html'"
                                 class="btn-outline-success btn-lg">Macarrão</button>
