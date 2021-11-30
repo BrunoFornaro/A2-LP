@@ -45,7 +45,7 @@
                     <!-- Link que leva a página principal do site -->
                     <a href="index.html" class="navbar-brand">
                         <!-- Logo do mercadinhx -->
-                        <img src="img/logo_circulo.png" alt="Mercado">
+                        <img src="{% static 'img/logo_circulo.png' %}" alt="Mercado">
                         <span>Mercadinhx</span>
                     </a>
                 </div>
@@ -144,7 +144,7 @@
         <div class="row justify-content-center">
             <div class="col-12 col-md-4 imagem-assinatura">
                 <!-- Imagem do produto -->
-                <img src="img/folder_assinatura.jpg" alt="Informações da empresa">
+                <img src="{% static 'img/folder_assinatura.jpg' %}" alt="Informações da empresa">
             </div>
 
             <!-- Informações sobre a assinatura -->
@@ -244,7 +244,7 @@
     <div class="container" id="featured-container">
         <div id="featured-images">
             <div class="col-12">
-                <img src="img/promocao.png" alt="Economize">
+                <img src="{% static 'img/promocao.png' %}" alt="Economize">
                 <div class="banner-content">
                     <button onclick="window.location.href='lista_de_produtos.html'" class="btn-outline-success btn-lg">Vá para promoções</button>
                 </div>
