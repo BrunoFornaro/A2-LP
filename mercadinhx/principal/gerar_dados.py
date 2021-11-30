@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import random as rd
 from faker import Faker
+
 fake = Faker("pt-BR")
 
 def gerar_dados(quantidade_de_vendas = 500, quantidade_de_clientes = 200):
@@ -86,4 +87,3 @@ def gerar_dados(quantidade_de_vendas = 500, quantidade_de_clientes = 200):
     venda_produtos = pd.DataFrame(venda_produtos)
 
     return (produtos,clientes,vendas,venda_produtos)
-
