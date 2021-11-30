@@ -6,7 +6,7 @@ from django.urls import reverse
 def home(request):
     return render(request, "index.html")
 
-def lista_produtos(request):
+def lista_de_produtos(request):
     return render(request, "lista_de_produtos.html")
 
 def assinatura(request):
