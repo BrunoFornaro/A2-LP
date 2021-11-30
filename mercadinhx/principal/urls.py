@@ -1,9 +1,8 @@
 from django.urls import path
-from mercadinhx.principal.views import assinatura, cadastro, fale_conosco, lista_produtos, quem_somos, recuperar_senha
 from principal import views 
 
 urlpatterns = [
-    path("home/", views.home, name="home")
+    path("home/", views.home, name="home"),
     path("lista_produtos/", views.lista_produtos, name="lista_de_produtos"),
     path("assinatura/", views.assinatura, name="assinatura"),
     path("cadastro/", views.cadastro, name="cadastro"),

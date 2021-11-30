@@ -10,7 +10,7 @@ def lista_produtos(request):
     return render(request, "lista_de_produtos.html")
 
 def assinatura(request):
-    return render(request, "assinztura_pro.html")
+    return render(request, "assinatura_pro.html")
 
 def cadastro(request):
     return render(request, "cadastro.html")

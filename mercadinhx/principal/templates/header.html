@@ -1,3 +1,5 @@
+{% load static %}
+
 <!-- Cria uma linha para ser dividida em colunas -->
 <div class="row">
     <!-- Classe de navegação -->
@@ -34,7 +36,7 @@
                 </div>
                 <div class="col-12 col-md-3 nav-item">
                     <!-- Link para assinatura pró -->
-                    <a href="assinatura_pro.html" class="nav-link primeira-cor" aria-current="page">Seja
+                    <a href="{% url 'assinatura' %}" class="nav-link primeira-cor" aria-current="page">Seja
                         Assinante</a>
                 </div>
                 <div class="col-12 col-md-3 nav-item">
