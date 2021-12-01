@@ -28,4 +28,12 @@ def login(request):
     return render(request, "login.html")
 
 def produtos(request):
-    return render(request, "produtos.html")
+
+    context = {
+        "produto":"Morango",
+        "preço":"7,99",
+        "prateleira":"1A",
+        "unidade":"bandeja",
+        "quantidade":"50"
+    }
+    return render(request, "produtos.html", context)
