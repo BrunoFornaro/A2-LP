@@ -14,6 +14,7 @@ def gerar_dados(quantidade_de_vendas = 500, quantidade_de_clientes = 200):
     prateleira_dos_produtos = ["1A", "1C", "1B", "1D", "2B", "2D", "2A", "2C", "2E", "3B", "3A", "3C"]
     estoque_produtos = [50, 20, 40, 36, 47, 12, 19, 25, 20, 43, 80, 38]
     unidade_de_medida_estoque = ["bandejas", "unidades", "kg", "bandejas", "kg", "kg", "kg", "pés", "pés", "kg", "kg", "pacotes"]
+    imagem = ["morango-alt.png", "melancia.jpg", "banana.png", "uva-alt.png", "batata.JPEG", "beringela.jpg", "abobrinha.JPEG", "alface.png", "couve-flor.png", "feijao.png", "arroz.png", "macarrao.png"]
 
     produtos = {
         "id": list(range(len(nome_dos_produtos))),
@@ -30,7 +31,7 @@ def gerar_dados(quantidade_de_vendas = 500, quantidade_de_clientes = 200):
     clientes = {
         'id': list(range(quantidade_de_clientes)),
         'nome': [],
-        'idade': []
+        'idade': [],
         'endereço':[],
         'cpf': [],
         'telefone': [],
