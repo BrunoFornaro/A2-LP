@@ -3,7 +3,10 @@ from django.http import HttpResponse
 from django.http.response import HttpResponseNotFound, HttpResponseRedirect, Http404
 from django.urls import reverse
 
-from principal.models import Produtos
+from principal.models import Produtos, Clientes, Vendas, VendasProdutos
+
+from django.forms.models import model_to_dict
+
 
 def home(request):
     
@@ -59,7 +62,20 @@ def produtos(request, id='3'):
     }
     return render(request, "produtos.html", context)
 
+from itertools import chain
+def to_dict(instance):
+    opts = instance._meta
+    data = {}
+    for f in chain(opts.concrete_fields, opts.private_fields):
+        data[f.name] = f.value_from_object(instance)
+    for f in opts.many_to_many:
+        data[f.name] = [i.id for i in f.value_from_object(instance)]
+    return data 
+
 def testes(request):
-    resultado = Produtos.objects.all()
     # Produtos.objects.all().delete()
-    return HttpResponse(f"aaaaaa: {resultado[11]}")
+    # Clientes.objects.all().delete()
+    # Vendas.objects.all().delete()
+    # VendasProdutos.objects.all().delete()
+    resultado = Produtos.objects.all()
+    return HttpResponse(f"aaaaaa: {model_to_dict(resultado[1])}")
