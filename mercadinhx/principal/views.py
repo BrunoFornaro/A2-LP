@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.http.response import HttpResponseNotFound, HttpResponseRedirect, Http404
 from django.urls import reverse
 
-from principal.models import Produtos
+from principal.models import Produtos, Clientes, Vendas, VendasProdutos
 
 def home(request):
     
@@ -59,4 +59,8 @@ def produtos(request, id='3'):
 def testes(request):
     resultado = Produtos.objects.all()
     # Produtos.objects.all().delete()
-    return HttpResponse(f"aaaaaa: {resultado[11]}")
+    # Clientes.objects.all().delete()
+    # Vendas.objects.all().delete()
+    # VendasProdutos.objects.all().delete()
+    print(resultado)
+    return HttpResponse(f"aaaaaa: {(1)}")

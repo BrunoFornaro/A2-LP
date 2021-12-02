@@ -15,7 +15,16 @@ class Produtos(models.Model):
     imagem = models.CharField(max_length=60)
     
     def __str__(self):
-        return f"Nome: {self.nome}"
+        dados = {
+            "id": self.id,
+            "nome": self.nome,
+            "preco": self.preco,
+            "prateleira": self.prateleira,
+            "estoque": self.estoque,
+            "unidade_de_medida_de_estoque": self.unidade_de_medida_de_estoque,
+            "imagem": self.imagem
+        }
+        return dados
 
 class Clientes(models.Model):
     id = models.IntegerField(primary_key=True)

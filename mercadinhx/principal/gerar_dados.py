@@ -14,8 +14,8 @@ def gerar_dados(quantidade_de_vendas = 500, quantidade_de_clientes = 200):
     preco_produtos = [7.99, 1.49, 5.99, 7.47, 3.99, 11.99, 3.50, 0.98, 5.48, 8.45, 20.31, 2.48]
     prateleira_dos_produtos = ["1A", "1C", "1B", "1D", "2B", "2D", "2A", "2C", "2E", "3B", "3A", "3C"]
     estoque_produtos = [50, 20, 40, 36, 47, 12, 19, 25, 20, 43, 80, 38]
-    unidade_de_medida_estoque = ["bandejas", "unidades", "kg", "bandejas", "kg", "kg", "kg", "pés", "pés", "kg", "kg", "pacotes"]
-    imagem = ["morango-alt.png", "melancia.jpg", "banana.png", "uva-alt.png", "batata.JPEG", "beringela.jpg", "abobrinha.JPEG", "alface.png", "couve-flor.png", "feijao.png", "arroz.png", "macarrao.png"]
+    unidade_de_medida_estoque = ["bandeja", "unidade", "kg", "bandeja", "kg", "kg", "kg", "pé", "pé", "kg", "kg", "pacote"]
+    imagem = ["morango-alt.png", "melancia.jpg", "banana.png", "uva-alt.png", "batata.JPEG", "beringela.jpg", "abobrinha.JPEG", "alface.png", "couve-flor.png", "feijao.png", "arroz.png", "macarrao.jpg"]
 
     produtos = {
         "id": list(range(len(nome_dos_produtos))),
@@ -92,92 +92,82 @@ def gerar_dados(quantidade_de_vendas = 500, quantidade_de_clientes = 200):
 
     return (produtos,clientes,vendas,venda_produtos)
 
-# dados = gerar_dados()
-# produtos = dados[0]
-# clientes = dados[1]
-# vendas = dados[2]
-# venda_produtos = dados[3]
+dados = gerar_dados()
+produtos = dados[0]
+clientes = dados[1]
+vendas = dados[2]
+venda_produtos = dados[3]
 
-# # Populando o banco de dados do django
-# # for indice, linha in produtos.iterrows():
-# #     modelo = Produtos()
-# #     modelo.id = linha["id"]
-# #     modelo.nome = linha["nome"]
-# #     modelo.preco = linha["preco"]
-# #     modelo.prateleira = linha["prateleira"] 
-# #     modelo.estoque = linha["estoque"]
-# #     modelo.unidade_de_medida_de_estoque = linha["unidade_de_medida_de_estoque"]
-# #     modelo.save()
+produtos_json = []
+for indice, linha in produtos.iterrows():
+    produtos_json.append(
+        {
+            "id": str(linha["id"]),
+            "model": "principal.Produtos",
+            "fields": {
+                "nome": str(linha["nome"]),
+                "preco": str(linha["preco"]),
+                "prateleira": str(linha["prateleira"]),
+                "estoque": str(linha["estoque"]),
+                "unidade_de_medida_de_estoque": str(linha["unidade_de_medida_de_estoque"]),
+                "imagem": str(linha["imagem"])
+            }
+        }
+    )
 
-# produtos_json = []
-# for indice, linha in produtos.iterrows():
-#     produtos_json.append(
-#         {
-#             "id": str(linha["id"]),
-#             "model": "principal.Produtos",
-#             "fields": {
-#                 "nome": str(linha["nome"]),
-#                 "preco": str(linha["preco"]),
-#                 "prateleira": str(linha["prateleira"]),
-#                 "estoque": str(linha["estoque"]),
-#                 "unidade_de_medida_de_estoque": str(linha["unidade_de_medida_de_estoque"])
-#             }
-#         }
-#     )
+clientes_json = []
+for indice, linha in clientes.iterrows():
+    clientes_json.append(
+        {
+            "id": str(linha["id"]),
+            "model": "principal.Clientes",
+            "fields": {
+                "nome": str(linha["nome"]),
+                "nascimento": str(linha["nascimento"]),
+                "endereco": str(linha["endereco"]),
+                "cpf": str(linha["cpf"]),
+                "telefone": str(linha["telefone"]),
+                "usuario": str(linha["usuario"]),
+                "senha": str(linha["senha"])
+            }
+        }
+    )
 
-# clientes_json = []
-# for indice, linha in clientes.iterrows():
-#     clientes_json.append(
-#         {
-#             "id": str(linha["id"]),
-#             "model": "principal.Clientes",
-#             "fields": {
-#                 "nome": str(linha["nome"]),
-#                 "nascimento": str(linha["nascimento"]),
-#                 "endereco": str(linha["endereco"]),
-#                 "cpf": str(linha["cpf"]),
-#                 "telefone": str(linha["telefone"]),
-#                 "usuario": str(linha["usuario"]),
-#                 "senha": str(linha["senha"])
-#             }
-#         }
-#     )
+vendas_json = []
+for indice, linha in vendas.iterrows():
+    vendas_json.append(
+        {
+            "id": str(linha["id"]),
+            "model": "principal.Vendas",
+            "fields": {
+                "id_clientes": str(linha["id_clientes"]),
+                "data": str(linha["data"])
+            }
+        }
+    )
 
-# vendas_json = []
-# for indice, linha in vendas.iterrows():
-#     vendas_json.append(
-#         {
-#             "id": str(linha["id"]),
-#             "model": "principal.Vendas",
-#             "fields": {
-#                 "id_clientes": str(linha["id_clientes"]),
-#                 "data": str(linha["data"])
-#             }
-#         }
-#     )
+vendas_produtos_json = []
+for indice, linha in venda_produtos.iterrows():
+    vendas_produtos_json.append(
+        {
+            "id": str(indice),
+            "model": "principal.VendasProdutos",
+            "fields": {
+                "id_vendas": str(linha["id_vendas"]),
+                "id_produtos": str(linha["id_produtos"]),
+                "quantidade": str(linha["quantidade"])
+            }
+        }
+    )
 
-# vendas_produtos_json = []
-# for indice, linha in venda_produtos.iterrows():
-#     vendas_produtos_json.append(
-#         {
-#             "id": str(indice),
-#             "model": "principal.VendasProdutos",
-#             "fields": {
-#                 "id_vendas": str(linha["id_vendas"]),
-#                 "id_produtos": str(linha["id_produtos"]),
-#                 "quantidade": str(linha["quantidade"])
-#             }
-#         }
-#     )
+with open('Produtos.json', 'w', encoding='utf-8') as f:
+    json.dump(produtos_json, f,ensure_ascii=False)
 
-# with open('Produtos.json', 'w', encoding='utf-8') as f:
-#     json.dump(produtos_json, f,ensure_ascii=False)
-
-# with open('Clientes.json', 'w', encoding='utf-8') as f:
-#     json.dump(clientes_json, f,ensure_ascii=False)
+with open('Clientes.json', 'w', encoding='utf-8') as f:
+    json.dump(clientes_json, f,ensure_ascii=False)
     
-# with open('Vendas.json', 'w', encoding='utf-8') as f:
-#     json.dump(vendas_json, f,ensure_ascii=False)
+with open('Vendas.json', 'w', encoding='utf-8') as f:
+    json.dump(vendas_json, f,ensure_ascii=False)
 
-# with open('VendasProdutos.json', 'w', encoding='utf-8') as f:
-#     json.dump(vendas_produtos_json, f,ensure_ascii=False)
+with open('VendasProdutos.json', 'w', encoding='utf-8') as f:
+    json.dump(vendas_produtos_json, f,ensure_ascii=False)
