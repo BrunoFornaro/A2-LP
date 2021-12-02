@@ -3,7 +3,10 @@ from django.http import HttpResponse
 from django.http.response import HttpResponseNotFound, HttpResponseRedirect, Http404
 from django.urls import reverse
 
+from principal.models import Produtos
+
 def home(request):
+    
     return render(request, "index.html")
 
 def lista_de_produtos(request):
@@ -52,3 +55,8 @@ def produtos(request, id='3'):
         "imagem":imagem_do_produto
     }
     return render(request, "produtos.html", context)
+
+def testes(request):
+    resultado = Produtos.objects.all()
+    # Produtos.objects.all().delete()
+    return HttpResponse(f"aaaaaa: {resultado[11]}")
