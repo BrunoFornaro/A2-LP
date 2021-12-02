@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import random as rd
 from faker import Faker
+import json
 
 fake = Faker("pt-BR")
 
@@ -22,7 +23,8 @@ def gerar_dados(quantidade_de_vendas = 500, quantidade_de_clientes = 200):
         "preco": preco_produtos,
         "prateleira": prateleira_dos_produtos,
         "estoque": estoque_produtos,
-        "unidade_de_medida_de_estoque": unidade_de_medida_estoque
+        "unidade_de_medida_de_estoque": unidade_de_medida_estoque,
+        "imagem": imagem
     }
 
     produtos = pd.DataFrame(produtos)
@@ -32,7 +34,7 @@ def gerar_dados(quantidade_de_vendas = 500, quantidade_de_clientes = 200):
         'id': list(range(quantidade_de_clientes)),
         'nome': [],
         'nascimento': [],
-        'endereço':[],
+        'endereco':[],
         'cpf': [],
         'telefone': [],
         'usuario': [],
@@ -42,7 +44,7 @@ def gerar_dados(quantidade_de_vendas = 500, quantidade_de_clientes = 200):
     for id in clientes['id']:
         clientes['nome'].append(fake.name())
         clientes['nascimento'].append(fake.date_of_birth(minimum_age = 18, maximum_age = 73))
-        clientes['endereço'].append(fake.address())
+        clientes['endereco'].append(fake.address())
         clientes['cpf'].append(fake.cpf())
         clientes['telefone'].append(fake.phone_number())
         clientes['usuario'].append(fake.user_name())
@@ -58,31 +60,32 @@ def gerar_dados(quantidade_de_vendas = 500, quantidade_de_clientes = 200):
     datas.sort()
     vendas = {
         'id' : [],
-        'id_cliente' : [],
+        'id_clientes' : [],
         'data' : []
     }
     for id, data in enumerate(datas):
         vendas['id'].append(id)
-        vendas['id_cliente'].append(np.random.choice(clientes['id']))
+        vendas['id_clientes'].append(np.random.choice(clientes['id']))
         vendas['data'].append(data)
 
     vendas = pd.DataFrame(vendas)
+    vendas["data"] = vendas["data"].dt.strftime('%Y-%m-%d')
 
     # Tabela intermediária entre vendas e produtos
     venda_produtos = {
         'id_vendas' : [],
-        'id_produto' : [],
+        'id_produtos' : [],
         'quantidade' : []
     }
 
     for id in range(quantidade_de_vendas):
         venda_produtos['id_vendas'].append(vendas['id'][id])
-        venda_produtos['id_produto'].append(np.random.choice(produtos['id']))
+        venda_produtos['id_produtos'].append(np.random.choice(produtos['id']))
         venda_produtos['quantidade'].append(random.randint(1, 5))
 
     for id in range(4 * quantidade_de_vendas):
         venda_produtos['id_vendas'].append(np.random.choice(clientes['id']))
-        venda_produtos['id_produto'].append(np.random.choice(produtos['id']))
+        venda_produtos['id_produtos'].append(np.random.choice(produtos['id']))
         venda_produtos['quantidade'].append(random.randint(1, 5))
 
     venda_produtos = pd.DataFrame(venda_produtos)
@@ -91,27 +94,90 @@ def gerar_dados(quantidade_de_vendas = 500, quantidade_de_clientes = 200):
 
 # dados = gerar_dados()
 # produtos = dados[0]
+# clientes = dados[1]
+# vendas = dados[2]
+# venda_produtos = dados[3]
 
-# from django.db.models import Produtos
-# Populando o banco de dados do django
+# # Populando o banco de dados do django
+# # for indice, linha in produtos.iterrows():
+# #     modelo = Produtos()
+# #     modelo.id = linha["id"]
+# #     modelo.nome = linha["nome"]
+# #     modelo.preco = linha["preco"]
+# #     modelo.prateleira = linha["prateleira"] 
+# #     modelo.estoque = linha["estoque"]
+# #     modelo.unidade_de_medida_de_estoque = linha["unidade_de_medida_de_estoque"]
+# #     modelo.save()
+
+# produtos_json = []
 # for indice, linha in produtos.iterrows():
-#     modelo = Produtos()
-#     modelo.id = linha["id"]
-#     modelo.nome = linha["nome"]
-#     modelo.preco = linha["preco"]
-#     modelo.prateleira = linha["prateleira"] 
-#     modelo.estoque = linha["estoque"]
-#     modelo.unidade_de_medida_de_estoque = linha["unidade_de_medida_de_estoque"]
-#     modelo.save()
+#     produtos_json.append(
+#         {
+#             "id": str(linha["id"]),
+#             "model": "principal.Produtos",
+#             "fields": {
+#                 "nome": str(linha["nome"]),
+#                 "preco": str(linha["preco"]),
+#                 "prateleira": str(linha["prateleira"]),
+#                 "estoque": str(linha["estoque"]),
+#                 "unidade_de_medida_de_estoque": str(linha["unidade_de_medida_de_estoque"])
+#             }
+#         }
+#     )
 
-# import os
-# os.environ.setdefault('DJANGO_SETTINGS_MODULE','principal.settings')
+# clientes_json = []
+# for indice, linha in clientes.iterrows():
+#     clientes_json.append(
+#         {
+#             "id": str(linha["id"]),
+#             "model": "principal.Clientes",
+#             "fields": {
+#                 "nome": str(linha["nome"]),
+#                 "nascimento": str(linha["nascimento"]),
+#                 "endereco": str(linha["endereco"]),
+#                 "cpf": str(linha["cpf"]),
+#                 "telefone": str(linha["telefone"]),
+#                 "usuario": str(linha["usuario"]),
+#                 "senha": str(linha["senha"])
+#             }
+#         }
+#     )
 
-# import django
-# django.setup()
+# vendas_json = []
+# for indice, linha in vendas.iterrows():
+#     vendas_json.append(
+#         {
+#             "id": str(linha["id"]),
+#             "model": "principal.Vendas",
+#             "fields": {
+#                 "id_clientes": str(linha["id_clientes"]),
+#                 "data": str(linha["data"])
+#             }
+#         }
+#     )
 
+# vendas_produtos_json = []
+# for indice, linha in venda_produtos.iterrows():
+#     vendas_produtos_json.append(
+#         {
+#             "id": str(indice),
+#             "model": "principal.VendasProdutos",
+#             "fields": {
+#                 "id_vendas": str(linha["id_vendas"]),
+#                 "id_produtos": str(linha["id_produtos"]),
+#                 "quantidade": str(linha["quantidade"])
+#             }
+#         }
+#     )
 
-# modelo = Produtos()
-# print(modelo.objects.all())
+# with open('Produtos.json', 'w', encoding='utf-8') as f:
+#     json.dump(produtos_json, f,ensure_ascii=False)
 
+# with open('Clientes.json', 'w', encoding='utf-8') as f:
+#     json.dump(clientes_json, f,ensure_ascii=False)
+    
+# with open('Vendas.json', 'w', encoding='utf-8') as f:
+#     json.dump(vendas_json, f,ensure_ascii=False)
 
+# with open('VendasProdutos.json', 'w', encoding='utf-8') as f:
+#     json.dump(vendas_produtos_json, f,ensure_ascii=False)
