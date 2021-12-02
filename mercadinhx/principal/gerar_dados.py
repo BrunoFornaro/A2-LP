@@ -89,5 +89,29 @@ def gerar_dados(quantidade_de_vendas = 500, quantidade_de_clientes = 200):
 
     return (produtos,clientes,vendas,venda_produtos)
 
+# dados = gerar_dados()
+# produtos = dados[0]
+
+# from django.db.models import Produtos
+# Populando o banco de dados do django
+# for indice, linha in produtos.iterrows():
+#     modelo = Produtos()
+#     modelo.id = linha["id"]
+#     modelo.nome = linha["nome"]
+#     modelo.preco = linha["preco"]
+#     modelo.prateleira = linha["prateleira"] 
+#     modelo.estoque = linha["estoque"]
+#     modelo.unidade_de_medida_de_estoque = linha["unidade_de_medida_de_estoque"]
+#     modelo.save()
+
+# import os
+# os.environ.setdefault('DJANGO_SETTINGS_MODULE','principal.settings')
+
+# import django
+# django.setup()
+
+
+# modelo = Produtos()
+# print(modelo.objects.all())
 
 
