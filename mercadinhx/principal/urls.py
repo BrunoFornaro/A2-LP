@@ -11,5 +11,4 @@ urlpatterns = [
     path("recuperar_senha/", views.recuperar_senha, name="recuperar_senha"),
     path("login/", views.login, name="login"), 
     path("produtos/(?P<int:id>\d+)", views.produtos, name="produtos"),
-    path("testes/", views.testes, name="testes") 
-    ]
+    path("testes/", views.testes, name="testes") ]
