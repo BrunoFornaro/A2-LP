@@ -27,13 +27,28 @@ def recuperar_senha(request):
 def login(request):
     return render(request, "login.html")
 
-def produtos(request):
+def produtos(request, id='3'):
+    if id == '1':
+        nome_do_produto = "Morango"
+        preco_do_produto = "7,99"
+        prateleira_do_produto = "1A"
+        unidade_do_produto = "bandeja"
+        quantidade_do_produto = "50"
+        imagem_do_produto = "morango-alt.png"
+    else:
+        nome_do_produto = "Melancia"
+        preco_do_produto = "1,49"
+        prateleira_do_produto = "1C"
+        unidade_do_produto = "unidade"
+        quantidade_do_produto = "20"
+        imagem_do_produto = "melancia.jpg"
 
     context = {
-        "produto":"Morango",
-        "preço":"7,99",
-        "prateleira":"1A",
-        "unidade":"bandeja",
-        "quantidade":"50"
+        "produto":nome_do_produto,
+        "preço":preco_do_produto,
+        "prateleira":prateleira_do_produto,
+        "unidade":unidade_do_produto,
+        "quantidade":quantidade_do_produto,
+        "imagem":imagem_do_produto
     }
     return render(request, "produtos.html", context)
