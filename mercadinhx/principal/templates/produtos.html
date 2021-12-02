@@ -20,10 +20,10 @@
             <div class="col-12 col-md-4 imagem-produtos">
                 <!-- Imagem do produto -->
                 <figure>
-                    <img src="{% static 'img/morango-alt.png' %}" alt="Informações do produto">
+                    <img src="{% get_static_prefix %}img/{{imagem}}" alt="Informações do produto">
                 </figure>
-            </div>
-            <!-- Informações sobre o produto -->
+            </div> 
+            <!-- Informações sobre o produto img/morango-alt.png -->
             <div class="col-12 col-md-6">
                 <div class="row row-tipos-assinatura">
                     <div class="col-12 fundo-amarelo">
@@ -75,7 +75,7 @@
         <!-- Texto de informações complementares -->
         <div class="row justify-content-center informacoes-produto">
             <div class="col-12 col-md-10 fundo-amarelo tipos-de-assinatura">
-                <p>Nossos {{produto}}s são orgânicos e comprados diretamente do podutor. A produção é feita no município
+                <p>Nossos {{produto|lower}}s são orgânicos e comprados diretamente do podutor. A produção é feita no município
                     de Venda Nova do Imgrante, sem a utilização de agrotóxicos visando o bem estar dos clientes e bons
                     cuidados com a natureza. </p>
             </div>
