@@ -31,7 +31,7 @@ def gerar_dados(quantidade_de_vendas = 500, quantidade_de_clientes = 200):
     clientes = {
         'id': list(range(quantidade_de_clientes)),
         'nome': [],
-        'idade': [],
+        'nascimento': [],
         'endereço':[],
         'cpf': [],
         'telefone': [],
@@ -41,7 +41,7 @@ def gerar_dados(quantidade_de_vendas = 500, quantidade_de_clientes = 200):
 
     for id in clientes['id']:
         clientes['nome'].append(fake.name())
-        clientes['idade'].append(random.randint(18, 73))
+        clientes['nascimento'].append(fake.date_of_birth(minimum_age = 18, maximum_age = 73))
         clientes['endereço'].append(fake.address())
         clientes['cpf'].append(fake.cpf())
         clientes['telefone'].append(fake.phone_number())
@@ -88,3 +88,6 @@ def gerar_dados(quantidade_de_vendas = 500, quantidade_de_clientes = 200):
     venda_produtos = pd.DataFrame(venda_produtos)
 
     return (produtos,clientes,vendas,venda_produtos)
+
+
+
