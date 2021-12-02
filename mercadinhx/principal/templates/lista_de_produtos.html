@@ -1,6 +1,7 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="pt-br">
-{% load static %}
 
 <head>
     {% include "head.html"%}
@@ -91,26 +92,11 @@
             </div>
         </div>
 
-        <!-- CATEGORIAS DE PRODUTO -->
-        <div class="container" id="featured-container">
+    <div class="container" id="featured-container">
             <div class="col-12 lista-de-produtos" id="featured-images">
                 <!-- Cria uma linha -->
                 <div class="row g-4">
-                    <!-- Classe que não limita a tela no mobile mas limita a área da imagem em telas maiores à 3/12 da linha -->
-                    <div class="col-12 col-md-3">
-                        <!-- Imagem go produto -->
-                        <img src="{% static 'img/morango-alt.png' %}" alt="Morango">
-                        <div class="banner-content">
-                            <!-- Imformações do produto -->
-                            <button onclick="window.location.href='{% url 'produtos' id=0 %}'"
-                                class="btn-outline-success btn-lg">Morango</button>
-                            <h4>R$7,99 p/ bandeja (250g)</h4>
-                            <br>
-                            <h4>Estoque: 50 bandejas</h4>
-                            <h4>Prateleira 1A</h4>
-                        </div>
-                    </div>
-
+                    {% block cards_produtos %}
                     <div class="col-12 col-md-3">
                         <img src="{% static 'img/melancia.jpg' %}" alt="Melancia">
                         <div class="banner-content">
@@ -122,135 +108,11 @@
                             <h4>Prateleira 1C</h4>
                         </div>
                     </div>
-
-                    <div class="col-12 col-md-3">
-                        <img src="{% static 'img/banana.png' %}" alt="Banana">
-                        <div class="banner-content">
-                            <button onclick="window.location.href='{% url 'produtos' id=2 %}'"
-                                class="btn-outline-success btn-lg">Banana</button>
-                            <h4>R$5,99 p/ Kg</h4>
-                            <br>
-                            <h4>Estoque: 40 Kg</h4>
-                            <h4>Prateleira 1B</h4>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-md-3">
-                        <img src="{% static 'img/uva-alt.png' %}" alt="Uva">
-                        <div class="banner-content">
-                            <button onclick="window.location.href='{% url 'produtos' id=3 %}'"
-                                class="btn-outline-success btn-lg">Uva</button>
-                            <h4>R$7,47 p/ bandeja (500g)</h4>
-                            <br>
-                            <h4>Estoque: 36 bandejas</h4>
-                            <h4>Prateleira 1D</h4>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-md-3">
-                        <img src="{% static 'img/batata.JPEG' %}" alt="Batata">
-                        <div class="banner-content">
-                            <button onclick="window.location.href='{% url 'produtos' id=4 %}'"
-                                class="btn-outline-success btn-lg">Batata</button>
-
-                            <h4>R$3,99 p/ Kg</h4>
-                            <br>
-                            <h4>Estoque: 47 Kg</h4>
-                            <h4>Prateleira 2B</h4>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-md-3">
-                        <img src="{% static 'img/beringela.jpg' %}" alt="Berinjela">
-                        <div class="banner-content">
-                            <button onclick="window.location.href='{% url 'produtos' id=5 %}'"
-                                class="btn-outline-success btn-lg">Berinjela</button>
-                            <h4>R$11,99 p/ Kg</h4>
-                            <br>
-                            <h4>Estoque: 12 Kg</h4>
-                            <h4>Prateleira 2D</h4>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-md-3">
-                        <img src="{% static 'img/abobrinha.JPEG' %}" alt="Abobrinha">
-                        <div class="banner-content">
-                            <button onclick="window.location.href='{% url 'produtos'  id=6 %}'"
-                                class="btn-outline-success btn-lg">Abobrinha</button>
-                            <h4>R$3,49 p/ Kg</h4>
-                            <br>
-                            <h4>Estoque: 19 Kg</h4>
-                            <h4>Prateleira 2A</h4>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-md-3">
-                        <img src="{% static 'img/alface.png' %}" alt="Alface">
-                        <div class="banner-content">
-                            <button onclick="window.location.href='{% url 'produtos' id=7 %}'"
-                                class="btn-outline-success btn-lg">Alface</button>
-
-                            <h4>R$0,98 p/ pé</h4>
-                            <br>
-                            <h4>Estoque: 25 pés</h4>
-                            <h4>Prateleira 2C</h4>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-md-3">
-                        <img src="{% static 'img/couve-flor.png' %}" alt="Couve-flor">
-                        <div class="banner-content">
-                            <button onclick="window.location.href='{% url 'produtos' id=8 %}'"
-                                class="btn-outline-success btn-lg">Couve-flor</button>
-
-                            <h4>R$5,48 p/ pé</h4>
-                            <br>
-                            <h4>Estoque: 20 pés</h4>
-                            <h4>Prateleira 2E</h4>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-3">
-                        <img src="{% static 'img/feijao.png' %}" alt="Feijão">
-                        <div class="banner-content">
-                            <button onclick="window.location.href='{% url 'produtos' id=9 %}'"
-                                class="btn-outline-success btn-lg">Feijão</button>
-
-                            <h4>R$7,45 p/ pacote (1Kg)</h4>
-                            <br>
-                            <h4>Estoque: 43 Kg</h4>
-                            <h4>Prateleira 3B</h4>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-3">
-                        <img src="{% static 'img/arroz.png' %}" alt="Arroz">
-                        <div class="banner-content">
-                            <button onclick="window.location.href='{% url 'produtos' id=10 %}'"
-                                class="btn-outline-success btn-lg">Arroz</button>
-
-                            <h4>R$20,31 p/ pacote (5Kg)</h4>
-                            <br>
-                            <h4>Estoque: 80 Kg</h4>
-                            <h4>Prateleira 3A</h4>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-3">
-                        <img src="{% static 'img/macarrao.jpg' %}" alt="Macarrão">
-                        <div class="banner-content">
-                            <button onclick="window.location.href='{% url 'produtos' id=11 %}'"
-                                class="btn-outline-success btn-lg">Macarrão</button>
-
-                            <h4>R$2,48 p/ pacote (500g)</h4>
-                            <br>
-                            <h4>Estoque: 38 pacotes</h4>
-                            <h4>Prateleira 3C</h4>
-                        </div>
-                    </div>
+                    {% endblock %}
                 </div>
             </div>
         </div>
-
-
-
+        
         <!-- RODAPÉ -->
         <footer class="container-fluid segundo-fundo" id="rodape">
             {% include "footer.html"%}

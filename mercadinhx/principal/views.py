@@ -22,7 +22,14 @@ def home(request):
     return render(request, "index.html")
 
 def lista_de_produtos(request):
-    return render(request, "lista_de_produtos.html")
+    produtos = Produtos.objects.all()
+    context = []
+    for entrada in produtos:
+        entrada = model_to_dict(entrada)
+        entrada["id"] = entrada["id"] - 1
+        context.append(entrada)
+    context = {"dados": context}
+    return render(request, "lista_de_produtos_dtl.html", context)
 
 def assinatura(request):
     return render(request, "assinatura_pro.html")
@@ -48,7 +55,14 @@ def produtos(request, id='3'):
     return render(request, "produtos.html", context)
 
 def teste_uso_template(request):
-    return render(request, "teste_uso_template.html")
+    produtos = Produtos.objects.all()
+    context = []
+    for entrada in produtos:
+        entrada = model_to_dict(entrada)
+        entrada["id"] = entrada["id"] - 1
+        context.append(entrada)
+    context = {"dados": context}
+    return render(request, "teste_uso_template.html", context)
 
 def testes(request):
     # Produtos.objects.all().delete()

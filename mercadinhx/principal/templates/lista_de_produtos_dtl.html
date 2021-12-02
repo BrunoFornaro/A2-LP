@@ -1,0 +1,18 @@
+{% extends "lista_de_produtos.html" %}
+
+{% block cards_produtos %}
+    {% load static %}
+    {% for produto in dados %}
+        <div class="col-12 col-md-3">
+            <img src="{% get_static_prefix %}img/{{produto.imagem}}" alt="Melancia">
+            <div class="banner-content">
+                <button onclick="window.location.href='{% url 'produtos' id=produto.id %}'"
+                    class="btn-outline-success btn-lg">{{produto.nome|title}}</button>
+                <h4>R${{produto.preco}} p/ {{produto.unidade_de_medida_de_estoque}} </h4>
+                <br>
+                <h4>Estoque: {{produto.estoque|floatformat:"0"}} {{produto.unidade_de_medida_de_estoque}}s</h4>
+                <h4>Prateleira {{produto.prateleira}}</h4>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
