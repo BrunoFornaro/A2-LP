@@ -1,8 +1,4 @@
 from django.db import models
-# import os
-# os.environ.setdefault('DJANGO_SETTINGS_MODULE','mercadinhx.settings')
-#from django.shortcuts import SupportsGetAbsoluteUrl
-
 
 # Create your models here.
 class Produtos(models.Model):
@@ -14,17 +10,18 @@ class Produtos(models.Model):
     unidade_de_medida_de_estoque = models.CharField(max_length=80)
     imagem = models.CharField(max_length=60)
     
-    def __str__(self):
-        dados = {
-            "id": self.id,
-            "nome": self.nome,
-            "preco": self.preco,
-            "prateleira": self.prateleira,
-            "estoque": self.estoque,
-            "unidade_de_medida_de_estoque": self.unidade_de_medida_de_estoque,
-            "imagem": self.imagem
-        }
-        return dados
+    # def __str__(self):
+    #     dados = {
+    #         "id": self.id,
+    #         "nome": self.nome,
+    #         "preco": self.preco,
+    #         "prateleira": self.prateleira,
+    #         "estoque": self.estoque,
+    #         "unidade_de_medida_de_estoque": self.unidade_de_medida_de_estoque,
+    #         "imagem": self.imagem
+    #     }
+    #     dados = str(dados)
+    #     return dados
 
 class Clientes(models.Model):
     id = models.IntegerField(primary_key=True)

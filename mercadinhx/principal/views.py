@@ -5,6 +5,9 @@ from django.urls import reverse
 
 from principal.models import Produtos, Clientes, Vendas, VendasProdutos
 
+from django.forms.models import model_to_dict
+
+
 def home(request):
     
     return render(request, "index.html")
@@ -56,11 +59,20 @@ def produtos(request, id='3'):
     }
     return render(request, "produtos.html", context)
 
+from itertools import chain
+def to_dict(instance):
+    opts = instance._meta
+    data = {}
+    for f in chain(opts.concrete_fields, opts.private_fields):
+        data[f.name] = f.value_from_object(instance)
+    for f in opts.many_to_many:
+        data[f.name] = [i.id for i in f.value_from_object(instance)]
+    return data 
+
 def testes(request):
-    resultado = Produtos.objects.all()
     # Produtos.objects.all().delete()
     # Clientes.objects.all().delete()
     # Vendas.objects.all().delete()
     # VendasProdutos.objects.all().delete()
-    print(resultado)
-    return HttpResponse(f"aaaaaa: {(1)}")
+    resultado = Produtos.objects.all()
+    return HttpResponse(f"aaaaaa: {model_to_dict(resultado[1])}")

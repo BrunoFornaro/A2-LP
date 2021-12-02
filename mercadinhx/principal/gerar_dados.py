@@ -11,7 +11,7 @@ def gerar_dados(quantidade_de_vendas = 500, quantidade_de_clientes = 200):
 
     # Tabela de produtos
     nome_dos_produtos = ["morango", "melancia", "banana", "uva", "batata", "berinjela", "abobrinha", "alface", "couve-flor", "feijão", "arroz", "macarrão"]
-    preco_produtos = [7.99, 1.49, 5.99, 7.47, 3.99, 11.99, 3.50, 0.98, 5.48, 8.45, 20.31, 2.48]
+    preco_produtos = [7.99, 13.99, 5.99, 7.47, 3.99, 11.99, 3.49, 0.98, 5.48, 8.45, 20.31, 2.48]
     prateleira_dos_produtos = ["1A", "1C", "1B", "1D", "2B", "2D", "2A", "2C", "2E", "3B", "3A", "3C"]
     estoque_produtos = [50, 20, 40, 36, 47, 12, 19, 25, 20, 43, 80, 38]
     unidade_de_medida_estoque = ["bandeja", "unidade", "kg", "bandeja", "kg", "kg", "kg", "pé", "pé", "kg", "kg", "pacote"]
@@ -49,7 +49,7 @@ def gerar_dados(quantidade_de_vendas = 500, quantidade_de_clientes = 200):
         clientes['telefone'].append(fake.phone_number())
         clientes['usuario'].append(fake.user_name())
         clientes['senha'].append(fake.password(12))
-        
+    
     clientes = pd.DataFrame(clientes)
 
     # Tabela de vendas
@@ -89,7 +89,7 @@ def gerar_dados(quantidade_de_vendas = 500, quantidade_de_clientes = 200):
         venda_produtos['quantidade'].append(random.randint(1, 5))
 
     venda_produtos = pd.DataFrame(venda_produtos)
-
+    
     return (produtos,clientes,vendas,venda_produtos)
 
 dados = gerar_dados()
