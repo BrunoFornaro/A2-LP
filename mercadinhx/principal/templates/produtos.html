@@ -27,16 +27,16 @@
             <div class="col-12 col-md-6">
                 <div class="row row-tipos-assinatura">
                     <div class="col-12 fundo-amarelo">
-                        <h1 class="titulo primeira-cor">Morango</h1>
+                        <h1 class="titulo primeira-cor">{{produto}}</h1>
                         <ul>
                             <li>
-                                <h4>R$7,99 p/ bandeja (250g)</h4>
+                                <h4>R${{preço}} p/ {{unidade}} </h4>
                             </li>
                             <li>
-                                <h4>Estoque: 50 bandejas</h4>
+                                <h4>Estoque: {{quantidade}} {{unidade}}s</h4>
                             </li>
                             <li>
-                                <h4>Prateleira 1A</h4>
+                                <h4>Prateleira {{prateleira}}</h4>
                             </li>
                         </ul>
 
@@ -75,7 +75,7 @@
         <!-- Texto de informações complementares -->
         <div class="row justify-content-center informacoes-produto">
             <div class="col-12 col-md-10 fundo-amarelo tipos-de-assinatura">
-                <p>Os nossos morangos são orgânicos e comprados diretamente do podutor. A produção é feita no município
+                <p>Nossos {{produto}}s são orgânicos e comprados diretamente do podutor. A produção é feita no município
                     de Venda Nova do Imgrante, sem a utilização de agrotóxicos visando o bem estar dos clientes e bons
                     cuidados com a natureza. </p>
             </div>
