@@ -47,6 +47,9 @@ def produtos(request, id='3'):
     context = model_to_dict(context[id])
     return render(request, "produtos.html", context)
 
+def teste_uso_template(request):
+    return render(request, "teste_uso_template.html")
+
 def testes(request):
     # Produtos.objects.all().delete()
     # Clientes.objects.all().delete()
