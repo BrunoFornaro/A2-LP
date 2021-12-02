@@ -1,0 +1,114 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    {% include "head.html"%}
+</head>
+
+<body>
+    <!-- CABEÇALHO -->
+    <!-- Cria um container -->
+    <header class="container-fluid">
+        {% include "header.html"%}
+    </header>
+
+    <!-- SLIDER -->
+    <div class="conteiner slider-container">
+
+
+        <!-- Coloca o card  -->
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'img/alimentos_geral.png' %}" alt="Mercadinhx" class="d-block">
+            </div>
+        </div>
+
+
+        <!-- Cria um container -->
+        <div class="container">
+            <!-- Cria uma linha para que possa ser dividida em até 12 colunas -->
+            <div class="row">
+                <nav class="navbar navbar-expand-lg navbar-filtro">
+                    <!-- Limita o codigo em 3/12 da linha -->
+                    <div class="col-12 col-md-3 centralizar" id="classificar-filtro">
+                        <h4>Classificar por:</h4>
+                        <!-- Cria um botão de menu que só é visto no mobile-->
+
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                            <i class="bi bi-list"></i>
+                        </button>
+                    </div>
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <!-- Ocupa 10/12 da área restante da linha  -->
+                        <div class="col-12 col-md-10">
+                            <!-- Cria uma classe de navegação para os itens -->
+                            <ul class="navbar-nav navbar-produtos">
+                                <!--<div class="col-2 centralizar">-->
+                                <li class="nav-item col-12 col-md-2 centralizar">
+                                    <!-- Cria um botão para que o cliente decida em que ordem quer ver os produtos, (botão não ativo) -->
+                                    <a class="nav-link active" aria-current="page" href="#">Prateleiras</a>
+                                </li>
+                                <!--</div>-->
+                                <!--<div class="col-2 centralizar">-->
+                                <!-- Cria um botão que pode ser expandido para outros botões-->
+                                <li class="nav-item dropdown col-12 col-md-2 centralizar">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Preço:
+                                    </a>
+                                    <!-- Cria dois botões para que o cliente decida em que ordem quer ver os produtos, (botão não ativo)-->
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                        <li><a class="dropdown-item" href="#">Crescente</a></li>
+                                        <li><a class="dropdown-item" href="#">Descrescente</a></li>
+                                    </ul>
+                                </li>
+                                <!--</div>-->
+                            </ul>
+
+                        </div>
+
+
+                        <div class="col-12 col-md-2 centralizar">
+                            <!-- Cria dois botões que trocam as páginas dos produtos, quando temos muitos produtos que não cabem na pag, (botão não ativo) -->
+                            <button class="control-prev" type="button" data-bs-slide="prev">
+                                <!-- Botão de anterior -->
+                                <i class="bi bi-chevron-left">
+                                    <span class="visually-hidden">Anterior</span>
+                                </i>
+                            </button>
+                            <button class="control-next" type="button" data-bs-slide="next">
+                                <!-- Botão de próximor -->
+                                <i class="bi bi-chevron-right">
+                                    <span class="visually-hidden">Próximo</span>
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+        {% block cabecalho %}
+        <div class="col-12 col-md-3">
+            <img src="{% static 'img/melancia.jpg' %}" alt="Melancia">
+            <div class="banner-content">
+                <button onclick="window.location.href='{% url 'produtos' id=1 %}'"
+                    class="btn-outline-success btn-lg">Melancia</button>
+                <h4>R$13,99 p/ unidade </h4>
+                <br>
+                <h4>Estoque: 20 unidades</h4>
+                <h4>Prateleira 1C</h4>
+            </div>
+        </div>
+        {% endblock %}
+
+        <!-- RODAPÉ -->
+        <footer class="container-fluid segundo-fundo" id="rodape">
+            {% include "footer.html"%}
+        </footer>
+    </div>
+</body>
