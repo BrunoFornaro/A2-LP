@@ -2,20 +2,18 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.http.response import HttpResponseNotFound, HttpResponseRedirect, Http404
 from django.urls import reverse
-
 from principal.models import Produtos, Clientes, Vendas, VendasProdutos
-
 from django.forms.models import model_to_dict
+import pandas as pd
 
-from itertools import chain
-def to_dict(instance):
-    opts = instance._meta
-    data = {}
-    for f in chain(opts.concrete_fields, opts.private_fields):
-        data[f.name] = f.value_from_object(instance)
-    for f in opts.many_to_many:
-        data[f.name] = [i.id for i in f.value_from_object(instance)]
-    return data 
+def converter_query(instancia):
+    context = []
+    for entrada in instancia:
+        entrada = model_to_dict(entrada)
+        entrada["id"] = entrada["id"] - 1
+        context.append(entrada)
+    context = pd.DataFrame(context)
+    return context
 
 def home(request):
     
@@ -65,9 +63,7 @@ def teste_uso_template(request):
     return render(request, "teste_uso_template.html", context)
 
 def testes(request):
-    # Produtos.objects.all().delete()
-    # Clientes.objects.all().delete()
-    # Vendas.objects.all().delete()
-    # VendasProdutos.objects.all().delete()
-    resultado = Clientes.objects.all()
-    return HttpResponse(f"aaaaaa: {model_to_dict(resultado[11])}")
+    
+
+    return HttpResponse(f"{context}")
+    #return HttpResponse(f"aaaaaa: {model_to_dict(resultado[11])}")
