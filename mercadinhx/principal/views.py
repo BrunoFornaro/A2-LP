@@ -28,20 +28,20 @@ def login(request):
     return render(request, "login.html")
 
 def produtos(request, id='3'):
-    if id == '1':
-        nome_do_produto = "Morango"
-        preco_do_produto = "7,99"
-        prateleira_do_produto = "1A"
-        unidade_do_produto = "bandeja"
-        quantidade_do_produto = "50"
-        imagem_do_produto = "morango-alt.png"
-    else:
-        nome_do_produto = "Melancia"
-        preco_do_produto = "1,49"
-        prateleira_do_produto = "1C"
-        unidade_do_produto = "unidade"
-        quantidade_do_produto = "20"
-        imagem_do_produto = "melancia.jpg"
+    nome_dos_produtos = ["morango", "melancia", "banana", "uva", "batata", "berinjela", "abobrinha", "alface", "couve-flor", "feijão", "arroz", "macarrão"]
+    preco_produtos = [7.99, 1.49, 5.99, 7.47, 3.99, 11.99, 3.50, 0.98, 5.48, 8.45, 20.31, 2.48]
+    prateleira_dos_produtos = ["1A", "1C", "1B", "1D", "2B", "2D", "2A", "2C", "2E", "3B", "3A", "3C"]
+    estoque_produtos = [50, 20, 40, 36, 47, 12, 19, 25, 20, 43, 80, 38]
+    unidade_de_medida_estoque = ["bandeja", "unidade", "kg", "bandeja", "kg", "kg", "kg", "pé", "pé", "kg", "kg", "pacote"]
+    imagem = ["morango-alt.png", "melancia.jpg", "banana.png", "uva-alt.png", "batata.JPEG", "beringela.jpg", "abobrinha.JPEG", "alface.png", "couve-flor.png", "feijao.png", "arroz.png", "macarrao.jpg"]
+
+    
+    nome_do_produto = nome_dos_produtos[id]
+    preco_do_produto = preco_produtos[id]
+    prateleira_do_produto = prateleira_dos_produtos[id]
+    unidade_do_produto = unidade_de_medida_estoque[id]
+    quantidade_do_produto = estoque_produtos[id]
+    imagem_do_produto = imagem[id]
 
     context = {
         "produto":nome_do_produto,
