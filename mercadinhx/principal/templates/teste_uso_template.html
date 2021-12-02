@@ -1,9 +1,9 @@
-{% extends "ferias-template.html" %}
+{% extends "teste_template.html" %}
 
 {% block cabecalho %}
-    {% for produto in nome_do_produto %}
+    {% for produto in nome_dos_produtos %}
         <div class="col-12 col-md-3">
-            <img src="{% static 'img/melancia.jpg' %}" alt="Melancia">
+            <img src="{#% static 'img/melancia.jpg' %#}" alt="Melancia">
             <div class="banner-content">
                 <button onclick="window.location.href='{% url 'produtos' id=1 %}'"
                     class="btn-outline-success btn-lg">{{produto}}</button>
