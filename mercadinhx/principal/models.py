@@ -38,7 +38,7 @@ class Clientes(models.Model):
     usuario = models.CharField(max_length=30)
     senha = models.CharField(max_length=30)
 
-    def pegar_dados(retornar="lista_de_dicionarios"):
+    def pegar_dados(self, retornar="lista_de_dicionarios"):
         instancia = Clientes.objects.all()
         context = converter_query(instancia, retornar)
         return context
@@ -49,7 +49,7 @@ class Vendas(models.Model):
     id_clientes = models.IntegerField()
     data = models.DateField()
 
-    def pegar_dados(retornar="lista_de_dicionarios"):
+    def pegar_dados(self, retornar="lista_de_dicionarios"):
         instancia = Vendas.objects.all()
         context = converter_query(instancia, retornar)
         return context
@@ -61,7 +61,7 @@ class VendasProdutos(models.Model):
     id_produtos = models.IntegerField()
     quantidade = models.FloatField()
 
-    def pegar_dados(retornar="lista_de_dicionarios"):
+    def pegar_dados(self, retornar="lista_de_dicionarios"):
         instancia = VendasProdutos.objects.all()
         context = converter_query(instancia, retornar)
         return context
