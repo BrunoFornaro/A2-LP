@@ -20,8 +20,8 @@ def home(request):
 
 def lista_de_produtos(request, id='4'):
     secoes = {
-        "0": "acougue",
-        "1": "padaria",
+        "0": "padaria",
+        "1": "acougue",
         "2": "frutas_e_verduras",
         "3": "produtos_de_limpeza",
         "4": "promocoes"
