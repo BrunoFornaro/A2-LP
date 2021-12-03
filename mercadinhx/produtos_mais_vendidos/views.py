@@ -48,7 +48,7 @@ def visualizacao1(request):
 
     #plotagem do gráfico de barras sobre o total de vendas por produto usando plotly
     fig = px.bar(venda_produtos_total,
-                x='nome', y="quantidade", height=500, width=700,
+                x='nome', y="quantidade", 
                 barmode='stack', labels={"nome": "Nome", 'quantidade':"Quantidade vendida"})
     fig.update_layout(title = 'Venda dos produtos')
     fig.update_xaxes(title = 'Produto')

@@ -28,73 +28,63 @@
             <div class="col-12 col-md-10 fundo-amarelo tipos-de-assinatura">
                 <p>Você já se perguntou qual é o nosso produto mais vendido?</p>
                 <br>
-                <p>Nessa página mostramos as estatísticas de vendas dos nossos produtos. Em ordem decrescente são exibidos quais alimentos foram mais vendidos ao decorrer do mês de novembro de 2021 </p>
+                <p>Nessa página mostramos as estatísticas de vendas dos nossos produtos. Em ordem decrescente são
+                    exibidos quais alimentos foram mais vendidos ao decorrer do mês de novembro de 2021 </p>
             </div>
         </div>
 
     </div>
-    <div class="container" id="featured-container">
-        <div id="featured-images">
-            <div class="col-12   imagem-produtos">
+
+    <!-- Gráfico (visualização) -->
+    <div class="container " id="featured-container">
+        <div class="row  ">
+            <div class="col-12 graficos">
                 <!-- Imagem do produto -->
                 {{visualizacao1|safe}}
             </div>
         </div>
     </div>
-    
-    
-    <!-- PRODUTO -->
-    <div class="conteiner " id="conteiner-tipos-de-assinatura">
-        
-         
-        <!-- Cria linha, para ser dividida em colunas, centralizada -->
-        <div class="row justify-content-center">
-            <div class="col 12 col-md-10 fundo-amarelo ">
-                <br>
-                <div class="row justify-content-center ">
-                    
-                    <h2 class="titulo">Veja outras visualizações</h2>
-                    
-                </div>
-                <br>
-            </div>
-            
-            <!-- Informações sobre o produto img/morango-alt.png -->
-            
-            <div class="col-12 col-md-10">
-                <div class="row row-tipos-assinatura">
-                    <div class="col-12 fundo-amarelo">
-                        
 
-                        <!-- Botão de adicionar ao carrinho que leva para a página de seja assinante -->
-                        <div class="row justify-content-center ">   
-                            <div class="col-md-4">
-                                <div class="row justify-content-center ">
-                                    <button onclick="window.location.href='{% url 'assinatura' %}'"
-                                        class="btn-outline-success btn-lg"><i class="bi bi-bar-chart-line"></i> estatísticas?</button>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="row justify-content-center ">
-                                    <button onclick="window.location.href='{% url 'assinatura' %}'"
-                                        class="btn-outline-success btn-lg"><i class="bi bi-bar-chart-line"></i> estatísticas?</button>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="row justify-content-center ">
-                                    <button onclick="window.location.href='{% url 'assinatura' %}'"
-                                        class="btn-outline-success btn-lg"><i class="bi bi-bar-chart-line"></i> estatísticas?</button>
-                                </div>
-                            </div>
-                            <br>
+
+    <div class="conteiner primeira-cor conteiner-assinatura">
+
+        <div class="row justify-content-center  ">
+            <div class="col 12 col-md-10 fundo-amarelo ">
+                <h2 class="titulo">Temos mais visualizações! Veja outras:</h2>
+            </div>
+        </div>
+
+        <div class="row justify-content-center  ">
+            <div class="col 12 col-md-10 fundo-amarelo ">
+                <!-- Botão de adicionar ao carrinho que leva para a página de seja assinante -->
+                <div class="row justify-content-around">
+                    <div class="col-md-3">
+                        <div class="row justify-content-center ">
+                            <button onclick="window.location.href='{% url 'assinatura' %}'"
+                                class="btn-outline-success btn-lg"><i class="bi bi-bar-chart-line"></i>
+                                estatísticas?</button>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="row justify-content-center ">
+                            <button onclick="window.location.href='{% url 'assinatura' %}'"
+                                class="btn-outline-success btn-lg"><i class="bi bi-bar-chart-line"></i>
+                                estatísticas?</button>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="row justify-content-center ">
+                            <button onclick="window.location.href='{% url 'assinatura' %}'"
+                                class="btn-outline-success btn-lg"><i class="bi bi-bar-chart-line"></i>
+                                estatísticas?</button>
                         </div>
                     </div>
                 </div>
 
             </div>
-
         </div>
     </div>
+
 
     <!-- CATEGORIAS DE PRODUTO -->
     <div class="container" id="featured-container">
