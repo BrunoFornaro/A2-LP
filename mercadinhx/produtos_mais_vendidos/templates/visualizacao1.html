@@ -26,6 +26,8 @@
         <!-- Texto de informações complementares -->
         <div class="row justify-content-center informacoes-produto">
             <div class="col-12 col-md-10 fundo-amarelo tipos-de-assinatura">
+                <p>Você já se perguntou qual é o nosso produto mais vendido?</p>
+                <br>
                 <p>Nessa página mostramos as estatísticas de vendas dos nossos produtos. Em ordem decrescente são exibidos quais alimentos foram mais vendidos ao decorrer do mês de novembro de 2021 </p>
             </div>
         </div>
@@ -40,47 +42,51 @@
         </div>
     </div>
     
+    
     <!-- PRODUTO -->
     <div class="conteiner " id="conteiner-tipos-de-assinatura">
+        
          
         <!-- Cria linha, para ser dividida em colunas, centralizada -->
         <div class="row justify-content-center">
+            <div class="col 12 col-md-10 fundo-amarelo ">
+                <br>
+                <div class="row justify-content-center ">
+                    
+                    <h2 class="titulo">Veja outras visualizações</h2>
+                    
+                </div>
+                <br>
+            </div>
             
             <!-- Informações sobre o produto img/morango-alt.png -->
+            
             <div class="col-12 col-md-10">
                 <div class="row row-tipos-assinatura">
                     <div class="col-12 fundo-amarelo">
-                        <h1 class="titulo primeira-cor">{{nome|upper}}</h1>
-                        <ul>
-                            <li>
-                                <h4>Produto mais vendido: Arroz </h4>
-                            </li>
-                            <br>
-                            <li>
-                                <h4>Produto menos vendido: Batata </h4>
-                            </li>
-                            <br>
-                            <li>
-                                <h4>Média de vendas (?)</h4>
-                            </li>
-                            <br>
-                        </ul>
+                        
 
                         <!-- Botão de adicionar ao carrinho que leva para a página de seja assinante -->
-                        <div class="row justify-content-center">    
+                        <div class="row justify-content-center ">   
                             <div class="col-md-4">
-                                <button onclick="window.location.href='{% url 'assinatura' %}'"
-                                    class="btn-outline-success btn-lg"><i class="bi bi-bar-chart-line"></i> Ver outras estatísticas?</button>
+                                <div class="row justify-content-center ">
+                                    <button onclick="window.location.href='{% url 'assinatura' %}'"
+                                        class="btn-outline-success btn-lg"><i class="bi bi-bar-chart-line"></i> estatísticas?</button>
+                                </div>
                             </div>
-                        </div>
-
-                        <!-- Linha para texto complementar -->
-                        <div class="row justify-content-center explicacoes">
-                            <div class="col-12 col-md-10 fundo-amarelo">
-                                <p>*Nem todas as funcionalidades estão disponíveis ainda, aguarde por próximas
-                                    atualizações
-                                </p>
+                            <div class="col-md-4">
+                                <div class="row justify-content-center ">
+                                    <button onclick="window.location.href='{% url 'assinatura' %}'"
+                                        class="btn-outline-success btn-lg"><i class="bi bi-bar-chart-line"></i> estatísticas?</button>
+                                </div>
                             </div>
+                            <div class="col-md-4">
+                                <div class="row justify-content-center ">
+                                    <button onclick="window.location.href='{% url 'assinatura' %}'"
+                                        class="btn-outline-success btn-lg"><i class="bi bi-bar-chart-line"></i> estatísticas?</button>
+                                </div>
+                            </div>
+                            <br>
                         </div>
                     </div>
                 </div>
