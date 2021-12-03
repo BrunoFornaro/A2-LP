@@ -10,16 +10,20 @@ fake = Faker("pt-BR")
 def gerar_dados(quantidade_de_vendas = 500, quantidade_de_clientes = 200):
 
     # Tabela de produtos
-    nome_dos_produtos = ["morango", "melancia", "banana", "uva", "batata", "berinjela", "abobrinha", "alface", "couve-flor", "feijão", "arroz", "macarrão"]
-    preco_produtos = [7.99, 13.99, 5.99, 7.47, 3.99, 11.99, 3.49, 0.98, 5.48, 8.45, 20.31, 2.48]
-    prateleira_dos_produtos = ["1A", "1C", "1B", "1D", "2B", "2D", "2A", "2C", "2E", "3B", "3A", "3C"]
-    estoque_produtos = [50, 20, 40, 36, 47, 12, 19, 25, 20, 43, 80, 38]
-    unidade_de_medida_estoque = ["bandeja", "unidade", "kg", "bandeja", "kg", "kg", "kg", "pé", "pé", "kg", "kg", "pacote"]
-    imagem = ["morango-alt.png", "melancia.jpg", "banana.png", "uva-alt.png", "batata.JPEG", "beringela.jpg", "abobrinha.JPEG", "alface.png", "couve-flor.png", "feijao.png", "arroz.png", "macarrao.jpg"]
+    nome_dos_produtos = ["morango", "melancia", "banana", "uva", "batata", "berinjela", "abobrinha", "alface", "couve-flor", "feijão", "arroz", "macarrão", "alcatra", "maminha", "bisteca suína", "carré de cordeiro", "costela", "paleta suína", "picanha", "peito de frango", "bolo", "pão de forma", "pão de queijo", "pão francês", "pastel", "sanduíche", "sonho", "torta", "amaciante", "água sanitária", "detergente", "flanela", "odorizador", "rodo", "sabão em pó", "sabonete"]
+    secao_dos_produtos = ["frutas_e_verduras", "frutas_e_verduras", "frutas_e_verduras", "frutas_e_verduras", "frutas_e_verduras", "frutas_e_verduras", "frutas_e_verduras", "frutas_e_verduras", "frutas_e_verduras", "frutas_e_verduras", "frutas_e_verduras", "frutas_e_verduras", "acougue", "acougue", "acougue", "acougue", "acougue", "acougue", "acougue", "acougue", "padaria", "padaria", "padaria", "padaria", "padaria", "padaria", "padaria", "padaria", "produtos_de_limpeza", "produtos_de_limpeza", "produtos_de_limpeza", "produtos_de_limpeza", "produtos_de_limpeza", "produtos_de_limpeza", "produtos_de_limpeza", "produtos_de_limpeza"]
+    custo_dos_produtos = [4.30, 11.79, 2, 4.19, 2.39, 8.59, 2.69, 0.45, 3.19, 6.49, 15.89, 1.69, 23.19, 33.49, 15.73, 147.99, 16.39, 17.09, 43.35, 11.19, 17.89, 3.73, 17.04, 4.39, 3.19, 7.99, 1.79, 26.95, 5.19, 7.96, 1.3, 0.59, 14.38, 2.74, 6.15, 0.65]
+    preco_produtos = [7.99, 15.99, 5.99, 7.47, 3.99, 11.99, 3.49, 0.98, 5.48, 8.45, 4.31, 2.48, 31.99, 42.99, 22.79, 172, 20.99, 23.99, 70.89, 16.49, 35, 6.99, 23.99, 10.99, 4.99, 12.99, 3.49, 45, 6.70, 11.98, 2.70, 1.99, 23.99, 5.99, 9.69, 1.29]
+    prateleira_dos_produtos = ["1A", "1C", "1B", "1D", "2B", "2D", "2A", "2C", "2E", "3B", "3A", "3C", "4A", "4B", "5A", "5B", "5C", "5D", "4C", "4D", "6A", "7A", "7B", "7C", "7D", "7E", "6B", "6C", "8A", "8B", "8C", "9A", "9B", "9C", "8D", "9D"]
+    estoque_produtos = [50, 20, 40, 36, 47, 12, 19, 25, 20, 43, 80, 38, 7, 9, 5, 5, 10, 9, 6, 10, 7, 15, 1, 3, 9, 15, 20, 7, 12, 8, 40, 32, 6, 10, 13, 58]
+    unidade_de_medida_estoque = ["bandeja", "unidade", "kg", "bandeja", "kg", "kg", "kg", "pé", "pé", "kg", "kg", "pacote", "kg", "kg", "kg", "kg", "kg", "kg", "kg", "kg", "kg", "pacote", "kg", "kg", "unidade", "unidade", "unidade", "kg", "unidade", "unidade", "unidade", "unidade", "unidade", "unidade", "unidade", "unidade"]
+    imagem = ["morango-alt.png", "melancia.jpg", "banana.png", "uva-alt.png", "batata.JPEG", "beringela.jpg", "abobrinha.JPEG", "alface.png", "couve-flor.png", "feijao.png", "arroz.png", "macarrao.jpg", "alcatra.jpg", "maminha.jpg", "bisteca_suina.jpg", "carre_de_cordeiro.jpg", "costela.jpg", "paleta_suina.jpg", "picanha.jpg", "peito_de_frango.jpg", "bolo.jpg", "pao_de_forma.jpg", "pao_de_queijo.jpg", "pao_frances.jpg", "pastel.jpg", "sanduiche.jpg", "sonho.jpg", "torta.jpg", "amaciante.jpg", "agua_sanitaria.jpg", "detergente.jpg", "flanela.jpg", "odorizador.jpg", "rodo.jpg", "sabao_em_po.jpg", "sabonete.jpg"]
 
     produtos = {
         "id": list(range(len(nome_dos_produtos))),
         "nome": nome_dos_produtos,
+        "secao": secao_dos_produtos,
+        "custo": custo_dos_produtos,
         "preco": preco_produtos,
         "prateleira": prateleira_dos_produtos,
         "estoque": estoque_produtos,
@@ -106,6 +110,8 @@ for indice, linha in produtos.iterrows():
             "model": "principal.Produtos",
             "fields": {
                 "nome": str(linha["nome"]),
+                "secao": str(linha["secao"]),
+                "custo": str(linha["custo"]),
                 "preco": str(linha["preco"]),
                 "prateleira": str(linha["prateleira"]),
                 "estoque": str(linha["estoque"]),
@@ -181,6 +187,6 @@ with open('VendasProdutos.json', 'w', encoding='utf-8') as f:
 # "odorizador", "rodo", "sabão em pó", "sabonete"]
 # prateleira = ["4A", "4B", "5A", "5B", "5C", "5D", "4C", "4D", "6A", "7A", "7B", "7C", "7D", "7E", "6B", "6C", "8A", "8B", "8C", "9A", "9B", "9C", "8D", "9D"]
 # estoque = []
-# unidade_de_medida = []
+# unidade_de_medida = ["unidade",""]
 # imagem = ["alcatra.jpg", "maminha.jpg", "bisteca_suina.jpg", "carre_de_cordeiro.jpg", "costela.jpg", "paleta_suina.jpg", "picanha.jpg", "peito_de_frango.jpg", "bolo.jpg", "pao_de_forma.jpg", "pao_de_queijo.jpg", "pao_fraces.jpg", "pastel.jpg", "sanduiche.jpg", "sonho.jpg", "torta.jpg", "amaciante.jpg", "agua_sanitaria.jpg", "detergente.jpg", "flanela.jpg", "odorizador.jpg", "rodo.jpg", "sabao_em_po.jpg", "sabonete.jpg"]
 # secao = ["frutas_e_verduras", "frutas_e_verduras", "frutas_e_verduras", "frutas_e_verduras", "frutas_e_verduras", "frutas_e_verduras", "frutas_e_verduras", "frutas_e_verduras", "acougue", "acougue", "acougue", "acougue", "acougue", "acougue", "acougue", "acougue", "padaria", "padaria", "padaria", "padaria", "padaria", "padaria", "padaria", "padaria", "produtos_de_limpeza", "produtos_de_limpeza", "produtos_de_limpeza", "produtos_de_limpeza", "produtos_de_limpeza", "produtos_de_limpeza", "produtos_de_limpeza", "produtos_de_limpeza"]

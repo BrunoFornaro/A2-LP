@@ -17,6 +17,8 @@ def converter_query(instancia, retornar="lista_de_dicionarios"):
 class Produtos(models.Model):
     id = models.IntegerField(primary_key=True)
     nome = models.CharField(max_length=80)
+    secao = models.CharField(max_length=60)
+    custo = models.FloatField()
     preco = models.FloatField()
     prateleira = models.CharField(max_length=10)
     estoque = models.FloatField()
