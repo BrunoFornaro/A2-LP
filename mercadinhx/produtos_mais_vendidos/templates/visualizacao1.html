@@ -38,14 +38,14 @@
     <div class="conteiner " id="conteiner-tipos-de-assinatura">
         <!-- Cria linha, para ser dividida em colunas, centralizada -->
         <div class="row justify-content-center">
-            <div class="col-12 col-md-4 imagem-produtos">
+            <div class="col-12 col-md-8 imagem-produtos">
                 <!-- Imagem do produto -->
                 {{visualizacao1|safe}}
             </div> 
             <!-- Informações sobre o produto img/morango-alt.png -->
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-4">
                 <div class="row row-tipos-assinatura">
-                    <div class="col-12 fundo-amarelo">
+                    <div class="col-12 col-md-4 fundo-amarelo">
                         <h1 class="titulo primeira-cor">{{nome|upper}}</h1>
                         <ul>
                             <li>
@@ -85,14 +85,7 @@
     <!-- CATEGORIAS DE PRODUTO -->
     <div class="container" id="featured-container">
         <div id="featured-images">
-            <div class="col-12">
-                <!-- Banner de promoções -->
-                <img src="{% static 'img/promocao.png' %}" alt="Economize">
-                <div class="banner-content">
-                    <button onclick="window.location.href='{% url 'lista_de_produtos' %}'"
-                        class="btn-outline-success btn-lg">Veja já as promoções</button>
-                </div>
-            </div>
+            {% include "banner_promocoes.html"%}
         </div>
     </div>
 
