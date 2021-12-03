@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.http.response import HttpResponseNotFound, HttpResponseRedirect, Http404
 from django.urls import reverse
-from principal.models import Produtos, Clientes, Vendas, VendasProdutos
+from principal.models import Produtos, Clientes, Vendas, VendasProdutos, converter_query
 import pandas as pd
 
 import numpy as np
@@ -17,8 +17,19 @@ from plotly.io import to_html
 def home(request):
     return render(request, "index.html")
 
-def lista_de_produtos(request):
-    produtos = Produtos().pegar_dados()
+def lista_de_produtos(request, id='4'):
+    secoes = {
+        "0": "acougue",
+        "1": "padaria",
+        "2": "frutas_e_verduras",
+        "3": "produtos_de_limpeza",
+        "4": "promocoes"
+    }
+    secao = secoes[id]
+    if secao == "promocoes":
+        produtos = converter_query(Produtos.objects.all())
+    else:
+        produtos = converter_query(Produtos.objects.filter(secao=secao))
     context = {"dados": produtos}
     return render(request, "lista_de_produtos_dtl.html", context)
 
