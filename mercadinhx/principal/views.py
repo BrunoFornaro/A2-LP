@@ -53,11 +53,11 @@ def login(request):
     return render(request, "login.html")
 
 def produtos(request, id='3'):
-    context = Produtos().pegar_dados()[id]
+    context = converter_query(Produtos.objects.all())[id]
     return render(request, "produtos.html", context)
 
 def testes(request):
-    context = Produtos().pegar_dados(retornar="dataframe")
+    context = converter_query(Produtos.objects.all())
     # Produtos.objects.all().delete()
     # Clientes.objects.all().delete()
     # Vendas.objects.all().delete()
