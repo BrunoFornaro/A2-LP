@@ -171,3 +171,16 @@ with open('Vendas.json', 'w', encoding='utf-8') as f:
 
 with open('VendasProdutos.json', 'w', encoding='utf-8') as f:
     json.dump(vendas_produtos_json, f,ensure_ascii=False)
+
+
+# preco = [31.99, 42.99, 22.79, 172, 20.99, 23.99, 70.89, 16.49, 45, 6.99, 23.99, 10.99, 4.99, 12.99, 3.49, 40, 6.70, 11.98, 2.70, 1.99, 23.99, 5.99, 9.69, 1.29]
+# nome = ["alcatra", "maminha", "bisteca suína", "carré de cordeiro", 
+# "costela", "paleta suína", "picanha", "peito de frango", "bolo", 
+# "pão de forma", "pão de queijo", "pão fracês", "pastel", "sanduíche", 
+# "sonho", "torta", "amaciante", "água sanitária", "detergente", "flanela", 
+# "odorizador", "rodo", "sabão em pó", "sabonete"]
+# prateleira = ["4A", "4B", "5A", "5B", "5C", "5D", "4C", "4D", "6A", "7A", "7B", "7C", "7D", "7E", "6B", "6C", "8A", "8B", "8C", "9A", "9B", "9C", "8D", "9D"]
+# estoque = []
+# unidade_de_medida = []
+# imagem = ["alcatra.jpg", "maminha.jpg", "bisteca_suina.jpg", "carre_de_cordeiro.jpg", "costela.jpg", "paleta_suina.jpg", "picanha.jpg", "peito_de_frango.jpg", "bolo.jpg", "pao_de_forma.jpg", "pao_de_queijo.jpg", "pao_fraces.jpg", "pastel.jpg", "sanduiche.jpg", "sonho.jpg", "torta.jpg", "amaciante.jpg", "agua_sanitaria.jpg", "detergente.jpg", "flanela.jpg", "odorizador.jpg", "rodo.jpg", "sabao_em_po.jpg", "sabonete.jpg"]
+# secao = ["frutas_e_verduras", "frutas_e_verduras", "frutas_e_verduras", "frutas_e_verduras", "frutas_e_verduras", "frutas_e_verduras", "frutas_e_verduras", "frutas_e_verduras", "acougue", "acougue", "acougue", "acougue", "acougue", "acougue", "acougue", "acougue", "padaria", "padaria", "padaria", "padaria", "padaria", "padaria", "padaria", "padaria", "produtos_de_limpeza", "produtos_de_limpeza", "produtos_de_limpeza", "produtos_de_limpeza", "produtos_de_limpeza", "produtos_de_limpeza", "produtos_de_limpeza", "produtos_de_limpeza"]
