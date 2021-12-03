@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.http.response import HttpResponseNotFound, HttpResponseRedirect, Http404
 from django.urls import reverse
-from principal.models import Produtos, Clientes, Vendas, VendasProdutos
+from principal.models import Produtos, Clientes, Vendas, VendasProdutos, converter_query
 import pandas as pd
 
 import numpy as np
@@ -15,29 +15,31 @@ from plotly.io import to_html
 # Create your views here.
 def visualizacao1(request):
 
-    produtos=Produtos().pegar_dados(retornar="dataframe")
-    clientes=Clientes().pegar_dados(retornar="dataframe")
-    vendas=Vendas().pegar_dados(retornar="dataframe")
-    venda_produtos=VendasProdutos().pegar_dados(retornar="dataframe")
-
-    #renomenado a coluna id para id_produto na tabela de produtos
+    produtos = converter_query(Produtos.objects.all(), retornar="dataframe")
+    #renomenado a coluna id para id produto na tabela de produtos
     produtos.rename(columns={"id": "id_produtos"}, inplace = 1)
-    #realizando a união das tabelas produtos e venda_produtos em id_produtos
-    venda_produtos = pd.merge(venda_produtos, produtos, on = 'id_produtos', how='right')
-    #renomenado a coluna id para id_vendas na tabela de vendas
-    vendas.rename(columns={"id": "id_vendas"}, inplace = 1)
-    #realizando a união das tabelas vendas e venda_produtos em id_vendas
-    venda_produtos = pd.merge(venda_produtos, vendas, on = 'id_vendas', how='right')
 
-    #renomenado a coluna id para id_clientes na tabela de clientes
+    clientes = converter_query(Clientes.objects.all(), retornar="dataframe")
+    #renomenado a coluna id para id_cliente na tabela de clientes
     clientes.rename(columns={"id": "id_clientes"}, inplace = 1)
     #renomenado a coluna nome para nome_cliente na tabela de clientes
-    clientes.rename(columns={"nome": "nome_clientes"}, inplace = 1)
+    clientes.rename(columns={"nome": "nome_cliente"}, inplace = 1)
 
+    vendas = converter_query(Vendas.objects.all(), retornar="dataframe")
+    #renomenado a coluna id para id_vendas na tabela de vendas
+    vendas.rename(columns={"id": "id_vendas"}, inplace = 1)
+
+    venda_produtos = converter_query(VendasProdutos.objects.all(), retornar="dataframe")
+
+    #realizando a união das tabelas produtos e venda_produtos em id_produtos
+    venda_produtos_2 = pd.merge(venda_produtos, produtos, on = 'id_produtos', how='inner')
+    #realizando a união das tabelas vendas e venda_produtos em id_vendas
+    venda_produtos_3 = pd.merge(venda_produtos_2, vendas, on = 'id_vendas', how='inner')
     #realizando a união das tabelas clientes e venda_produtos em id_cliente
-    venda_produtos_cliente = pd.merge(venda_produtos, clientes, on = 'id_clientes', how='right')
+    venda_produtos_cliente = pd.merge(venda_produtos_3, clientes, on = 'id_clientes', how='inner')
 
-    #agrupando a tabelas cendas_produto por nome (groupby), somando os valores (sum), organizando os valores em ordem decrescente por quantidade vendida (sort_values) e redefinindo o index (reset_index)
+
+    #agrupando as tabelas vendas_produto por nome (groupby), somando os valores (sum), organizando os valores em ordem decrescente por quantidade vendida (sort_values) e redefinindo o index (reset_index)
     venda_produtos_total=venda_produtos_cliente.groupby("nome").sum().sort_values('quantidade', ascending=False).reset_index()
 
     #selecionando apenas as colunas que serão analisadas
