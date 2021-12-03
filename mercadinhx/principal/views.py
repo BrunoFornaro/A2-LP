@@ -35,6 +35,10 @@ def produtos(request, id='3'):
     context = Produtos().pegar_dados()[id]
     return render(request, "produtos.html", context)
 
+def visualizacao1(request):
+    context = {"visualizacao1": "visualizacao1"}
+    return render(request, "visualizacao1.html",context)
+
 def testes(request):
     context = Produtos().pegar_dados(retornar="dataframe")
     return HttpResponse(f"{context}")
