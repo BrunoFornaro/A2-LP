@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+{% load static %}
+
+<head>
+    {% include "head.html"%}
+</head>
+
+<body>
+    <!-- CABEÇALHO -->
+    <!-- Cria um container -->
+    <header class="container-fluid">
+        {% include "header.html"%}
+    </header>
+
+
+    <!-- INFO -->
+    <!-- iNFORMAÇÕES ADICIONAIS DOS PRODUTOS -->
+    <div class="conteiner primeira-cor conteiner-assinatura">
+
+        <div class="row justify-content-center  ">
+            <div class="col 12 col-md-10 fundo-amarelo ">
+                <h2 class="titulo">Vizualização 1</h2>
+            </div>
+        </div>
+        <!-- Texto de informações complementares -->
+        <div class="row justify-content-center informacoes-produto">
+            <div class="col-12 col-md-10 fundo-amarelo tipos-de-assinatura">
+                <p>Nessa página mostramos as estatísticas de vendas ds nossos produtos, mostrando quais foram mais vendidos ao recorrer do mês de novembro de 2021 </p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- PRODUTO -->
+    <div class="conteiner " id="conteiner-tipos-de-assinatura">
+        <!-- Cria linha, para ser dividida em colunas, centralizada -->
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 imagem-produtos">
+                <!-- Imagem do produto -->
+                {{visualizacao1|safe}}
+            </div> 
+            <!-- Informações sobre o produto img/morango-alt.png -->
+            <div class="col-12 col-md-4">
+                <div class="row row-tipos-assinatura">
+                    <div class="col-12 fundo-amarelo">
+                        <h1 class="titulo primeira-cor">{{nome|upper}}</h1>
+                        <ul>
+                            <li>
+                                <h4>Produto mais vendido: NÃO LEMBRO </h4>
+                            </li>
+                            <li>
+                                <h4>Produto menos vendido: TAMBÉM NÃO</h4>
+                            </li>
+                            <li>
+                                <h4>Média de vendas (?)</h4>
+                            </li>
+                        </ul>
+
+                        <!-- Botão de adicionar ao carrinho que leva para a página de seja assinante -->
+                        <div class="col-8">
+                            <button onclick="window.location.href='{% url 'assinatura' %}'"
+                                class="btn-outline-success btn-lg"><i class="bi bi-bar-chart-line-fil"></i> Ver outras estatísticas?</button>
+                        </div>
+
+                        <!-- Linha para texto complementar -->
+                        <div class="row justify-content-center explicacoes">
+                            <div class="col-12 col-md-10 fundo-amarelo">
+                                <p>*Nem todas as funcionalidades estão disponíveis ainda, aguarde por próximas
+                                    atualizações
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- CATEGORIAS DE PRODUTO -->
+    <div class="container" id="featured-container">
+        <div id="featured-images">
+            {% include "banner_promocoes.html"%}
+        </div>
+    </div>
+
+    <!-- RODAPÉ -->
+    <footer class="container-fluid segundo-fundo" id="rodape">
+        {% include "footer.html"%}
+    </footer>
+</body>

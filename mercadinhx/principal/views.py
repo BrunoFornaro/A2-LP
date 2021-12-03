@@ -5,6 +5,15 @@ from django.urls import reverse
 from principal.models import Produtos, Clientes, Vendas, VendasProdutos
 import pandas as pd
 
+import numpy as np
+from plotly.io import to_html
+import matplotlib.pyplot as plt
+import matplotlib as ptl
+import plotly.express as px
+from plotly.io import to_html
+
+
+
 def home(request):
     return render(request, "index.html")
 
@@ -34,10 +43,6 @@ def login(request):
 def produtos(request, id='3'):
     context = Produtos().pegar_dados()[id]
     return render(request, "produtos.html", context)
-
-def visualizacao1(request):
-    context = {"visualizacao1": "visualizacao1"}
-    return render(request, "visualizacao1.html",context)
 
 def testes(request):
     context = Produtos().pegar_dados(retornar="dataframe")
