@@ -46,8 +46,8 @@ def produtos(request, id='3'):
 
 def testes(request):
     context = Produtos().pegar_dados(retornar="dataframe")
-    Produtos.objects.all().delete()
-    Clientes.objects.all().delete()
-    Vendas.objects.all().delete()
-    VendasProdutos.objects.all().delete()
-    return HttpResponse("a")
+    # Produtos.objects.all().delete()
+    # Clientes.objects.all().delete()
+    # Vendas.objects.all().delete()
+    # VendasProdutos.objects.all().delete()
+    return HttpResponse(f"{context}")
