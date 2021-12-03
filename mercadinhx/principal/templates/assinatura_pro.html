@@ -171,13 +171,7 @@
     <!-- Banner promoção -->
     <div class="container" id="featured-container">
         <div id="featured-images">
-            <div class="col-12">
-                <img src="{% static 'img/promocao.png' %}" alt="Economize">
-                <div class="banner-content">
-                    <button onclick="window.location.href='{% url 'lista_de_produtos' %}'"
-                        class="btn-outline-success btn-lg">Veja já as promoções</button>
-                </div>
-            </div>
+            {% include "banner_promocoes.html"%}
         </div>
     </div>
 

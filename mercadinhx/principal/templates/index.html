@@ -56,14 +56,7 @@
             <div class="col-12" id="featured-images">
                 <!-- Cria uma linha para ser dividida em colunas -->
                 <div class="row g-4">
-                    <div class="col-12 promocoes">
-                        <!-- Imagem do banner de promoçoes -->
-                        <img src="{% static 'img/promocao.png' %}" alt="Clique para ir">
-                        <div class="banner-content">
-                            <button onclick="window.location.href='{% url 'lista_de_produtos' %}'"
-                                class="btn-outline-success btn-lg">Veja já as promoções</button>
-                        </div>
-                    </div>
+                    {% include "banner_promocoes.html"%}
                     <!-- No mobile ocupa a tela toda (12/12 colunas) em telas maiores ocupa 3/12 colunas da tela -->
                     <div class="col-12 col-md-3">
                         <img src="{% static 'img/padaria2.png' %}" alt="Clique para ir">
