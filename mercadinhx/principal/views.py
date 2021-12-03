@@ -6,27 +6,22 @@ from principal.models import Produtos, Clientes, Vendas, VendasProdutos
 from django.forms.models import model_to_dict
 import pandas as pd
 
-def converter_query(instancia):
+def converter_query(instancia, retornar="lista_de_dicionarios"):
     context = []
     for entrada in instancia:
         entrada = model_to_dict(entrada)
         entrada["id"] = entrada["id"] - 1
         context.append(entrada)
-    context = pd.DataFrame(context)
+    if retornar == "dataframe":
+        context = pd.DataFrame(context)
     return context
 
 def home(request):
-    
     return render(request, "index.html")
 
 def lista_de_produtos(request):
     produtos = Produtos.objects.all()
-    context = []
-    for entrada in produtos:
-        entrada = model_to_dict(entrada)
-        entrada["id"] = entrada["id"] - 1
-        context.append(entrada)
-    context = {"dados": context}
+    context = {"dados": converter_query(produtos)}
     return render(request, "lista_de_produtos_dtl.html", context)
 
 def assinatura(request):
@@ -54,12 +49,7 @@ def produtos(request, id='3'):
 
 def teste_uso_template(request):
     produtos = Produtos.objects.all()
-    context = []
-    for entrada in produtos:
-        entrada = model_to_dict(entrada)
-        entrada["id"] = entrada["id"] - 1
-        context.append(entrada)
-    context = {"dados": context}
+    context = {"dados": converter_query(produtos)}
     return render(request, "teste_uso_template.html", context)
 
 def testes(request):
