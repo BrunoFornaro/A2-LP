@@ -20,18 +20,21 @@ def home(request):
 
 def lista_de_produtos(request, id='4'):
     secoes = {
-        "0": "padaria",
-        "1": "acougue",
-        "2": "frutas_e_verduras",
-        "3": "produtos_de_limpeza",
-        "4": "promocoes"
+        "0": ["padaria", "banner_padaria.png"],
+        "1": ["acougue", "banner_acougue.png"],
+        "2": ["frutas_e_verduras", "alimentos_geral.png"],
+        "3": ["produtos_de_limpeza", "produtos_limpeza.png"],
+        "4": ["promocoes", "alimentos_geral.png"]
     }
     secao = secoes[id]
-    if secao == "promocoes":
+    if secao[0] == "promocoes":
         produtos = converter_query(Produtos.objects.all())
     else:
-        produtos = converter_query(Produtos.objects.filter(secao=secao))
-    context = {"dados": produtos}
+        produtos = converter_query(Produtos.objects.filter(secao=secao[0]))
+    context = {
+        "dados": produtos,
+        "banner": secao[1]
+    }
     return render(request, "lista_de_produtos_dtl.html", context)
 
 def assinatura(request):
