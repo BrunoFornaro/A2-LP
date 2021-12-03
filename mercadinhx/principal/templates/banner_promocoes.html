@@ -1,0 +1,10 @@
+{% load static %}
+
+<div class="col-12 promocoes">
+    <!-- Imagem do banner de promoçoes -->
+    <img src="{% static 'img/promocao.png' %}" alt="Clique para ir">
+    <div class="banner-content">
+        <button onclick="window.location.href='{% url 'lista_de_produtos' %}'"
+            class="btn-outline-success btn-lg">Veja já as promoções</button>
+    </div>
+</div>
