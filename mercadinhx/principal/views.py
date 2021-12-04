@@ -16,9 +16,33 @@ from plotly.io import to_html
 
 
 def home(request):
-    return render(request, "index.html")
+    context = {
+        "secoes": [
+            {
+                "nome": "Padaria",
+                "id": 0,
+                "imagem": "padaria.png"
+            },
+            {
+                "nome": "Açougue",
+                "id": 1,
+                "imagem": "acougue.png"
+            },
+            {
+                "nome": "Alimentos em Geral",
+                "id": 2,
+                "imagem": "alimentos.png"
+            },
+            {
+                "nome": "Produtos de Limpeza",
+                "id": 3,
+                "imagem": "produtos_de_limpeza.png"
+            }
+        ]
+    }
+    return render(request, "index.html", context)
 
-def lista_de_produtos(request, id='4'):
+def lista_de_produtos(request, id='4', filtro="?"):
     secoes = {
         "0": ["padaria", "banner_padaria.png"],
         "1": ["acougue", "banner_acougue.png"],
@@ -29,17 +53,48 @@ def lista_de_produtos(request, id='4'):
 
     secao = secoes[id]
     if secao[0] == "promocoes":
-        produtos = converter_query(Produtos.objects.all())
+        produtos = converter_query(Produtos.objects.all().order_by(filtro))
     else:
-        produtos = converter_query(Produtos.objects.filter(secao=secao[0]))
+        produtos = converter_query(Produtos.objects.filter(secao=secao[0]).order_by(filtro))
     context = {
         "dados": produtos,
         "banner": secao[1],
+        "id": id,
     }
     return render(request, "lista_de_produtos_dtl.html", context)
 
 def assinatura(request):
-    return render(request, "assinatura_pro.html")
+    context = {"assinaturas":
+            [
+                {
+                "categoria": "Bronze",
+                "quantidade_de_pedidos": 1,
+                "preco": 10
+                },
+                {
+                    "categoria": "Silver",
+                    "quantidade_de_pedidos": 2,
+                    "preco": 18
+                },
+                {
+                    "categoria": "Gold",
+                    "quantidade_de_pedidos": 4,
+                    "preco": 30
+                },
+                {
+                    "categoria": "Platinum",
+                    "quantidade_de_pedidos": 10,
+                    "preco": 60
+                },
+                {
+                    "categoria": "Diamond",
+                    "quantidade_de_pedidos": 20,
+                    "preco": 100
+                }
+            ]
+        }
+
+    return render(request, "assinatura_pro.html", context)
 
 def cadastro(request):
     return render(request, "cadastro.html")

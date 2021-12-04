@@ -50,7 +50,7 @@
                                 <!--<div class="col-2 centralizar">-->
                                 <li class="nav-item col-12 col-md-2 centralizar">
                                     <!-- Cria um botão para que o cliente decida em que ordem quer ver os produtos, (botão não ativo) -->
-                                    <a class="nav-link active" aria-current="page" href="#">Prateleiras</a>
+                                    <a class="nav-link active" aria-current="page" href="{% url 'lista_de_produtos' id=id filtro='prateleira' %}">Prateleiras</a>
                                 </li>
                                 <!--</div>-->
                                 <!--<div class="col-2 centralizar">-->
@@ -62,8 +62,8 @@
                                     </a>
                                     <!-- Cria dois botões para que o cliente decida em que ordem quer ver os produtos, (botão não ativo)-->
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                        <li><a class="dropdown-item" href="#">Crescente</a></li>
-                                        <li><a class="dropdown-item" href="#">Descrescente</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'lista_de_produtos' id=id filtro='preco' %}">Crescente</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'lista_de_produtos' id=id filtro='-preco' %}">Descrescente</a></li>
                                     </ul>
                                 </li>
                                 <!--</div>-->
