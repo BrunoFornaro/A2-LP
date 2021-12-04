@@ -16,7 +16,7 @@ import plotly.graph_objs as go
 
 # Create your views here.
 def visualizacao3(request):
-        produtos = converter_query(Produtos.objects.all(), retornar="dataframe")
+    produtos = converter_query(Produtos.objects.all(), retornar="dataframe")
     #renomenado a coluna id para id produto na tabela de produtos
     produtos.rename(columns={"id": "id_produtos"}, inplace = 1)
 
@@ -69,5 +69,5 @@ def visualizacao3(request):
 
 
 
-    context = {"visualizacao3": grafico_entrada_por_dia}
-    return render(request, "visualizacao3.html",context)
+    context = {"grafico": grafico_entrada_por_dia}
+    return render(request, "visualizacao1.html",context)
