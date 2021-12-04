@@ -53,6 +53,8 @@ def visualizacao1(request):
     fig.update_layout(title = 'Venda dos produtos')
     fig.update_xaxes(title = 'Produto')
     fig.update_yaxes(title = 'Quantidade vendida')
+    fig.layout.plot_bgcolor = '#F2F2F2'
+    fig.layout.paper_bgcolor = '#F2F2F2'
 
     figura_barras=fig.to_html(full_html=False)
 
