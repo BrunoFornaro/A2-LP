@@ -22,7 +22,7 @@ def lista_de_produtos(request, id='4'):
     secoes = {
         "0": ["padaria", "banner_padaria.png"],
         "1": ["acougue", "banner_acougue.png"],
-        "2": ["frutas_e_verduras", "alimentos_geral.png"],
+        "2": ["alimentos_em_geral", "alimentos_geral.png"],
         "3": ["produtos_de_limpeza", "produtos_limpeza.png"],
         "4": ["promocoes", "alimentos_geral.png"]
     }
