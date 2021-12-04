@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class Visualizacao4Config(AppConfig):
+class VendaPorDiaDaSemanaConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'visualizacao4'
+    name = 'venda_por_dia_da_semana'

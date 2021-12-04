@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class Visualizacao2Config(AppConfig):
+class VendasPorSecaoConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'visualizacao2'
+    name = 'vendas_por_secao'

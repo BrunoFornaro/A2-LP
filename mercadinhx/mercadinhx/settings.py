@@ -38,10 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'principal',
-    'visualizacao1',
-    'visualizacao2',
-    'visualizacao3',
-    'produtos_mais_vendidos'
+    'produtos_mais_vendidos',
+    'vendas_por_secao',
+    'venda_por_dia_da_semana',
+    'consumidores_mais_ativos',
+    'relacao_quantidade_lucro_bruto',
 ]
 
 MIDDLEWARE = [

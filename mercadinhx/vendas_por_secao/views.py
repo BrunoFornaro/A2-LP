@@ -16,7 +16,7 @@ import datetime
 
 # Create your views here.
 
-def visualizacao3(request):
+def vendas_por_secao(request):
     produtos = converter_query(Produtos.objects.all(), retornar="dataframe")
     #renomenado a coluna id para id produto na tabela de produtos
     produtos.rename(columns={"id": "id_produtos"}, inplace = 1)
@@ -69,15 +69,29 @@ def visualizacao3(request):
     
     #grafico_total_cliente
 
+    # context = {
+    #     "legenda_pergunta":"Você já seaaaaaaaaaaaaaaaaaaa perguntou qual é o nosso produto mais vendido?",
+    #     "legenda":"Nessa página mostramos aaaaaaaaaaas estatísticas de vendas dos nossos produtos. Em ordem decrescente são exibidos quais alimentos foram mais vendidos ao decorrer do mês de novembro de 2021",
+    #     "link1":"visualizacao2",
+    #     "link2":"visualizacao5",
+    #     "link3":"visualizacao5",
+    #     "botao1":"Seção maaaaaais lucrativa",
+    #     "botao2":"Vizuaaaaaalização 3",
+    #     "botao3":"Vizualização 4",
+    #     "grafico": grafico_total_cliente
+    #     }
+
     context = {
-        "legenda_pergunta":"Você já seaaaaaaaaaaaaaaaaaaa perguntou qual é o nosso produto mais vendido?",
-        "legenda":"Nessa página mostramos aaaaaaaaaaas estatísticas de vendas dos nossos produtos. Em ordem decrescente são exibidos quais alimentos foram mais vendidos ao decorrer do mês de novembro de 2021",
-        "link1":"visualizacao2",
-        "link2":"visualizacao5",
-        "link3":"visualizacao5",
-        "botao1":"Seção maaaaaais lucrativa",
-        "botao2":"Vizuaaaaaalização 3",
-        "botao3":"Vizualização 4",
+        "titulo": "vendas_por_secao",
+        "legenda_pergunta":"Pergunta vendas_por_secao",
+        "legenda_resposta":"Texto vendas_por_secao",
+        "botoes": [
+            ['produtos_mais_vendidos','produtos_mais_vendidos'],
+            ['venda_por_dia_da_semana','venda_por_dia_da_semana'],
+            ['consumidores_mais_ativos','consumidores_mais_ativos'],
+            ['relacao_quantidade_lucro_bruto','relacao_quantidade_lucro_bruto']
+        ],
         "grafico": grafico_total_cliente
         }
+
     return render(request, "visualizacao1.html",context)

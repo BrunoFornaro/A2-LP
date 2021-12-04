@@ -15,7 +15,7 @@ from plotly.io import to_html
 import plotly.graph_objects as go
 
 # Create your views here.
-def visualizacao0(request):
+def produtos_mais_vendidos(request):
 
     produtos = converter_query(Produtos.objects.all(), retornar="dataframe")
     #renomenado a coluna id para id produto na tabela de produtos
@@ -108,15 +108,37 @@ def visualizacao0(request):
 
     #figura_barras_quantidade_produto, grafico_quantidade_secao
 
+    # context = {
+    #     "legenda_pergunta":"Você já se perguntou qual é o nosso produto mais vendido?",
+    #     "legenda":"Nessa página mostramos as estatísticas de vendas dos nossos produtos. Em ordem decrescente são exibidos quais alimentos foram mais vendidos ao decorrer do mês de novembro de 2021",
+    #     "link1":"visualizacao2",
+    #     "link2":"visualizacao5",
+    #     "link3":"visualizacao5",
+    #     "botao1":"Seção mais lucrativa",
+    #     "botao2":"Vizualização 3",
+    #     "botao3":"Vizualização 4",
+    #     "grafico": grafico_quantidade_secao
+    #     }
+
     context = {
-        "legenda_pergunta":"Você já se perguntou qual é o nosso produto mais vendido?",
-        "legenda":"Nessa página mostramos as estatísticas de vendas dos nossos produtos. Em ordem decrescente são exibidos quais alimentos foram mais vendidos ao decorrer do mês de novembro de 2021",
-        "link1":"visualizacao2",
-        "link2":"visualizacao5",
-        "link3":"visualizacao5",
-        "botao1":"Seção mais lucrativa",
-        "botao2":"Vizualização 3",
-        "botao3":"Vizualização 4",
+        "titulo": "Visualizacao1",
+        "legenda_pergunta":"Pergunta Visualizacao1",
+        "legenda_resposta":"Texto Visualizacao1",
+        "botoes": [
+            ['vendas_por_secao','vendas_por_secao'],
+            ['venda_por_dia_da_semana','venda_por_dia_da_semana'],
+            ['consumidores_mais_ativos','consumidores_mais_ativos'],
+            ['relacao_quantidade_lucro_bruto','relacao_quantidade_lucro_bruto']
+        ],
         "grafico": grafico_quantidade_secao
         }
+
+    # "botoes": [
+    #         ['produtos_mais_vendidos','produtos_mais_vendidos'],
+    #         ['vendas_por_secao','vendas_por_secao'],
+    #         ['venda_por_dia_da_semana','venda_por_dia_da_semana'],
+    #         ['consumidores_mais_ativos','consumidores_mais_ativos'],
+    #         ['relacao_quantidade_lucro_bruto','relacao_quantidade_lucro_bruto']
+    #     ],
+
     return render(request, "visualizacao1.html", context)
