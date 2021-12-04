@@ -62,15 +62,16 @@ def relacao_quantidade_lucro_bruto(request):
     df_scaled = pd.DataFrame(scaled_data, columns=venda_produtos_cliente_agrupado_por_dia.columns)
     df_scaled.transpose()
    
-    # Definindo a datta com índice
+    # Definindo a data com índice
     df_scaled['date'] = np.arange(np.datetime64('2021-11-01'), np.datetime64('2021-12-01'))
     df_scaled = df_scaled.set_index(['date'])
-    
+    #renomeando colunas
+    df_scaled.rename(columns={'total_preco': 'Renda bruta total', "quantidade": "Quantidade de produtos vendidos"}, inplace = True)
+
     # Plotando o gráfico
-    fig_quantidade_vendida_e_renda = px.line(df_scaled, title="Quantidade vendida e renda na mesma escala, no mês de novembro")
+    fig_quantidade_vendida_e_renda = px.line(df_scaled, labels={"variable":"Linhas", "value":"Valor/ Valor Máximo (%)", "date":"Data"}, title="Renda bruta e quantidade vendida no mês de novembro")
     fig_quantidade_vendida_e_renda.update_xaxes(title = 'Data')
-    fig_quantidade_vendida_e_renda.update_yaxes(title = 'Valor')
-    # fig_quantidade_vendida_e_renda.show()
+    fig_quantidade_vendida_e_renda.update_yaxes(title = 'Valor/ Valor Máximo (%)')
     
     # Alterando a cor do fundo
     fig_quantidade_vendida_e_renda.layout.plot_bgcolor = '#F2F2F2'
