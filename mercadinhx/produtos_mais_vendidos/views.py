@@ -92,8 +92,8 @@ def visualizacao0(request):
                 2, 2)
 
 
-    fig_quantidade_secao.update_layout(height = 700, showlegend=False,
-                    title_text="Produtos mais vendidos")
+    fig_quantidade_secao.update_layout(showlegend=False,
+                    title_text="Produtos mais vendidos", height=700)
     fig_quantidade_secao.update_xaxes(tickangle=45)
 
     # Alterando a cor do fundo
@@ -101,7 +101,7 @@ def visualizacao0(request):
     fig_quantidade_secao.layout.paper_bgcolor = '#F2F2F2'
 
     #tranformando gráfico em html
-    grafico_quantidade_secao = fig_quantidade_secao.to_html(full_html=False)
+    grafico_quantidade_secao = fig_quantidade_secao.to_html(full_html=False, config= {'displayModeBar': False})
 
 
 
