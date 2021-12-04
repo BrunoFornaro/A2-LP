@@ -14,7 +14,7 @@ import plotly.express as px
 from plotly.io import to_html
 
 # Create your views here.
-def visualizacao1(request):
+def visualizacao0(request):
 
     produtos = converter_query(Produtos.objects.all(), retornar="dataframe")
     #renomenado a coluna id para id produto na tabela de produtos
@@ -43,7 +43,7 @@ def visualizacao1(request):
     venda_produtos_cliente = pd.merge(venda_produtos_3, clientes, on = 'id_clientes', how='inner')
 
     #iniciando gráfico de barras das quantidades vendidas por produto
-    #agrupando as tabelas vendas_produto por nome (groupby), somando os valores (sum), organizando os valores em ordem decrescente por quantidade vendida (sort_values) e redefinindo o index (reset_index)
+    #agrupando as tabelas venda_produtos_cliente por nome (groupby), somando os valores (sum), organizando os valores em ordem decrescente por quantidade vendida (sort_values) e redefinindo o index (reset_index)
     venda_produtos_total=venda_produtos_cliente.groupby("nome").sum().sort_values('quantidade', ascending=False).reset_index()
 
     #selecionando apenas as colunas que serão analisadas
@@ -103,5 +103,5 @@ def visualizacao1(request):
 
     #figura_barras_quantidade_produto, grafico_quantidade_secao
 
-    context = {"visualizacao1": figura_barras_quantidade_produto}
-    return render(request, "visualizacao1.html",context)
+    context = {"visualizacao0": figura_barras_quantidade_produto}
+    return render(request, "visualizacao0.html",context)
