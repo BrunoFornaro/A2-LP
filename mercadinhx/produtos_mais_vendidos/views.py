@@ -14,7 +14,7 @@ import plotly.express as px
 from plotly.io import to_html
 
 # Create your views here.
-def visualizacao1(request):
+def visualizacao0(request):
 
     produtos = converter_query(Produtos.objects.all(), retornar="dataframe")
     #renomenado a coluna id para id produto na tabela de produtos
