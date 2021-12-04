@@ -1,11 +1,16 @@
 {% extends "template_visu.html" %}
 
 {% block texto %}
+<div class="row justify-content-center  ">
+    <div class="col 12 col-md-10 fundo-amarelo ">
+        <h2 class="titulo">{{titulo}}</h2>
+    </div>
+</div>
 <div class="row justify-content-center informacoes-produto">
     <div class="col-12 col-md-10 fundo-amarelo tipos-de-assinatura">
         <p>{{legenda_pergunta}}</p>
         <br>
-        <p>{{legenda}} </p>
+        <p>{{legenda_resposta}} </p>
     </div>
 </div>
 {% endblock %}

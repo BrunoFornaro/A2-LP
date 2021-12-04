@@ -165,9 +165,9 @@ def vendas_por_secao(request):
     #     }
 
     context = {
-        "titulo": "consumidores_mais_ativos",
-        "legenda_pergunta":"Pergunta consumidores_mais_ativos",
-        "legenda_resposta":"Texto consumidores_mais_ativos",
+        "titulo": "Vendas por seção",
+        "legenda_pergunta":"Você já se perguntou qual é a nossa seção de produtos mais lucrativa?",
+        "legenda_resposta":"Nessa página mostramos as estatísticas de vendas de cada seção dos nossos produtos. Aqui é exibido qual seção foi a mais lucrativa ao decorrer do mês de novembro de 2021",
         "botoes": [
             ['produtos_mais_vendidos','produtos_mais_vendidos'],
             ['venda_por_dia_da_semana','venda_por_dia_da_semana'],

@@ -121,9 +121,9 @@ def produtos_mais_vendidos(request):
     #     }
 
     context = {
-        "titulo": "Visualizacao1",
-        "legenda_pergunta":"Pergunta Visualizacao1",
-        "legenda_resposta":"Texto Visualizacao1",
+        "titulo": "Produtos mais vendidos",
+        "legenda_pergunta":"Você já se perguntou qual é o nosso produto mais vendido?",
+        "legenda_resposta":"Nessa página mostramos as estatísticas de vendas dos nossos produtos. Em ordem decrescente são exibidos quais alimentos foram mais vendidos ao decorrer do mês de novembro de 2021",
         "botoes": [
             ['vendas_por_secao','vendas_por_secao'],
             ['venda_por_dia_da_semana','venda_por_dia_da_semana'],
