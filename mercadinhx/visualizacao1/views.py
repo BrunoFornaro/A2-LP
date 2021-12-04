@@ -64,5 +64,5 @@ def visualizacao1(request):
     
     #grafico_total_cliente
 
-    context = {"visualizacao1": grafico_total_cliente}
+    context = {"grafico": grafico_total_cliente}
     return render(request, "visualizacao1.html",context)

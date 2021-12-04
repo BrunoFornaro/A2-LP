@@ -1,6 +1,6 @@
 from django.urls import path
-from produtos_mais_vendidos import views
+from visualizacao1 import views
 
 urlpatterns = [
-    path("visualizacao0/", views.visualizacao0, name="visualizacao0")
+    path("visualizacao1/", views.visualizacao1, name="visualizacao1")
 ]
