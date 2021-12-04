@@ -129,10 +129,11 @@ def produtos_mais_vendidos(request):
         "legenda_pergunta":"Você já se perguntou qual é o nosso produto mais vendido?",
         "legenda_resposta":"Nessa página mostramos as estatísticas de vendas dos nossos produtos. Em ordem decrescente são exibidos quais alimentos foram mais vendidos ao decorrer do mês de novembro de 2021",
         "botoes": [
-            ['vendas_por_secao','vendas_por_secao'],
-            ['venda_por_dia_da_semana','venda_por_dia_da_semana'],
-            ['consumidores_mais_ativos','consumidores_mais_ativos'],
-            ['relacao_quantidade_lucro_bruto','relacao_quantidade_lucro_bruto']
+            #['nome', 'link']
+            ['Venda em cada categoria','vendas_por_secao'],
+            ['Venda por dia da semana','venda_por_dia_da_semana'],
+            ['Consumidores mais ativos','consumidores_mais_ativos'],
+            ['Relação quantidade e lucro bruto','relacao_quantidade_lucro_bruto']
         ],
         "grafico": grafico_quantidade_secao + figura_barras_quantidade_produto
         }

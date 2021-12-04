@@ -78,14 +78,15 @@ def venda_por_dia_da_semana(request):
 
 
     context = {
-        "titulo": "relacao_quantidade_lucro_bruto",
-        "legenda_pergunta":"Pergunta relacao_quantidade_lucro_bruto",
-        "legenda_resposta":"Texto relacao_quantidade_lucro_bruto",
+        "titulo": "Vendas por dia da semana",
+        "legenda_pergunta":"Você já se perguntou qual é dia da semana que mais vendemos produtos?",
+        "legenda_resposta":"Nessa página mostramos as estatísticas de vendas dos nossos produtos a cada dia da semana. Os dados são referentes ao mês de novembro de 2021",
         "botoes": [
-            ['produtos_mais_vendidos','produtos_mais_vendidos'],
-            ['vendas_por_secao','vendas_por_secao'],
-            ['consumidores_mais_ativos','consumidores_mais_ativos'],
-            ['relacao_quantidade_lucro_bruto','relacao_quantidade_lucro_bruto']
+            #['nome', 'link']
+            ['Produtos mais vendidos','produtos_mais_vendidos'],
+            ['Vendas em cada categoria','vendas_por_secao'],
+            ['Consumidores mais ativos','consumidores_mais_ativos'],
+            ['Relação quantidade e lucro bruto','relacao_quantidade_lucro_bruto']
         ],
         "grafico": grafico_entrada_por_dia
         }

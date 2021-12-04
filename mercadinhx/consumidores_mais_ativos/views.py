@@ -82,15 +82,15 @@ def consumidores_mais_ativos(request):
     #     }
 
     context = {
-        "titulo": "vendas_por_secao",
-        "legenda_pergunta":"Pergunta vendas_por_secao",
-        "legenda_resposta":"Texto vendas_por_secao",
+        "titulo": "Os 10 clientes mais ativos",
+        "legenda_pergunta":"Você já se perguntou quais são os nossos consumidores mais ativos?",
+        "legenda_resposta":"Nessa página mostramos as estatísticas do consumo dos nossos clientes mais ativos. Em ordem decrescente são exibidos os clientes mais ativos e as respectativas quantidades de cada seção por eles consumidas ao decorrer do mês de novembro de 2021",
         "botoes": [
             #['nome', 'link']
-            ['produtos_mais_vendidos','produtos_mais_vendidos'],
-            ['vendas_por_secao','vendas_por_secao'],
-            ['venda_por_dia_da_semana','venda_por_dia_da_semana'],
-            ['relacao_quantidade_lucro_bruto','relacao_quantidade_lucro_bruto']
+            ['Produtos mais vendidos','produtos_mais_vendidos'],
+            ['Vendas em cada categoria','vendas_por_secao'],
+            ['Venda por dia da semana','venda_por_dia_da_semana'],
+            ['Relação quantidade e lucro bruto','relacao_quantidade_lucro_bruto']
         ],
         "grafico": grafico_total_cliente
         }
