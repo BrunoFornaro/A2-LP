@@ -155,13 +155,13 @@ def visualizacao2(request):
     context = {
         "legenda_pergunta":"Você já se perguntou qual é a nossa seção de produtos mais lucrativa?",
         "legenda":"Nessa página mostramos as estatísticas de vendas de cada seção dos nossos produtos. Aqui é exibido qual seção foi a mais lucrativa ao decorrer do mês de novembro de 2021",
-        "link1":"nadaainda",
-        "link2":"Você já se perguntou qual é o nosso produto mais vendido?",
-        "link3":"Você já se perguntou qual é o nosso produto mais vendido?",
+        "link1":"visualizacao2",
+        "link2":"visualizacao5",
+        "link3":"visualizacao5",
         "botao1":"Produtos mais vendidos",
         "botao2":"Vizualização 3",
         "botao3":"Vizualização 4",
-        "grafico": grafico_lucro_tempo + grafico_barras_lucro_secao
+        "grafico": grafico_lucro_tempo + grafico_barras_lucro_secao 
         }
     return render(request, "visualizacao1.html",context)
 

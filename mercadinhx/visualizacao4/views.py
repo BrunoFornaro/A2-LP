@@ -73,7 +73,7 @@ def visualizacao4(request):
     fig_quantidade_vendida_e_renda.update_yaxes(title = 'Valor')
     fig_quantidade_vendida_e_renda.show()
 
-    grafico_quantidade_vendida_e_renda = fig_quantidade_vendida_e_renda.to_html(full_html=False)
+    grafico_quantidade_vendida_e_renda = fig_quantidade_vendida_e_renda.to_html(full_html=False, config={'displayModeBar': False})
 
 
 
