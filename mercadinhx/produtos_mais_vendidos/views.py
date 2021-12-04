@@ -58,8 +58,12 @@ def produtos_mais_vendidos(request):
     fig_quantidade_produto.update_xaxes(tickangle=45)
     #fig_quantidade_produto.show()
 
+    # Alterando a cor do fundo
+    fig_quantidade_produto.layout.plot_bgcolor = '#F2F2F2'
+    fig_quantidade_produto.layout.paper_bgcolor = '#F2F2F2'
+
     #tranformando gráfico em html
-    figura_barras_quantidade_produto = fig_quantidade_produto.to_html(full_html=False)
+    figura_barras_quantidade_produto = fig_quantidade_produto.to_html(full_html=False, config= {'displayModeBar': False})
 
 
     #iniciando gráfico de barras da quantidade vendida por secao
@@ -130,7 +134,7 @@ def produtos_mais_vendidos(request):
             ['consumidores_mais_ativos','consumidores_mais_ativos'],
             ['relacao_quantidade_lucro_bruto','relacao_quantidade_lucro_bruto']
         ],
-        "grafico": grafico_quantidade_secao
+        "grafico": grafico_quantidade_secao + figura_barras_quantidade_produto
         }
 
     # "botoes": [
