@@ -13,6 +13,7 @@ import matplotlib as ptl
 import plotly.express as px
 from plotly.io import to_html
 import plotly.graph_objs as go
+import datetime
 
 def visualizacao2(request):
 
