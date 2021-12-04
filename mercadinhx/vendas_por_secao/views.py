@@ -1,3 +1,4 @@
+from django.http import response
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http.response import HttpResponseNotFound, HttpResponseRedirect, Http404
@@ -116,7 +117,7 @@ def vendas_por_secao(request):
     fig_lucro_tempo.update_layout(title='Lucro por seção no mês de novembro',
     xaxis_title='Data',
     yaxis_title='Lucro',
-    plot_bgcolor = 'white', height=600, width=1200,
+    plot_bgcolor = 'white',
     font = {'family': 'Arial','size': 14,'color': 'black'})
     fig_lucro_tempo.update_xaxes( showgrid=True, gridwidth=1, gridcolor='lightgray',
     showline=True, linewidth=1, linecolor='black')
@@ -127,12 +128,12 @@ def vendas_por_secao(request):
     fig_lucro_tempo.layout.plot_bgcolor = '#F2F2F2'
     fig_lucro_tempo.layout.paper_bgcolor = '#F2F2F2'
 
-    grafico_lucro_tempo=fig_lucro_tempo.to_html(full_html=False, config= {'displayModeBar': False})
+    grafico_lucro_tempo=fig_lucro_tempo.to_html(full_html=False, config= {'displayModeBar': False, 'response':True})
     
     #iniciando outro gráfico de lucro por seção
     lucro_secao=venda_produtos_cliente.groupby("secao").sum().sort_values('lucro', ascending=False ).reset_index()
 
-    fig_lucro_secao = px.bar(lucro_secao, x="secao", y="lucro", color="secao", barmode = 'stack', height=685, width=950,
+    fig_lucro_secao = px.bar(lucro_secao, x="secao", y="lucro", color="secao", barmode = 'stack', height=685,
                 labels={"lucro":"Lucro", "secao":"Seção"})
     fig_lucro_secao.update_layout(title = 'Lucros por seção')
 
@@ -142,7 +143,7 @@ def vendas_por_secao(request):
     fig_lucro_secao.layout.plot_bgcolor = '#F2F2F2'
     fig_lucro_secao.layout.paper_bgcolor = '#F2F2F2'
 
-    grafico_barras_lucro_secao=fig_lucro_secao.to_html(full_html=False, config= {'displayModeBar': False})
+    grafico_barras_lucro_secao=fig_lucro_secao.to_html(full_html=False, config= {'displayModeBar': False, 'response':True})
 
 
 
@@ -175,7 +176,7 @@ def vendas_por_secao(request):
             ['Consumidores mais ativos','consumidores_mais_ativos'],
             ['Relação quantidade e lucro bruto','relacao_quantidade_lucro_bruto']
         ],
-        "grafico": grafico_lucro_tempo + grafico_barras_lucro_secao 
+        "graficos": [grafico_lucro_tempo, grafico_barras_lucro_secao]
         }
 
     return render(request, "visualizacao1.html",context)

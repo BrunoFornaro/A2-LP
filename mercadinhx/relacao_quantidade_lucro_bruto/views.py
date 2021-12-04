@@ -92,7 +92,7 @@ def relacao_quantidade_lucro_bruto(request):
             ['Venda por dia da semana','venda_por_dia_da_semana'],
             ['Consumidores mais ativos','consumidores_mais_ativos']
         ],
-        "grafico": grafico_quantidade_vendida_e_renda
+        "graficos": [grafico_quantidade_vendida_e_renda]
         }
 
 

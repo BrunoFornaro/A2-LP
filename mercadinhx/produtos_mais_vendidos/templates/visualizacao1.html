@@ -16,14 +16,16 @@
 {% endblock %}
 
 {% block graficoo %}
-<div class="container conteiner-assinatura" >
-    <div class="row  ">
-        <div class="col-12 graficos">
-            <!-- Imagem do produto -->
-            {{grafico|safe}}
+{% for grafico in graficos %}
+    <div class="container conteiner-assinatura" >
+        <div class="row  ">
+            <div class="col-12 graficos">
+                <!-- Imagem do produto -->
+                {{grafico|safe}}
+            </div>
         </div>
     </div>
-</div>
+{% endfor %}
 {% endblock %}
 
 {% block links %}

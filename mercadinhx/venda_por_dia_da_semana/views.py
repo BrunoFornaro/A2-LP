@@ -89,7 +89,7 @@ def venda_por_dia_da_semana(request):
             ['Consumidores mais ativos','consumidores_mais_ativos'],
             ['Relação quantidade e lucro bruto','relacao_quantidade_lucro_bruto']
         ],
-        "grafico": grafico_entrada_por_dia
+        "graficos": [grafico_entrada_por_dia]
         }
         
     return render(request, "visualizacao1.html",context)

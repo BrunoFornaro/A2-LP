@@ -141,7 +141,7 @@ def produtos_mais_vendidos(request):
             ['Consumidores mais ativos','consumidores_mais_ativos'],
             ['Relação quantidade e lucro bruto','relacao_quantidade_lucro_bruto']
         ],
-        "grafico": grafico_quantidade_secao + figura_barras_quantidade_produto
+        "graficos": [grafico_quantidade_secao, figura_barras_quantidade_produto]
         }
 
     # "botoes": [
