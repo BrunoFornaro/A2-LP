@@ -82,14 +82,15 @@ def relacao_quantidade_lucro_bruto(request):
 
 
     context = {
-        "titulo": "venda_por_dia_da_semana",
-        "legenda_pergunta":"Pergunta venda_por_dia_da_semana",
-        "legenda_resposta":"Texto venda_por_dia_da_semana",
+        "titulo": "Relação entre quantidade vendida e lucro bruto",
+        "legenda_pergunta":"Você já se perguntou se realmente existe relação entre quantidade vendida e lucro bruto?",
+        "legenda_resposta":"Nessa página mostramos as estatísticas de vendas dos nossos produtos e o lucro bruto. Os dados são referentes ao mês de novembro de 2021",
         "botoes": [
-            ['produtos_mais_vendidos','produtos_mais_vendidos'],
-            ['vendas_por_secao','vendas_por_secao'],
-            ['venda_por_dia_da_semana','venda_por_dia_da_semana'],
-            ['consumidores_mais_ativos','consumidores_mais_ativos']
+            #['nome', 'link']
+            ['Produtos mais vendidos','produtos_mais_vendidos'],
+            ['Vendas em cada categoria','vendas_por_secao'],
+            ['Venda por dia da semana','venda_por_dia_da_semana'],
+            ['Consumidores mais ativos','consumidores_mais_ativos']
         ],
         "grafico": grafico_quantidade_vendida_e_renda
         }
