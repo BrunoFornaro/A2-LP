@@ -70,6 +70,7 @@ def relacao_quantidade_lucro_bruto(request):
 
     # Plotando o gráfico
     fig_quantidade_vendida_e_renda = px.line(df_scaled, labels={"variable":"Linhas", "value":"Valor/ Valor Máximo (%)", "date":"Data"}, title="Renda bruta e quantidade vendida no mês de novembro")
+    fig_quantidade_vendida_e_renda.update_layout( font = {'family': 'Arial','size': 14,'color': 'black'})
     fig_quantidade_vendida_e_renda.update_xaxes(title = 'Data')
     fig_quantidade_vendida_e_renda.update_yaxes(title = 'Valor/ Valor Máximo (%)')
     

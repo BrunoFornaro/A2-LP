@@ -61,7 +61,8 @@ def venda_por_dia_da_semana(request):
                 labels={"dia_sem": "Dia da semana", "total_preco": "Renda bruta"},
                 barmode='stack')
     fig_entrada_por_dia.update_traces(marker = {'color': '#00CC96'})
-    fig_entrada_por_dia.update_layout(title = 'Entrada em renda bruta por dia da semana no mês de novembro')
+    fig_entrada_por_dia.update_layout(title = 'Entrada em renda bruta por dia da semana no mês de novembro',
+    font = {'family': 'Arial','size': 14,'color': 'black'})
     fig_entrada_por_dia.update_xaxes(title = 'Dia da semana')
     fig_entrada_por_dia.update_yaxes(title = 'Renda bruta')
     

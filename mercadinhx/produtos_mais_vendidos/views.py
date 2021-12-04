@@ -59,7 +59,7 @@ def produtos_mais_vendidos(request):
                 x='nome', y="quantidade", color="secao", 
                 barmode='stack', labels={"nome": "Nome", 'quantidade':"Quantidade vendida", "secao":"Seção"}, color_discrete_map={'Açougue': '#EF553B', 
                                                     'Padaria': '#00CC96', 'Produtos de Limpeza': '#AB63FA', 'Alimentos em Geral': '#636EFA'})
-    fig_quantidade_produto.update_layout(title = 'Venda dos produtos', xaxis={'categoryorder':'total descending'})
+    fig_quantidade_produto.update_layout(title = 'Venda dos produtos', xaxis={'categoryorder':'total descending'}, font = {'family': 'Arial','size': 14,'color': 'black'})
     fig_quantidade_produto.update_xaxes(title = 'Produto')
     fig_quantidade_produto.update_yaxes(title = 'Quantidade vendida')
     fig_quantidade_produto.update_xaxes(tickangle=45)
@@ -105,6 +105,7 @@ def produtos_mais_vendidos(request):
     fig_quantidade_secao.update_layout(showlegend=False,
                     title_text="Produtos mais vendidos por seção", height=700)
     fig_quantidade_secao.update_xaxes(tickangle=45)
+    fig_quantidade_secao.update_layout( font = {'family': 'Arial','size': 14,'color': 'black'})
 
     # Alterando a cor do fundo
     fig_quantidade_secao.layout.plot_bgcolor = '#F2F2F2'

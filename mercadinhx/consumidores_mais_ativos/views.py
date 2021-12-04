@@ -59,7 +59,7 @@ def consumidores_mais_ativos(request):
     #plotando o gráfico
     fig_total_cliente = px.bar(venda_produtos_cliente_pt, x="nome_cliente", y="total_preco", color="secao", barmode = 'stack', hover_data=['nome', 'data', 'preco'], labels={"total_preco": "Total da compra do produto", "nome_cliente": "Nome do cliente", "nome":"Produto", "data":"Data", "preco":"Preço do produto", "secao":"Seção"})
     fig_total_cliente.update_layout(title = 'Os 10 clientes que mais gastam',
-                                    height=700)
+                                    height=700, font = {'family': 'Arial','size': 14,'color': 'black'})
 
     # Alterando a cor do fundo
     fig_total_cliente.layout.plot_bgcolor = '#F2F2F2'

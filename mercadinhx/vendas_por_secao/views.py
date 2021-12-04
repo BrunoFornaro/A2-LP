@@ -135,7 +135,8 @@ def vendas_por_secao(request):
     fig_lucro_secao = px.bar(lucro_secao, x="lucro", y="secao", color="secao", barmode = 'stack', color_discrete_map={'Açougue': '#EF553B', 
                                                    'Padaria': '#AB63FA', 'Produtos de Limpeza': '#FFA15A', 'Alimentos em Geral': '#00CC96'}, 
                 labels={"lucro":"Lucro", "secao":"Seção"})
-    fig_lucro_secao.update_layout(title = 'Lucros por seção', yaxis={'categoryorder':'total descending'})
+    fig_lucro_secao.update_layout(title = 'Lucros por seção', yaxis={'categoryorder':'total descending'}, 
+    font = {'family': 'Arial','size': 14,'color': 'black'})
 
 
 
