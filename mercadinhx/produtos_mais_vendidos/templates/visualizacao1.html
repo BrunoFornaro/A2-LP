@@ -3,10 +3,9 @@
 {% block texto %}
 <div class="row justify-content-center informacoes-produto">
     <div class="col-12 col-md-10 fundo-amarelo tipos-de-assinatura">
-        <p>Você já se perguntou qual é o nosso produto mais vendido?</p>
+        <p>{{legenda_pergunta}}</p>
         <br>
-        <p>Nessa página mostramos as estatísticas de vendas dos nossos produtos. Em ordem decrescente são
-            exibidos quais alimentos foram mais vendidos ao decorrer do mês de novembro de 2021 </p>
+        <p>{{legenda}} </p>
     </div>
 </div>
 {% endblock %}
@@ -28,21 +27,21 @@
         <div class="row justify-content-center ">
             <button onclick="window.location.href='{% url 'visualizacao2' %}'"
                 class="btn-outline-success btn-lg"><i class="bi bi-bar-chart-line"></i>
-                estatísticas?</button>
+                {{botao1}}</button>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="row justify-content-center ">
+            <button onclick="window.location.href='{% url 'visualizacao3' %}'"
+                class="btn-outline-success btn-lg"><i class="bi bi-bar-chart-line"></i>
+                {{botao2}}</button>
         </div>
     </div>
     <div class="col-md-3">
         <div class="row justify-content-center ">
             <button onclick="window.location.href='{% url 'assinatura' %}'"
                 class="btn-outline-success btn-lg"><i class="bi bi-bar-chart-line"></i>
-                estatísticas?</button>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="row justify-content-center ">
-            <button onclick="window.location.href='{% url 'assinatura' %}'"
-                class="btn-outline-success btn-lg"><i class="bi bi-bar-chart-line"></i>
-                estatísticas?</button>
+                {{botao3}}</button>
         </div>
     </div>
 </div>

@@ -116,7 +116,7 @@ def visualizacao2(request):
     fig_lucro_tempo.update_layout(title='Lucro por seção no mês de novembro',
     xaxis_title='Data',
     yaxis_title='Lucro',
-    plot_bgcolor = 'white',
+    plot_bgcolor = 'white', height=600, width=1200,
     font = {'family': 'Arial','size': 14,'color': 'black'})
     fig_lucro_tempo.update_xaxes( showgrid=True, gridwidth=1, gridcolor='lightgray',
     showline=True, linewidth=1, linecolor='black')
@@ -127,12 +127,12 @@ def visualizacao2(request):
     fig_lucro_tempo.layout.plot_bgcolor = '#F2F2F2'
     fig_lucro_tempo.layout.paper_bgcolor = '#F2F2F2'
 
-    grafico_lucro_tempo=fig_lucro_tempo.to_html(full_html=False)
+    grafico_lucro_tempo=fig_lucro_tempo.to_html(full_html=False, config= {'displayModeBar': False})
     
     #iniciando outro gráfico de lucro por seção
     lucro_secao=venda_produtos_cliente.groupby("secao").sum().sort_values('lucro', ascending=False ).reset_index()
 
-    fig_lucro_secao = px.bar(lucro_secao, x="secao", y="lucro", color="secao", barmode = 'stack',
+    fig_lucro_secao = px.bar(lucro_secao, x="secao", y="lucro", color="secao", barmode = 'stack', height=685, width=950,
                 labels={"lucro":"Lucro", "secao":"Seção"})
     fig_lucro_secao.update_layout(title = 'Lucros por seção')
 
@@ -142,7 +142,7 @@ def visualizacao2(request):
     fig_lucro_secao.layout.plot_bgcolor = '#F2F2F2'
     fig_lucro_secao.layout.paper_bgcolor = '#F2F2F2'
 
-    grafico_barras_lucro_secao=fig_lucro_secao.to_html(full_html=False)
+    grafico_barras_lucro_secao=fig_lucro_secao.to_html(full_html=False, config= {'displayModeBar': False})
 
 
 
@@ -152,7 +152,17 @@ def visualizacao2(request):
     #grafico_lucro_tempo, grafico_barras_lucro_secao
 
     
-    context = {"grafico": grafico_lucro_tempo + grafico_barras_lucro_secao}
+    context = {
+        "legenda_pergunta":"Você já se perguntou qual é a nossa seção de produtos mais lucrativa?",
+        "legenda":"Nessa página mostramos as estatísticas de vendas de cada seção dos nossos produtos. Aqui é exibido qual seção foi a mais lucrativa ao decorrer do mês de novembro de 2021",
+        "link1":"nadaainda",
+        "link2":"Você já se perguntou qual é o nosso produto mais vendido?",
+        "link3":"Você já se perguntou qual é o nosso produto mais vendido?",
+        "botao1":"Produtos mais vendidos",
+        "botao2":"Vizualização 3",
+        "botao3":"Vizualização 4",
+        "grafico": grafico_lucro_tempo + grafico_barras_lucro_secao
+        }
     return render(request, "visualizacao1.html",context)
 
     

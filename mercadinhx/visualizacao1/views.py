@@ -16,7 +16,7 @@ import datetime
 
 # Create your views here.
 
-def visualizacao1(request):
+def visualizacao3(request):
     produtos = converter_query(Produtos.objects.all(), retornar="dataframe")
     #renomenado a coluna id para id produto na tabela de produtos
     produtos.rename(columns={"id": "id_produtos"}, inplace = 1)
@@ -59,15 +59,25 @@ def visualizacao1(request):
     #plotando o gráfico
     fig_total_cliente = px.bar(venda_produtos_cliente_pt, x="nome_cliente", y="total_preco", color="secao", barmode = 'stack', hover_data=['nome', 'data', 'preco'], labels={"total_preco": "Total da compra do produto", "nome_cliente": "Nome do cliente", "nome":"Produto", "data":"Data", "preco":"Preço do produto", "secao":"Seção"})
     fig_total_cliente.update_layout(title = 'Os 10 clientes que mais gastam',
-                                    height=700)
+                                    height=1000, width=1000)
 
     # Alterando a cor do fundo
     fig_total_cliente.layout.plot_bgcolor = '#F2F2F2'
     fig_total_cliente.layout.paper_bgcolor = '#F2F2F2'
 
-    grafico_total_cliente=fig_total_cliente.to_html(full_html=False)
+    grafico_total_cliente=fig_total_cliente.to_html(full_html=False, config= {'displayModeBar': False})
     
     #grafico_total_cliente
 
-    context = {"grafico": grafico_total_cliente}
+    context = {
+        "legenda_pergunta":"Você já seaaaaaaaaaaaaaaaaaaa perguntou qual é o nosso produto mais vendido?",
+        "legenda":"Nessa página mostramos aaaaaaaaaaas estatísticas de vendas dos nossos produtos. Em ordem decrescente são exibidos quais alimentos foram mais vendidos ao decorrer do mês de novembro de 2021",
+        "link1":"visualizacao2",
+        "link2":"Você já se perguntou qual é o nosso produto mais vendido?",
+        "link3":"Você já se perguntou qual é o nosso produto mais vendido?",
+        "botao1":"Seção maaaaaais lucrativa",
+        "botao2":"Vizuaaaaaalização 3",
+        "botao3":"Vizualização 4",
+        "grafico": grafico_total_cliente
+        }
     return render(request, "visualizacao1.html",context)

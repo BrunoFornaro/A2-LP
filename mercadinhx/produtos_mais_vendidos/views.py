@@ -108,5 +108,15 @@ def visualizacao0(request):
 
     #figura_barras_quantidade_produto, grafico_quantidade_secao
 
-    context = {"grafico": grafico_quantidade_secao}
+    context = {
+        "legenda_pergunta":"Você já se perguntou qual é o nosso produto mais vendido?",
+        "legenda":"Nessa página mostramos as estatísticas de vendas dos nossos produtos. Em ordem decrescente são exibidos quais alimentos foram mais vendidos ao decorrer do mês de novembro de 2021",
+        "link1":"visualizacao2",
+        "link2":"Você já se perguntou qual é o nosso produto mais vendido?",
+        "link3":"Você já se perguntou qual é o nosso produto mais vendido?",
+        "botao1":"Seção mais lucrativa",
+        "botao2":"Vizualização 3",
+        "botao3":"Vizualização 4",
+        "grafico": grafico_quantidade_secao
+        }
     return render(request, "visualizacao1.html", context)
