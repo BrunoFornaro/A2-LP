@@ -16,7 +16,7 @@ import plotly.graph_objs as go
 import datetime
 
 # Create your views here.
-def visualizacao3(request):
+def visualizacao5(request):
     produtos = converter_query(Produtos.objects.all(), retornar="dataframe")
     #renomenado a coluna id para id produto na tabela de produtos
     produtos.rename(columns={"id": "id_produtos"}, inplace = 1)
@@ -68,7 +68,7 @@ def visualizacao3(request):
     fig_entrada_por_dia.layout.plot_bgcolor = '#F2F2F2'
     fig_entrada_por_dia.layout.paper_bgcolor = '#F2F2F2'
 
-    grafico_entrada_por_dia=fig_entrada_por_dia.to_html(full_html=False)
+    grafico_entrada_por_dia=fig_entrada_por_dia.to_html(full_html=False, config= {'displayModeBar': False})
 
 
 
@@ -76,5 +76,15 @@ def visualizacao3(request):
 
 
 
-    context = {"grafico": grafico_entrada_por_dia}
+    context = {
+        "legenda_pergunta":"Você já seaaaaaaaaaaaaaaaaaaa perguntou qual é o nosso produto mais vendido?",
+        "legenda":"Nessa página mostramos aaaaaaaaaaas estatísticas de vendas dos nossos produtos. Em ordem decrescente são exibidos quais alimentos foram mais vendidos ao decorrer do mês de novembro de 2021",
+        "link1":"visualizacao2",
+        "link2":"Você já se perguntou qual é o nosso produto mais vendido?",
+        "link3":"Você já se perguntou qual é o nosso produto mais vendido?",
+        "botao1":"Seção maaaaaais lucrativa",
+        "botao2":"Vizuaaaaaalização 3",
+        "botao3":"Vizualização 4",
+        "grafico": grafico_entrada_por_dia
+        }
     return render(request, "visualizacao1.html",context)
