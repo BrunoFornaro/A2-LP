@@ -431,4 +431,9 @@ body {
   color: black;
 }
 
+/* Gráficos */
+.graficos svg {
+  width: 100%;
+}
+
 /*# sourceMappingURL=estilo_com_sass.css.map */

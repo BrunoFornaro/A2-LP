@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'principal',
+    'visualizacao1',
+    'visualizacao2',
+    'visualizacao3',
     'produtos_mais_vendidos'
 ]
 

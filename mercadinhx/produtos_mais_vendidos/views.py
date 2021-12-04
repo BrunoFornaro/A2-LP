@@ -14,7 +14,7 @@ import plotly.express as px
 from plotly.io import to_html
 
 # Create your views here.
-def visualizacao1(request):
+def visualizacao0(request):
 
     produtos = converter_query(Produtos.objects.all(), retornar="dataframe")
     #renomenado a coluna id para id produto na tabela de produtos
@@ -48,11 +48,13 @@ def visualizacao1(request):
 
     #plotagem do gráfico de barras sobre o total de vendas por produto usando plotly
     fig = px.bar(venda_produtos_total,
-                x='nome', y="quantidade", height=500, width=700,
+                x='nome', y="quantidade", 
                 barmode='stack', labels={"nome": "Nome", 'quantidade':"Quantidade vendida"})
     fig.update_layout(title = 'Venda dos produtos')
     fig.update_xaxes(title = 'Produto')
     fig.update_yaxes(title = 'Quantidade vendida')
+    fig.layout.plot_bgcolor = '#F2F2F2'
+    fig.layout.paper_bgcolor = '#F2F2F2'
 
     figura_barras=fig.to_html(full_html=False)
 
