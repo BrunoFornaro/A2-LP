@@ -92,7 +92,7 @@ def consumidores_mais_ativos(request):
             ['Venda por dia da semana','venda_por_dia_da_semana'],
             ['Relação quantidade e lucro bruto','relacao_quantidade_lucro_bruto']
         ],
-        "grafico": grafico_total_cliente
+        "graficos": [grafico_total_cliente]
         }
 
     return render(request, "visualizacao1.html",context)
