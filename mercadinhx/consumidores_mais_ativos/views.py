@@ -86,6 +86,7 @@ def consumidores_mais_ativos(request):
         "legenda_pergunta":"Pergunta vendas_por_secao",
         "legenda_resposta":"Texto vendas_por_secao",
         "botoes": [
+            #['nome', 'link']
             ['produtos_mais_vendidos','produtos_mais_vendidos'],
             ['vendas_por_secao','vendas_por_secao'],
             ['venda_por_dia_da_semana','venda_por_dia_da_semana'],
