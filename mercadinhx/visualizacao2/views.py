@@ -49,7 +49,7 @@ def visualizacao2(request):
 
     # figura_barras=fig.to_html(full_html=False)
 
-        produtos = converter_query(Produtos.objects.all(), retornar="dataframe")
+    produtos = converter_query(Produtos.objects.all(), retornar="dataframe")
     #renomenado a coluna id para id produto na tabela de produtos
     produtos.rename(columns={"id": "id_produtos"}, inplace = 1)
 
@@ -142,8 +142,8 @@ def visualizacao2(request):
     #grafico_lucro_tempo, grafico_barras_lucro_secao
 
     
-    context = {"visualizacao2": grafico_lucro_tempo}
-    return render(request, "visualizacao2.html",context)
+    context = {"grafico": grafico_lucro_tempo}
+    return render(request, "visualizacao1.html",context)
 
     
     
