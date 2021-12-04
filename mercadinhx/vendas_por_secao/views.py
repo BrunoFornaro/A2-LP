@@ -170,8 +170,8 @@ def vendas_por_secao(request):
         "legenda_resposta":"Texto consumidores_mais_ativos",
         "botoes": [
             ['produtos_mais_vendidos','produtos_mais_vendidos'],
-            ['vendas_por_secao','vendas_por_secao'],
             ['venda_por_dia_da_semana','venda_por_dia_da_semana'],
+            ['consumidores_mais_ativos','consumidores_mais_ativos'],
             ['relacao_quantidade_lucro_bruto','relacao_quantidade_lucro_bruto']
         ],
         "grafico": grafico_lucro_tempo + grafico_barras_lucro_secao 

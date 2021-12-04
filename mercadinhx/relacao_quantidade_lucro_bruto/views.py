@@ -87,8 +87,8 @@ def relacao_quantidade_lucro_bruto(request):
         "botoes": [
             ['produtos_mais_vendidos','produtos_mais_vendidos'],
             ['vendas_por_secao','vendas_por_secao'],
-            ['consumidores_mais_ativos','consumidores_mais_ativos'],
-            ['relacao_quantidade_lucro_bruto','relacao_quantidade_lucro_bruto']
+            ['venda_por_dia_da_semana','venda_por_dia_da_semana'],
+            ['consumidores_mais_ativos','consumidores_mais_ativos']
         ],
         "grafico": grafico_quantidade_vendida_e_renda
         }

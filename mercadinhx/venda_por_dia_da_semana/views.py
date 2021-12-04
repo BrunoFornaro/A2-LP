@@ -65,9 +65,6 @@ def venda_por_dia_da_semana(request):
     fig_entrada_por_dia.update_yaxes(title = 'Entrada')
     
 
-    # Alterando a cor do fundo
-    fig_entrada_por_dia.layout.plot_bgcolor = '#F2F2F2'
-    fig_entrada_por_dia.layout.paper_bgcolor = '#F2F2F2'
 
     grafico_entrada_por_dia=fig_entrada_por_dia.to_html(full_html=False, config= {'displayModeBar': False})
 
@@ -84,8 +81,8 @@ def venda_por_dia_da_semana(request):
         "botoes": [
             ['produtos_mais_vendidos','produtos_mais_vendidos'],
             ['vendas_por_secao','vendas_por_secao'],
-            ['venda_por_dia_da_semana','venda_por_dia_da_semana'],
-            ['consumidores_mais_ativos','consumidores_mais_ativos']
+            ['consumidores_mais_ativos','consumidores_mais_ativos'],
+            ['relacao_quantidade_lucro_bruto','relacao_quantidade_lucro_bruto']
         ],
         "grafico": grafico_entrada_por_dia
         }
