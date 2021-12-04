@@ -13,6 +13,7 @@ import matplotlib as ptl
 import plotly.express as px
 from plotly.io import to_html
 import plotly.graph_objs as go
+import datetime
 
 # Create your views here.
 def visualizacao3(request):
@@ -42,6 +43,8 @@ def visualizacao3(request):
     #realizando a união das tabelas clientes e venda_produtos em id_cliente
     venda_produtos_cliente = pd.merge(venda_produtos_3, clientes, on = 'id_clientes', how='inner')
 
+    #adicionando coluna de preços totais por compra
+    venda_produtos_cliente["total_preco"]=venda_produtos_cliente["quantidade"]*venda_produtos_cliente["preco"]
     #tranformando coluna em tipo data
     venda_produtos_cliente['data'] = pd.to_datetime(venda_produtos_cliente['data'])
     #adicionando uma coluna com os dias das semanas
