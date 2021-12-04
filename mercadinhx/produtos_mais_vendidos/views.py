@@ -48,15 +48,21 @@ def produtos_mais_vendidos(request):
     venda_produtos_total=venda_produtos_cliente.groupby("nome").sum().sort_values('quantidade', ascending=False).reset_index()
 
     #selecionando apenas as colunas que serão analisadas
-    venda_produtos_total[["nome", "quantidade"]]
+    venda_produtos_total=venda_produtos_total[["nome", "quantidade"]]
+    #Ajustado uma tabela para adicionar seções
+    produtos_nome_secao=produtos[["nome", "secao"]].drop_duplicates()
+    #unindo tabelas venda_produtos_total e produtos_nome_secao
+    venda_produtos_quantidade_total=pd.merge(produtos_nome_secao, venda_produtos_total, on = 'nome', how='right')
 
     #plotagem do gráfico de barras sobre o total de vendas por produto usando plotly
-    fig_quantidade_produto = px.bar(venda_produtos_total, x='nome', y="quantidade", barmode='stack', labels={"nome": "Nome", 'quantidade':"Quantidade vendida"})
-    fig_quantidade_produto.update_layout(title = 'Venda dos produtos')
+    fig_quantidade_produto = px.bar(venda_produtos_quantidade_total,
+                x='nome', y="quantidade", color="secao", 
+                barmode='stack', labels={"nome": "Nome", 'quantidade':"Quantidade vendida", "secao":"Seção"}, color_discrete_map={'Açougue': '#EF553B', 
+                                                    'Padaria': '#00CC96', 'Produtos de Limpeza': '#AB63FA', 'Alimentos em Geral': '#636EFA'})
+    fig_quantidade_produto.update_layout(title = 'Venda dos produtos', xaxis={'categoryorder':'total descending'})
     fig_quantidade_produto.update_xaxes(title = 'Produto')
     fig_quantidade_produto.update_yaxes(title = 'Quantidade vendida')
     fig_quantidade_produto.update_xaxes(tickangle=45)
-    #fig_quantidade_produto.show()
 
     # Alterando a cor do fundo
     fig_quantidade_produto.layout.plot_bgcolor = '#F2F2F2'
@@ -83,21 +89,21 @@ def produtos_mais_vendidos(request):
     fig_quantidade_secao = make_subplots(rows=2, cols=2, shared_yaxes=True, 
         subplot_titles=("Quantidades vendidas em alimentos em geral", "Quantidades vendidas no açougue", "Quantidades vendidas na padaria", "Quantidades vendidas em produtos de limpeza"))
     #gráficos de barras
-    fig_quantidade_secao.add_trace(go.Bar(x=df_frutas_e_verduras_quantidade["nome"], y=df_frutas_e_verduras_quantidade["quantidade"]), 
+    fig_quantidade_secao.add_trace(go.Bar(x=df_frutas_e_verduras_quantidade["nome"], y=df_frutas_e_verduras_quantidade["quantidade"], name=""), 
                 1, 1)
 
-    fig_quantidade_secao.add_trace(go.Bar(x=df_acougue_quantidade["nome"], y=df_acougue_quantidade["quantidade"]),
+    fig_quantidade_secao.add_trace(go.Bar(x=df_acougue_quantidade["nome"], y=df_acougue_quantidade["quantidade"], name=""),
                 1, 2)
 
-    fig_quantidade_secao.add_trace(go.Bar(x=df_padaria_quantidade["nome"], y=df_padaria_quantidade["quantidade"]),
+    fig_quantidade_secao.add_trace(go.Bar(x=df_padaria_quantidade["nome"], y=df_padaria_quantidade["quantidade"], name=""),
                 2, 1)
 
-    fig_quantidade_secao.add_trace(go.Bar(x=df_limpeza_quantidade["nome"], y=df_limpeza_quantidade["quantidade"]),
+    fig_quantidade_secao.add_trace(go.Bar(x=df_limpeza_quantidade["nome"], y=df_limpeza_quantidade["quantidade"], name=""),
                 2, 2)
 
 
     fig_quantidade_secao.update_layout(showlegend=False,
-                    title_text="Produtos mais vendidos", height=700)
+                    title_text="Produtos mais vendidos por seção", height=700)
     fig_quantidade_secao.update_xaxes(tickangle=45)
 
     # Alterando a cor do fundo
@@ -129,10 +135,11 @@ def produtos_mais_vendidos(request):
         "legenda_pergunta":"Você já se perguntou qual é o nosso produto mais vendido?",
         "legenda_resposta":"Nessa página mostramos as estatísticas de vendas dos nossos produtos. Em ordem decrescente são exibidos quais alimentos foram mais vendidos ao decorrer do mês de novembro de 2021",
         "botoes": [
-            ['vendas_por_secao','vendas_por_secao'],
-            ['venda_por_dia_da_semana','venda_por_dia_da_semana'],
-            ['consumidores_mais_ativos','consumidores_mais_ativos'],
-            ['relacao_quantidade_lucro_bruto','relacao_quantidade_lucro_bruto']
+            #['nome', 'link']
+            ['Venda em cada categoria','vendas_por_secao'],
+            ['Venda por dia da semana','venda_por_dia_da_semana'],
+            ['Consumidores mais ativos','consumidores_mais_ativos'],
+            ['Relação quantidade e lucro bruto','relacao_quantidade_lucro_bruto']
         ],
         "grafico": grafico_quantidade_secao + figura_barras_quantidade_produto
         }

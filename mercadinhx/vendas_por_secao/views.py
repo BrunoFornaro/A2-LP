@@ -165,14 +165,15 @@ def vendas_por_secao(request):
     #     }
 
     context = {
-        "titulo": "Vendas por seção",
-        "legenda_pergunta":"Você já se perguntou qual é a nossa seção de produtos mais lucrativa?",
-        "legenda_resposta":"Nessa página mostramos as estatísticas de vendas de cada seção dos nossos produtos. Aqui é exibido qual seção foi a mais lucrativa ao decorrer do mês de novembro de 2021",
+        "titulo": "Vendas em cada categoria",
+        "legenda_pergunta":"Você já se perguntou qual é a nossa categoria de produtos mais lucrativa?",
+        "legenda_resposta":"Nessa página mostramos as estatísticas de vendas de cada seção dos nossos produtos. Aqui é exibido qual categoria foi a mais lucrativa ao decorrer do mês de novembro de 2021",
         "botoes": [
-            ['produtos_mais_vendidos','produtos_mais_vendidos'],
-            ['venda_por_dia_da_semana','venda_por_dia_da_semana'],
-            ['consumidores_mais_ativos','consumidores_mais_ativos'],
-            ['relacao_quantidade_lucro_bruto','relacao_quantidade_lucro_bruto']
+            #['nome', 'link']
+            ['Produtos mais vendidos','produtos_mais_vendidos'],
+            ['Venda por dia da semana','venda_por_dia_da_semana'],
+            ['Consumidores mais ativos','consumidores_mais_ativos'],
+            ['Relação quantidade e lucro bruto','relacao_quantidade_lucro_bruto']
         ],
         "grafico": grafico_lucro_tempo + grafico_barras_lucro_secao 
         }
