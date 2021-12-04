@@ -105,7 +105,7 @@ def vendas_por_secao(request):
     fig_lucro_tempo.add_trace(go.Scatter(x = df_frutas_e_verduras_lucros["data"],
                         y = df_frutas_e_verduras_lucros["lucro"],
                         mode = 'markers+lines',
-                        name = 'Lucro por dia na seção de frutas e verduras'))
+                        name = 'Lucro por dia na seção de alimentos em geral'))
     fig_lucro_tempo.add_trace(go.Scatter(x = df_padaria_lucros["data"],
                         y = df_padaria_lucros["lucro"],
                         mode = 'markers+lines',
@@ -133,9 +133,10 @@ def vendas_por_secao(request):
     #iniciando outro gráfico de lucro por seção
     lucro_secao=venda_produtos_cliente.groupby("secao").sum().sort_values('lucro', ascending=False ).reset_index()
 
-    fig_lucro_secao = px.bar(lucro_secao, x="secao", y="lucro", color="secao", barmode = 'stack', height=685,
+    fig_lucro_secao = px.bar(lucro_secao, x="lucro", y="secao", color="secao", barmode = 'stack', color_discrete_map={'Açougue': '#EF553B', 
+                                                   'Padaria': '#AB63FA', 'Produtos de Limpeza': '#FFA15A', 'Alimentos em Geral': '#00CC96'}, 
                 labels={"lucro":"Lucro", "secao":"Seção"})
-    fig_lucro_secao.update_layout(title = 'Lucros por seção')
+    fig_lucro_secao.update_layout(title = 'Lucros por seção', yaxis={'categoryorder':'total descending'})
 
 
 
