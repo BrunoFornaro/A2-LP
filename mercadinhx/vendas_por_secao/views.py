@@ -12,11 +12,43 @@ import matplotlib.pyplot as plt
 import matplotlib as ptl
 import plotly.express as px
 from plotly.io import to_html
+import plotly.graph_objs as go
 import datetime
 
-# Create your views here.
-
 def vendas_por_secao(request):
+
+    # produtos = converter_query(Produtos.objects.all(), retornar="dataframe")
+    
+    # clientes = converter_query(Clientes.objects.all(), retornar="dataframe")
+
+    # vendas = converter_query(Vendas.objects.all(), retornar="dataframe")
+    
+    # venda_produtos = converter_query(VendasProdutos.objects.all(), retornar="dataframe")
+    # # Selecionando os dados
+    # preco = produtos[['id','preco']]
+    # # Renomeando a coluna id
+    # preco.rename(columns={"id": "id_produto"}, inplace = 1)
+    # # Unindo as tabelas venda_produtos e preco
+    # venda_preco = pd.merge(venda_produtos, preco, how= 'inner', on= 'id_produto')
+    # # Calculando o total arrecadado por produto
+    # venda_preco['total_ganho'] = venda_preco['quantidade']*venda_preco['preco']
+    # # Agrupando produtos por id
+    # venda_preco_prod = venda_preco.groupby('id_produto').sum()
+    # # Criando nova variável id para o gráfico
+    # venda_preco_prod['id'] = range(len(venda_preco_prod['total_ganho']))
+    # # Selecionando dados
+    # nome_prod = produtos[['nome', 'id']]
+    # # Unindo as tabelas venda_produtos_prod e nome_prod
+    # venda_preco_prod = pd.merge(venda_preco_prod, nome_prod, how= 'inner', on= 'id')
+    # # Plotando o gráfico
+    # fig = px.bar(venda_preco_prod, x='nome', y='total_ganho')
+    
+    # fig.update_layout(title = 'Receita gerada por cada produto')
+    # fig.update_xaxes(title = 'Produto')
+    # fig.update_yaxes(title = 'Receita')
+
+    # figura_barras=fig.to_html(full_html=False)
+
     produtos = converter_query(Produtos.objects.all(), retornar="dataframe")
     #renomenado a coluna id para id produto na tabela de produtos
     produtos.rename(columns={"id": "id_produtos"}, inplace = 1)
@@ -44,54 +76,105 @@ def vendas_por_secao(request):
     venda_produtos_cliente = pd.merge(venda_produtos_3, clientes, on = 'id_clientes', how='inner')
 
     #iniciando gráfico de barras dos clientes que mais gastam
-    #adicionado uma coluna dos preços totais pagos por cada cliente em cada produto por compra
-    venda_produtos_cliente["total_preco"]=venda_produtos_cliente["quantidade"]*venda_produtos_cliente["preco"]
+    #adicionando coluna de lucros
+    venda_produtos_cliente["lucro"]=(venda_produtos_cliente["preco"]-venda_produtos_cliente["custo"])*venda_produtos_cliente["quantidade"]
+    #agrupando os valores por data (para saber lucro total)
+    venda_produtos_cliente_soma_lucros = venda_produtos_cliente.groupby("data").sum().sort_values('data').reset_index()
 
-    #selecionando as colunas desejadas, agrupando a tabela venda_produtos_cliente por id_clientes (groupby), somando os valores (sum), organizando os valores em ordem decrescente por quantidade vendida (sort_values) e redefinindo o index (reset_index)
-    quantidade_comprada_preco = venda_produtos_cliente[["id_clientes", "total_preco"]].groupby(['id_clientes']).sum().sort_values('total_preco', ascending=False).reset_index().head(10)
-    
-    #renomeando coluna total_preco para total_mes
-    quantidade_comprada_preco.rename(columns={"total_preco": "total_mes"}, inplace = 1)
+    #separando os valores por seção
+    df_acougue=venda_produtos_cliente[venda_produtos_cliente["secao"]=='Açougue']
+    df_frutas_e_verduras=venda_produtos_cliente[venda_produtos_cliente["secao"]=='Alimentos em Geral']
+    df_padaria=venda_produtos_cliente[venda_produtos_cliente["secao"]=='Padaria']
+    df_produtos_de_limpeza=venda_produtos_cliente[venda_produtos_cliente["secao"]=='Produtos de Limpeza']
 
-    #unindo as tabelas venda_produtos_cliente e quantidade_comprada_preco por id_clientes
-    venda_produtos_cliente_pt=pd.merge(venda_produtos_cliente, quantidade_comprada_preco, on = 'id_clientes', how='right') 
+    #agrupando os valores por data
+    df_acougue_lucros = df_acougue.groupby("data").sum().sort_values('data').reset_index()
+    df_frutas_e_verduras_lucros = df_frutas_e_verduras.groupby("data").sum().sort_values('data').reset_index()
+    df_padaria_lucros = df_padaria.groupby("data").sum().sort_values('data').reset_index()
+    df_produtos_de_limpeza_lucros = df_produtos_de_limpeza.groupby("data").sum().sort_values('data').reset_index()
 
-    #plotando o gráfico
-    fig_total_cliente = px.bar(venda_produtos_cliente_pt, x="nome_cliente", y="total_preco", color="secao", barmode = 'stack', hover_data=['nome', 'data', 'preco'], labels={"total_preco": "Total da compra do produto", "nome_cliente": "Nome do cliente", "nome":"Produto", "data":"Data", "preco":"Preço do produto", "secao":"Seção"})
-    fig_total_cliente.update_layout(title = 'Os 10 clientes que mais gastam',
-                                    height=1000, width=1000)
+    #iniciando gráfico de linhas do lucro por dia no mes de novembro
+    fig_lucro_tempo = go.Figure()
+    fig_lucro_tempo.add_trace(go.Scatter(x=venda_produtos_cliente_soma_lucros["data"], y=venda_produtos_cliente_soma_lucros["lucro"], 
+                mode = 'markers+lines', name = 'Lucro total'))
+    fig_lucro_tempo.add_trace(go.Scatter(x = df_acougue_lucros["data"],
+                        y = df_acougue_lucros["lucro"],
+                        mode = 'markers+lines',
+                        name = 'Lucro por dia no açougue')) 
+    fig_lucro_tempo.add_trace(go.Scatter(x = df_frutas_e_verduras_lucros["data"],
+                        y = df_frutas_e_verduras_lucros["lucro"],
+                        mode = 'markers+lines',
+                        name = 'Lucro por dia na seção de frutas e verduras'))
+    fig_lucro_tempo.add_trace(go.Scatter(x = df_padaria_lucros["data"],
+                        y = df_padaria_lucros["lucro"],
+                        mode = 'markers+lines',
+                        name = 'Lucro por dia na padaria')) 
+    fig_lucro_tempo.add_trace(go.Scatter(x = df_produtos_de_limpeza_lucros["data"],
+                        y = df_produtos_de_limpeza_lucros["lucro"],
+                        mode = 'markers+lines',
+                        name = 'Lucro por dia na seção de limpezas')) 
+    fig_lucro_tempo.update_layout(title='Lucro por seção no mês de novembro',
+    xaxis_title='Data',
+    yaxis_title='Lucro',
+    plot_bgcolor = 'white', height=600, width=1200,
+    font = {'family': 'Arial','size': 14,'color': 'black'})
+    fig_lucro_tempo.update_xaxes( showgrid=True, gridwidth=1, gridcolor='lightgray',
+    showline=True, linewidth=1, linecolor='black')
+    fig_lucro_tempo.update_yaxes(showgrid=True, gridwidth=1, gridcolor='lightgray',
+    showline=True, linewidth=1, linecolor='black')
 
     # Alterando a cor do fundo
-    fig_total_cliente.layout.plot_bgcolor = '#F2F2F2'
-    fig_total_cliente.layout.paper_bgcolor = '#F2F2F2'
+    fig_lucro_tempo.layout.plot_bgcolor = '#F2F2F2'
+    fig_lucro_tempo.layout.paper_bgcolor = '#F2F2F2'
 
-    grafico_total_cliente=fig_total_cliente.to_html(full_html=False, config= {'displayModeBar': False})
+    grafico_lucro_tempo=fig_lucro_tempo.to_html(full_html=False, config= {'displayModeBar': False})
     
-    #grafico_total_cliente
+    #iniciando outro gráfico de lucro por seção
+    lucro_secao=venda_produtos_cliente.groupby("secao").sum().sort_values('lucro', ascending=False ).reset_index()
 
+    fig_lucro_secao = px.bar(lucro_secao, x="secao", y="lucro", color="secao", barmode = 'stack', height=685, width=950,
+                labels={"lucro":"Lucro", "secao":"Seção"})
+    fig_lucro_secao.update_layout(title = 'Lucros por seção')
+
+
+
+    # Alterando a cor do fundo
+    fig_lucro_secao.layout.plot_bgcolor = '#F2F2F2'
+    fig_lucro_secao.layout.paper_bgcolor = '#F2F2F2'
+
+    grafico_barras_lucro_secao=fig_lucro_secao.to_html(full_html=False, config= {'displayModeBar': False})
+
+
+
+
+
+
+    #grafico_lucro_tempo, grafico_barras_lucro_secao
+
+    
     # context = {
-    #     "legenda_pergunta":"Você já seaaaaaaaaaaaaaaaaaaa perguntou qual é o nosso produto mais vendido?",
-    #     "legenda":"Nessa página mostramos aaaaaaaaaaas estatísticas de vendas dos nossos produtos. Em ordem decrescente são exibidos quais alimentos foram mais vendidos ao decorrer do mês de novembro de 2021",
+    #     "legenda_pergunta":"Você já se perguntou qual é a nossa seção de produtos mais lucrativa?",
+    #     "legenda":"Nessa página mostramos as estatísticas de vendas de cada seção dos nossos produtos. Aqui é exibido qual seção foi a mais lucrativa ao decorrer do mês de novembro de 2021",
     #     "link1":"visualizacao2",
     #     "link2":"visualizacao5",
     #     "link3":"visualizacao5",
-    #     "botao1":"Seção maaaaaais lucrativa",
-    #     "botao2":"Vizuaaaaaalização 3",
+    #     "botao1":"Produtos mais vendidos",
+    #     "botao2":"Vizualização 3",
     #     "botao3":"Vizualização 4",
-    #     "grafico": grafico_total_cliente
+    #     "grafico": grafico_lucro_tempo + grafico_barras_lucro_secao 
     #     }
 
     context = {
-        "titulo": "vendas_por_secao",
-        "legenda_pergunta":"Pergunta vendas_por_secao",
-        "legenda_resposta":"Texto vendas_por_secao",
+        "titulo": "consumidores_mais_ativos",
+        "legenda_pergunta":"Pergunta consumidores_mais_ativos",
+        "legenda_resposta":"Texto consumidores_mais_ativos",
         "botoes": [
             ['produtos_mais_vendidos','produtos_mais_vendidos'],
+            ['vendas_por_secao','vendas_por_secao'],
             ['venda_por_dia_da_semana','venda_por_dia_da_semana'],
-            ['consumidores_mais_ativos','consumidores_mais_ativos'],
             ['relacao_quantidade_lucro_bruto','relacao_quantidade_lucro_bruto']
         ],
-        "grafico": grafico_total_cliente
+        "grafico": grafico_lucro_tempo + grafico_barras_lucro_secao 
         }
 
     return render(request, "visualizacao1.html",context)

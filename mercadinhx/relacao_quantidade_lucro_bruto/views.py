@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 from django.http.response import HttpResponseNotFound, HttpResponseRedirect, Http404
 from django.urls import reverse
 from principal.models import Produtos, Clientes, Vendas, VendasProdutos
@@ -14,6 +13,9 @@ import plotly.express as px
 from plotly.io import to_html
 import plotly.graph_objs as go
 import datetime
+from sklearn.preprocessing import MaxAbsScaler
+abs_scaler = MaxAbsScaler()
+
 
 # Create your views here.
 def relacao_quantidade_lucro_bruto(request):
@@ -47,46 +49,49 @@ def relacao_quantidade_lucro_bruto(request):
     venda_produtos_cliente["total_preco"]=venda_produtos_cliente["quantidade"]*venda_produtos_cliente["preco"]
     #tranformando coluna em tipo data
     venda_produtos_cliente['data'] = pd.to_datetime(venda_produtos_cliente['data'])
-    #adicionando uma coluna com os dias das semanas
-    venda_produtos_cliente['dia_sem'] = venda_produtos_cliente['data'].dt.weekday
-    #agrupando os dados por dia da semana, somando, e organizando por ordem crescente de dia
-    entrada_bruta_sem = venda_produtos_cliente.groupby(['dia_sem']).sum().sort_values('dia_sem').reset_index()
-    #mudando o nome das linhas da coluna dia_sem
-    entrada_bruta_sem["dia_sem"].replace({0:"Segunda-feira", 1: "Terça-feira", 2: "Quarta-feira", 3: "Quinta-feira", 4: "Sexta-feira", 5: "Sábado", 6: "Domingo"}, inplace=True)
+    # Agrupando as variáveis por data
+    venda_produtos_cliente_agrupado_por_dia=venda_produtos_cliente.groupby("data").sum().sort_values('data')
+    # Selecionando dados total_preco e quantidade
+    venda_produtos_cliente_agrupado_por_dia=venda_produtos_cliente_agrupado_por_dia[["total_preco", "quantidade"]]
 
-    #Plotando Gráfico
-    fig_entrada_por_dia = px.bar(entrada_bruta_sem,
-                x='dia_sem', y="total_preco",
-                labels={"dia_sem": "Dia da semana", "total_preco": "Entrada total"},
-                barmode='stack')
-    fig_entrada_por_dia.update_layout(title = 'Entrada total por dia da semana no mês de novembro')
-    fig_entrada_por_dia.update_xaxes(title = 'Dia da semana')
-    fig_entrada_por_dia.update_yaxes(title = 'Entrada')
+    #Normalizando os dados
+    abs_scaler = MaxAbsScaler()
+    abs_scaler.fit(venda_produtos_cliente_agrupado_por_dia)
+    abs_scaler.max_abs_
+    scaled_data = abs_scaler.transform(venda_produtos_cliente_agrupado_por_dia)
+    df_scaled = pd.DataFrame(scaled_data, columns=venda_produtos_cliente_agrupado_por_dia.columns)
+    df_scaled.transpose()
+   
+    # Definindo a datta com índice
+    df_scaled['date'] = np.arange(np.datetime64('2021-11-01'), np.datetime64('2021-12-01'))
+    df_scaled = df_scaled.set_index(['date'])
     
-
+    # Plotando o gráfico
+    fig_quantidade_vendida_e_renda = px.line(df_scaled, title="Quantidade vendida e renda na mesma escala, no mês de novembro")
+    fig_quantidade_vendida_e_renda.update_xaxes(title = 'Data')
+    fig_quantidade_vendida_e_renda.update_yaxes(title = 'Valor')
+    # fig_quantidade_vendida_e_renda.show()
+    
     # Alterando a cor do fundo
-    fig_entrada_por_dia.layout.plot_bgcolor = '#F2F2F2'
-    fig_entrada_por_dia.layout.paper_bgcolor = '#F2F2F2'
+    fig_quantidade_vendida_e_renda.layout.plot_bgcolor = '#F2F2F2'
+    fig_quantidade_vendida_e_renda.layout.paper_bgcolor = '#F2F2F2'
 
-    grafico_entrada_por_dia=fig_entrada_por_dia.to_html(full_html=False, config= {'displayModeBar': False})
-
-
-
-
+    grafico_quantidade_vendida_e_renda = fig_quantidade_vendida_e_renda.to_html(full_html=False, config={'displayModeBar': False})
 
 
 
     context = {
-        "titulo": "relacao_quantidade_lucro_bruto",
-        "legenda_pergunta":"Pergunta relacao_quantidade_lucro_bruto",
-        "legenda_resposta":"Texto relacao_quantidade_lucro_bruto",
+        "titulo": "venda_por_dia_da_semana",
+        "legenda_pergunta":"Pergunta venda_por_dia_da_semana",
+        "legenda_resposta":"Texto venda_por_dia_da_semana",
         "botoes": [
             ['produtos_mais_vendidos','produtos_mais_vendidos'],
             ['vendas_por_secao','vendas_por_secao'],
-            ['venda_por_dia_da_semana','venda_por_dia_da_semana'],
-            ['consumidores_mais_ativos','consumidores_mais_ativos']
+            ['consumidores_mais_ativos','consumidores_mais_ativos'],
+            ['relacao_quantidade_lucro_bruto','relacao_quantidade_lucro_bruto']
         ],
-        "grafico": grafico_entrada_por_dia
+        "grafico": grafico_quantidade_vendida_e_renda
         }
-        
+
+
     return render(request, "visualizacao1.html",context)
