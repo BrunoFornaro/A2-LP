@@ -58,7 +58,12 @@ def visualizacao1(request):
 
     #plotando o gráfico
     fig_total_cliente = px.bar(venda_produtos_cliente_pt, x="nome_cliente", y="total_preco", color="secao", barmode = 'stack', hover_data=['nome', 'data', 'preco'], labels={"total_preco": "Total da compra do produto", "nome_cliente": "Nome do cliente", "nome":"Produto", "data":"Data", "preco":"Preço do produto", "secao":"Seção"})
-    fig_total_cliente.update_layout(title = 'Os 10 clientes que mais gastam')
+    fig_total_cliente.update_layout(title = 'Os 10 clientes que mais gastam',
+                                    height=700)
+
+    # Alterando a cor do fundo
+    fig_total_cliente.layout.plot_bgcolor = '#F2F2F2'
+    fig_total_cliente.layout.paper_bgcolor = '#F2F2F2'
 
     grafico_total_cliente=fig_total_cliente.to_html(full_html=False)
     

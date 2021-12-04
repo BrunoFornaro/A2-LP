@@ -123,6 +123,10 @@ def visualizacao2(request):
     fig_lucro_tempo.update_yaxes(showgrid=True, gridwidth=1, gridcolor='lightgray',
     showline=True, linewidth=1, linecolor='black')
 
+    # Alterando a cor do fundo
+    fig_lucro_tempo.layout.plot_bgcolor = '#F2F2F2'
+    fig_lucro_tempo.layout.paper_bgcolor = '#F2F2F2'
+
     grafico_lucro_tempo=fig_lucro_tempo.to_html(full_html=False)
     
     #iniciando outro gráfico de lucro por seção
@@ -131,6 +135,12 @@ def visualizacao2(request):
     fig_lucro_secao = px.bar(lucro_secao, x="secao", y="lucro", color="secao", barmode = 'stack',
                 labels={"lucro":"Lucro", "secao":"Seção"})
     fig_lucro_secao.update_layout(title = 'Lucros por seção')
+
+
+
+    # Alterando a cor do fundo
+    fig_lucro_secao.layout.plot_bgcolor = '#F2F2F2'
+    fig_lucro_secao.layout.paper_bgcolor = '#F2F2F2'
 
     grafico_barras_lucro_secao=fig_lucro_secao.to_html(full_html=False)
 
@@ -142,7 +152,7 @@ def visualizacao2(request):
     #grafico_lucro_tempo, grafico_barras_lucro_secao
 
     
-    context = {"grafico": grafico_lucro_tempo}
+    context = {"grafico": grafico_lucro_tempo + grafico_barras_lucro_secao}
     return render(request, "visualizacao1.html",context)
 
     

@@ -64,6 +64,10 @@ def visualizacao3(request):
     fig_entrada_por_dia.update_yaxes(title = 'Entrada')
     
 
+    # Alterando a cor do fundo
+    fig_entrada_por_dia.layout.plot_bgcolor = '#F2F2F2'
+    fig_entrada_por_dia.layout.paper_bgcolor = '#F2F2F2'
+
     grafico_entrada_por_dia=fig_entrada_por_dia.to_html(full_html=False)
 
 
