@@ -96,6 +96,10 @@ def visualizacao0(request):
                     title_text="Produtos mais vendidos")
     fig_quantidade_secao.update_xaxes(tickangle=45)
 
+    # Alterando a cor do fundo
+    fig_quantidade_secao.layout.plot_bgcolor = '#F2F2F2'
+    fig_quantidade_secao.layout.paper_bgcolor = '#F2F2F2'
+
     #tranformando gráfico em html
     grafico_quantidade_secao = fig_quantidade_secao.to_html(full_html=False)
 
