@@ -12,6 +12,7 @@ import matplotlib.pyplot as plt
 import matplotlib as ptl
 import plotly.express as px
 from plotly.io import to_html
+import plotly.graph_objects as go
 
 # Create your views here.
 def visualizacao0(request):
@@ -55,10 +56,10 @@ def visualizacao0(request):
     fig_quantidade_produto.update_xaxes(title = 'Produto')
     fig_quantidade_produto.update_yaxes(title = 'Quantidade vendida')
     fig_quantidade_produto.update_xaxes(tickangle=45)
-    fig_quantidade_produto.show()
+    #fig_quantidade_produto.show()
 
     #tranformando gráfico em html
-    figura_barras_quantidade_produto=fig_quantidade_produto.to_html(full_html=False)
+    figura_barras_quantidade_produto = fig_quantidade_produto.to_html(full_html=False)
 
 
     #iniciando gráfico de barras da quantidade vendida por secao
@@ -91,17 +92,17 @@ def visualizacao0(request):
                 2, 2)
 
 
-    fig_quantidade_secao.update_layout(height=650, width=800, showlegend=False,
+    fig_quantidade_secao.update_layout(height = 700, showlegend=False,
                     title_text="Produtos mais vendidos")
     fig_quantidade_secao.update_xaxes(tickangle=45)
 
     #tranformando gráfico em html
-    grafico_quantidade_secao=fig_quantidade_secao.to_html(full_html=False)
+    grafico_quantidade_secao = fig_quantidade_secao.to_html(full_html=False)
 
 
 
 
     #figura_barras_quantidade_produto, grafico_quantidade_secao
 
-    context = {"visualizacao0": figura_barras_quantidade_produto}
-    return render(request, "visualizacao0.html",context)
+    context = {"grafico": grafico_quantidade_secao}
+    return render(request, "visualizacao1.html", context)
