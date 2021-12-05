@@ -1,9 +1,11 @@
+<!-- Para a utilização de imagens e CSS -->
 {% load static %}
 
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
+    <!-- Inclui o head -->
     {% include "head.html"%}
 </head>
 
@@ -11,6 +13,7 @@
     <!-- CABEÇALHO -->
     <!-- Cria um container -->
     <header class="container-fluid">
+        <!-- Inclui o header -->
         {% include "header.html"%}
     </header>
 
@@ -21,6 +24,7 @@
         <!-- Coloca o card  -->
         <div class="carousel-inner">
             <div class="carousel-item active">
+                <!-- Banner dinâmico de cada seção -->
                 <img src="{% get_static_prefix %}img/{{banner}}" alt="Mercadinhx" class="d-block">
             </div>
         </div>
@@ -96,18 +100,9 @@
             <div class="col-12 lista-de-produtos" id="featured-images">
                 <!-- Cria uma linha -->
                 <div class="row g-4">
+                    <!-- Bloco para adicionar cards dos produtos -->
                     {% block cards_produtos %}
-                    <div class="col-12 col-md-3">
-                        <img src="{% static 'img/melancia.jpg' %}" alt="Melancia">
-                        <div class="banner-content">
-                            <button onclick="window.location.href='{% url 'produtos' id=1 %}'"
-                                class="btn-outline-success btn-lg">Melancia</button>
-                            <h4>R$13,99 p/ unidade </h4>
-                            <br>
-                            <h4>Estoque: 20 unidades</h4>
-                            <h4>Prateleira 1C</h4>
-                        </div>
-                    </div>
+                    <p>Nenhum produto foi encontrado</p>
                     {% endblock %}
                 </div>
             </div>
@@ -115,6 +110,7 @@
         
         <!-- RODAPÉ -->
         <footer class="container-fluid segundo-fundo" id="rodape">
+            <!-- Inclui rodapé -->
             {% include "footer.html"%}
         </footer>
     </div>
