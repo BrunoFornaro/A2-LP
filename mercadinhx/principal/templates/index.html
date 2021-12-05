@@ -58,36 +58,15 @@
                 <div class="row g-4">
                     {% include "banner_promocoes.html"%}
                     <!-- No mobile ocupa a tela toda (12/12 colunas) em telas maiores ocupa 3/12 colunas da tela -->
-                    <div class="col-12 col-md-3">
-                        <img src="{% static 'img/padaria2.png' %}" alt="Clique para ir">
-                        <div class="banner-content">
-                            <button onclick="window.location.href='{% url 'lista_de_produtos' id=0 %}'"
-                                class="btn-outline-success btn-lg">Padaria</button>
+                    {% for secao in secoes %}
+                        <div class="col-12 col-md-3">
+                            <img src="{% get_static_prefix %}img/{{secao.imagem}}" alt="Clique para ir">
+                            <div class="banner-content">
+                                <button onclick="window.location.href='{% url 'lista_de_produtos' id=secao.id filtro='?' %}'"
+                                    class="btn-outline-success btn-lg">{{secao.nome}}</button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-12 col-md-3">
-                        <img src="{% static 'img/acougue2.JPEG.png' %}" alt="Clique para ir">
-                        <div class="banner-content">
-                            <button onclick="window.location.href='{% url 'lista_de_produtos' id=1 %}'"
-                                class="btn-outline-success btn-lg">Açougue</button>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-md-3">
-                        <img src="{% static 'img/alimentos2.JPEG.png' %}" alt="Clique para ir">
-                        <div class="banner-content">
-                            <button onclick="window.location.href='{% url 'lista_de_produtos' id=2 %}'"
-                                class="btn-outline-success btn-lg">Alimentos</button>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-md-3">
-                        <img src="{% static 'img/produtos_de_limpeza2.jpg.png' %}" alt="Clique para ir">
-                        <div class="banner-content">
-                            <button onclick="window.location.href='{% url 'lista_de_produtos' id=3 %}'"
-                                class="btn-outline-success btn-lg">Produtos de limpeza</button>
-                        </div>
-                    </div>
+                    {% endfor %}
                     <div class="col-12 promocoes">
                         <!-- Imagem do banner de promoçoes -->
                         <img src="{% static 'img/banner_visualizacoes.jpeg' %}" alt="Clique para ir">

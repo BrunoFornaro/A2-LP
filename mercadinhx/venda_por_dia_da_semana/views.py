@@ -61,7 +61,8 @@ def venda_por_dia_da_semana(request):
                 labels={"dia_sem": "Dia da semana", "total_preco": "Renda bruta"},
                 barmode='stack')
     fig_entrada_por_dia.update_traces(marker = {'color': '#00CC96'})
-    fig_entrada_por_dia.update_layout(title = 'Entrada em renda bruta por dia da semana no mês de novembro')
+    fig_entrada_por_dia.update_layout(title = 'Entrada em renda bruta por dia da semana no mês de novembro',
+    font = {'family': 'Arial','size': 14,'color': 'black'})
     fig_entrada_por_dia.update_xaxes(title = 'Dia da semana')
     fig_entrada_por_dia.update_yaxes(title = 'Renda bruta')
     
@@ -89,7 +90,7 @@ def venda_por_dia_da_semana(request):
             ['Consumidores mais ativos','consumidores_mais_ativos'],
             ['Relação quantidade e lucro bruto','relacao_quantidade_lucro_bruto']
         ],
-        "grafico": grafico_entrada_por_dia
+        "graficos": [grafico_entrada_por_dia]
         }
         
     return render(request, "visualizacao1.html",context)
