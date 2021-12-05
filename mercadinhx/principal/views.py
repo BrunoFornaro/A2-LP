@@ -45,7 +45,7 @@ def lista_de_produtos(request, id='4', filtro="?"):
         "1": ["acougue", "banner_acougue.png"],
         "2": ["alimentos_em_geral", "alimentos_geral.png"],
         "3": ["produtos_de_limpeza", "produtos_limpeza.png"],
-        "4": ["promocoes", "alimentos_geral.png"]
+        "4": ["promocoes", "promocao.png"]
     }
 
     secao = secoes[id]
