@@ -25,7 +25,7 @@ Além disso, conta com uma assinatura premium que permite ao cliente selecionar 
 
 - Os botões que organizam a lista de produtos por prateleira, ou por ordem crescente e decrescente de preço estão funcionando, utilizando filtros nas querys no banco de dados do Django.
 
-- Foram adicionadas as visualizações relacionadas ao estoque, vendas e clientes. As visualizações foram de produtos mais vendidos, consumidores mais ativos, venda por dia da semana, vendas por seção e relação entre quantidade vendida e lucro bruto.
+- Foram adicionadas as visualizações relacionadas ao estoque, vendas e clientes. As visualizações foram de produtos mais vendidos, consumidores mais ativos, venda por dia da semana, vendas por seção e relação entre quantidade vendida e lucro bruto. Essas visualizações foram feitas com o `pandas` para a manipulação dos dados e utilizamos o `plotly` para exibir os gráficos dinâmicos no HTML.
 
 ## Bibliografia
 Django. Fornecendo dados iniciais para modelos. DjangoProject. Disponível em: https://docs.djangoproject.com/pt-br/2.0/howto/initial-data/. Acesso em: 29 de novembro de 2021.
