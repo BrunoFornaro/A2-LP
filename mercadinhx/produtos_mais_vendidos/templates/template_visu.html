@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+<!-- Para possibilitar uso de imagens e CSS -->
 {% load static %}
 
 <head>
+<!-- Inclui o head -->
     {% include "head.html"%}
 </head>
 
@@ -10,6 +12,7 @@
     <!-- CABEÇALHO -->
     <!-- Cria um container -->
     <header class="container-fluid">
+        <!-- Inclui o header -->
         {% include "header.html"%}
     </header>
 
@@ -20,27 +23,22 @@
 
         
         <!-- Texto de informações complementares -->
+        <!-- Bloco para ser colocado título, pergunta e explicações -->
         {% block texto %}
-        <div class="row justify-content-center informacoes-produto">
-            <div class="col-12 col-md-10 fundo-amarelo tipos-de-assinatura">
-                <p>Você já se perguntou qual é o nosso produto mais vendido?</p>
-                <br>
-                <p>Nessa página mostramos as estatísticas de vendas dos nossos produtos. Em ordem decrescente são
-                    exibidos quais alimentos foram mais vendidos ao decorrer do mês de novembro de 2021 </p>
-            </div>
-        </div>
+        <!-- Mensagem para o caso de não renderização do bloco -->
+        <p>Nenhum texto encontrado</p>
         {% endblock %}
 
     </div>
 
     <!-- Gráfico (visualização) -->
     {% block graficoo %}
-    <p>deu ruim</p>
+    <p>Nenhum gráfico encontrado</p>
     {% endblock %}
 
 
     <div class="conteiner primeira-cor conteiner-assinatura">
-
+        <!-- Texto indicando novas visualizações -->
         <div class="row justify-content-center  ">
             <div class="col 12 col-md-10 fundo-amarelo ">
                 <h2 class="titulo">Temos mais visualizações! Veja outras:</h2>
@@ -50,8 +48,9 @@
         <div class="row justify-content-center  ">
             <div class="col 12 col-md-10 fundo-amarelo ">
                 <!-- Botão de adicionar ao carrinho que leva para a página de seja assinante -->
+                <!-- Bloco para a utilização de links que levam a outras visualizações -->
                 {% block links %}
-                <p></p>se ta aparecendo isso deu ruim</p>
+                <p>se ta aparecendo isso deu ruim</p>
                         
                 {% endblock %}
 
@@ -63,12 +62,14 @@
     <!-- CATEGORIAS DE PRODUTO -->
     <div class="container" id="featured-container">
         <div id="featured-images">
+            <!-- Inclui o banner de promoções -->
             {% include "banner_promocoes.html"%}
         </div>
     </div>
 
     <!-- RODAPÉ -->
     <footer class="container-fluid segundo-fundo" id="rodape">
+        <!-- Inclui o footer -->
         {% include "footer.html"%}
     </footer>
 </body>

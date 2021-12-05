@@ -1,26 +1,32 @@
+<!-- Utiliza do template das visualizações para só poder complementar com as informações dentro do bloco -->
 {% extends "template_visu.html" %}
 
 {% block texto %}
 <div class="row justify-content-center  ">
     <div class="col 12 col-md-10 fundo-amarelo ">
+        <!-- Título dinâmico de acordo com a aplicação -->
         <h2 class="titulo">{{titulo}}</h2>
     </div>
 </div>
 <div class="row justify-content-center informacoes-produto">
     <div class="col-12 col-md-10 fundo-amarelo tipos-de-assinatura">
+        <!-- Pergunta dinâmica de acordo com a aplicação -->
         <p>{{legenda_pergunta}}</p>
         <br>
+        <!-- Resposta dinâmica de acordo com a aplicação -->
         <p>{{legenda_resposta}} </p>
     </div>
 </div>
 {% endblock %}
 
 {% block graficoo %}
+<!-- Renderiza todos os gráficos da aplicação utilizando o mesmo html -->
 {% for grafico in graficos %}
     <div class="container conteiner-assinatura" >
         <div class="row  ">
             <div class="col-12 graficos">
                 <!-- Imagem do produto -->
+                <!-- Gráfico dinâmico de acordo com a aplicação -->
                 {{grafico|safe}}
             </div>
         </div>
@@ -28,13 +34,17 @@
 {% endfor %}
 {% endblock %}
 
+<!-- Bloco para renderização dos links que levam a outras aplicações -->
 {% block links %}
 <div class="row justify-content-around">
+    <!-- Renderiza todos os botões da aplicação utilizando o mesmo html -->
     {% for botao in botoes %}
     <div class="col-md-2">
         <div class="row justify-content-center ">
+            <!-- Outra aplicação em que deve ser levado ao clicar no botão, dinâmico para que todos os botões estejam com o mesmo html -->
             <button onclick="window.location.href='{% url botao.1 %}'"
                 class="btn-outline-success btn-lg"><i></i>
+                <!-- Nome dinâmico do botão que vai aparecer para o usuário -->
                 {{botao.0}}</button>
         </div>
     </div>
