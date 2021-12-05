@@ -1,6 +1,6 @@
 from django.db import models
 
-# Create your models here.
+# Modelo da tabela de Produtos
 class Produtos(models.Model):
     id = models.IntegerField(primary_key=True)
     nome = models.CharField(max_length=80)
@@ -12,7 +12,7 @@ class Produtos(models.Model):
     unidade_de_medida_de_estoque = models.CharField(max_length=80)
     imagem = models.CharField(max_length=60)
 
-
+# Modelo da tabela de Clientes
 class Clientes(models.Model):
     id = models.IntegerField(primary_key=True)
     nome = models.CharField(max_length=80)
@@ -23,13 +23,13 @@ class Clientes(models.Model):
     usuario = models.CharField(max_length=30)
     senha = models.CharField(max_length=30)
 
-
+# Modelo da tabela de Vendas
 class Vendas(models.Model):
     id = models.IntegerField(primary_key=True)
     id_clientes = models.IntegerField()
     data = models.DateField()
 
-
+# Modelo da tabela de VendasProdutos
 class VendasProdutos(models.Model):
     id = models.IntegerField(primary_key=True)
     id_vendas = models.IntegerField()
