@@ -76,7 +76,8 @@ def consumidores_mais_ativos(request):
             ['Produtos mais vendidos','produtos_mais_vendidos'],
             ['Lucros por cada categoria','vendas_por_secao'],
             ['Venda por dia da semana','venda_por_dia_da_semana'],
-            ['Relação quantidade e receita bruta','relacao_quantidade_lucro_bruto']
+            ['Relação quantidade e receita bruta','relacao_quantidade_lucro_bruto'],
+            ['Relação idade e gastos do cliente','relacao_idade_gastos']
         ],
         "graficos": [grafico_total_cliente]
         }

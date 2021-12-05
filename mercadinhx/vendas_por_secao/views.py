@@ -124,7 +124,8 @@ def vendas_por_secao(request):
             ['Produtos mais vendidos','produtos_mais_vendidos'],
             ['Venda por dia da semana','venda_por_dia_da_semana'],
             ['Consumidores mais ativos','consumidores_mais_ativos'],
-            ['Relação quantidade e receita bruta','relacao_quantidade_lucro_bruto']
+            ['Relação quantidade e receita bruta','relacao_quantidade_lucro_bruto'],
+            ['Relação idade e gastos do cliente','relacao_idade_gastos']
         ],
         "graficos": [grafico_lucro_tempo, grafico_barras_lucro_secao]
         }

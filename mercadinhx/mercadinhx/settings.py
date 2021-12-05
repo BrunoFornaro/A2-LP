@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'venda_por_dia_da_semana',
     'consumidores_mais_ativos',
     'relacao_quantidade_lucro_bruto',
+    'relacao_idade_gastos'
 ]
 
 MIDDLEWARE = [

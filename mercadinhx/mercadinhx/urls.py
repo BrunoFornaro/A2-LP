@@ -24,5 +24,6 @@ urlpatterns = [
     path("vendas_por_secao/", include("vendas_por_secao.urls")),
     path("venda_por_dia_da_semana/", include("venda_por_dia_da_semana.urls")),
     path("consumidores_mais_ativos/", include("consumidores_mais_ativos.urls")),
-    path("relacao_quantidade_lucro_bruto/", include("relacao_quantidade_lucro_bruto.urls"))
+    path("relacao_quantidade_lucro_bruto/", include("relacao_quantidade_lucro_bruto.urls")),
+    path("relacao_idade_gastos/", include("relacao_idade_gastos.urls"))
 ]

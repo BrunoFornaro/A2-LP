@@ -97,7 +97,8 @@ def venda_por_dia_da_semana(request):
             ['Produtos mais vendidos','produtos_mais_vendidos'],
             ['Lucros por cada categoria','vendas_por_secao'],
             ['Consumidores mais ativos','consumidores_mais_ativos'],
-            ['Relação quantidade e receita bruta','relacao_quantidade_lucro_bruto']
+            ['Relação quantidade e receita bruta','relacao_quantidade_lucro_bruto'],
+            ['Relação idade e gastos do cliente','relacao_idade_gastos']
         ],
         "graficos": [grafico_entrada_por_dia, grafico_lucro_por_dia]
         }
