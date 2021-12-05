@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+{% load static %}
+
+<head>
+    {% include "head.html"%}
+</head>
+
+<body>
+    <!-- CABEÇALHO -->
+    <!-- Cria um container -->
+    <header class="container-fluid">
+        {% include "header.html"%}
+    </header>
+
+    <!-- Error 404 -->
+    <!-- Cria um container -->
+    <div class="container">
+        <!--Cria uma row e centraliza o texto-->
+        <div class="row justify-content-center align-items-center ">
+            <!-- Em tela médias ou maiores texto ocupa 5/12 da página-->
+            <div class="col-md-7 Eror" id="Error">
+                <h1>Essa não.....</h1>
+                <p>
+                    Desculpa ! Nós atualizamos o site recentemente, e parece que a página que você estava procurando se perdeu de alguma forma no meio do processo.
+                </p>
+                <p>
+                    Entretanto também pedimos que sigam as seguintes recomendações:
+                </p>
+                <ul>
+                    <li>Certifique-se de que tenha clicado na página certa.</li>
+                    <li>Certifique-se de que tenha escrito o endereço (URL) corretamente. </li>
+                    <li>Certifique-se de que você quer realmente comprar nesse site e não andar até o mercado.</li>
+                </ul>
+            </div>
+            <div class="col-12 centralizar" id="Error">
+                <div class="col-12 col-md-7">
+                    <h3>Mas não se desespere !</h3>
+                </div>
+            </div>
+            <div class="col-12 centralizar" id="Error">
+                <div class="col-12 col-md-7">
+                    <p>Caso esteja vendo esse erro repetidamente, nos mande um e-mail para que possamos consertá-lo.</p>
+                </div>
+            </div>
+            <div class="col-12 centralizar">
+                <div class="col-12 col-md-7">
+                    <!-- Locais para os clientes escreverem as informações -->
+                    <input type="text" placeholder="Nome" class="form-control my-3 p-2">
+                    <input type="email" placeholder="E-mail" class="form-control my-3 p-2">
+                    <textarea placeholder="Mensagem/Reclamação" rows="5" class="form-control md-textarea"></textarea>
+                    <div class="col-12 centralizar">
+                        <button class="botao-laranja mt-3 mb-3">Enviar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RODAPÉ -->
+    <footer class="container-fluid segundo-fundo" id="rodape">
+        {% include "footer.html"%}
+    </footer>
+</body>
