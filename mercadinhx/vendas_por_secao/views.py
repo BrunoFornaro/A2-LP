@@ -168,15 +168,15 @@ def vendas_por_secao(request):
     #     }
 
     context = {
-        "titulo": "Vendas em cada categoria",
-        "legenda_pergunta":"Você já se perguntou qual é a nossa categoria de produtos mais lucrativa?",
-        "legenda_resposta":"Nessa página mostramos as estatísticas de vendas de cada seção dos nossos produtos. Aqui é exibido qual categoria foi a mais lucrativa ao decorrer do mês de novembro de 2021",
+        "titulo": "Lucros por categoria",
+        "legenda_pergunta":"Você já se perguntou qual é a nossa categoria de produtos mais lucrativa e como o lucro varia ao longo do mês?",
+        "legenda_resposta":"Nessa página mostramos as estatísticas dos lucros de cada seção dos nossos produtos. É exibido qual categoria foi a mais lucrativa ao decorrer do mês de novembro de 2021, bem como esse lucro está distribuído ao longo dos dias. Como exposto, o açougue é o setor mais lucrativo, sendo seguido pela padaria. Contudo, essas disparidade acontece principalmente na primeira metade do mês, já que no fim, o lucro diminiu consideravelmente em todas as categorias. Ainda, nosso dia mais lucrativo foi 9 de novembro, uma terça-feira, que é o segundo dia da semana mais lucrativo no mês (mostrado em outras análises).",
         "botoes": [
             #['nome', 'link']
             ['Produtos mais vendidos','produtos_mais_vendidos'],
             ['Venda por dia da semana','venda_por_dia_da_semana'],
             ['Consumidores mais ativos','consumidores_mais_ativos'],
-            ['Relação quantidade e lucro bruto','relacao_quantidade_lucro_bruto']
+            ['Relação quantidade e receita bruta','relacao_quantidade_lucro_bruto']
         ],
         "graficos": [grafico_lucro_tempo, grafico_barras_lucro_secao]
         }

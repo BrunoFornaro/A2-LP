@@ -66,10 +66,10 @@ def relacao_quantidade_lucro_bruto(request):
     df_scaled['date'] = np.arange(np.datetime64('2021-11-01'), np.datetime64('2021-12-01'))
     df_scaled = df_scaled.set_index(['date'])
     #renomeando colunas
-    df_scaled.rename(columns={'total_preco': 'Renda bruta total', "quantidade": "Quantidade de produtos vendidos"}, inplace = True)
+    df_scaled.rename(columns={'total_preco': 'Receita bruta total', "quantidade": "Quantidade de produtos vendidos"}, inplace = True)
 
     # Plotando o gráfico
-    fig_quantidade_vendida_e_renda = px.line(df_scaled, labels={"variable":"Linhas", "value":"Valor/ Valor Máximo (%)", "date":"Data"}, title="Renda bruta e quantidade vendida no mês de novembro")
+    fig_quantidade_vendida_e_renda = px.line(df_scaled, labels={"variable":"Linhas", "value":"Valor/ Valor Máximo (%)", "date":"Data"}, title="Receita bruta e quantidade vendida no mês de novembro")
     fig_quantidade_vendida_e_renda.update_layout( font = {'family': 'Arial','size': 14,'color': 'black'})
     fig_quantidade_vendida_e_renda.update_xaxes(title = 'Data')
     fig_quantidade_vendida_e_renda.update_yaxes(title = 'Valor/ Valor Máximo (%)')
@@ -83,13 +83,13 @@ def relacao_quantidade_lucro_bruto(request):
 
 
     context = {
-        "titulo": "Relação entre quantidade vendida e lucro bruto",
-        "legenda_pergunta":"Você já se perguntou se realmente existe relação entre quantidade vendida e lucro bruto?",
-        "legenda_resposta":"Nessa página mostramos as estatísticas de vendas dos nossos produtos e o lucro bruto. Os dados são referentes ao mês de novembro de 2021",
+        "titulo": "Relação entre quantidade vendida e receita bruta",
+        "legenda_pergunta":"Você já se perguntou se realmente existe relação entre quantidade vendida e receita bruta?",
+        "legenda_resposta":"Nessa página mostramos as estatísticas de vendas dos nossos produtos e a receita bruta, demonstrando o quanto os dados são correlacionados. Os dados são referentes ao mês de novembro de 2021.",
         "botoes": [
             #['nome', 'link']
             ['Produtos mais vendidos','produtos_mais_vendidos'],
-            ['Vendas em cada categoria','vendas_por_secao'],
+            ['Lucros por cada categoria','vendas_por_secao'],
             ['Venda por dia da semana','venda_por_dia_da_semana'],
             ['Consumidores mais ativos','consumidores_mais_ativos']
         ],

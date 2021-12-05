@@ -43,7 +43,8 @@ def venda_por_dia_da_semana(request):
     venda_produtos_3 = pd.merge(venda_produtos_2, vendas, on = 'id_vendas', how='inner')
     #realizando a união das tabelas clientes e venda_produtos em id_cliente
     venda_produtos_cliente = pd.merge(venda_produtos_3, clientes, on = 'id_clientes', how='inner')
-
+    #adicionando coluna de lucros
+    venda_produtos_cliente["lucro"]=(venda_produtos_cliente["preco"]-venda_produtos_cliente["custo"])*venda_produtos_cliente["quantidade"]
     #adicionando coluna de preços totais por compra
     venda_produtos_cliente["total_preco"]=venda_produtos_cliente["quantidade"]*venda_produtos_cliente["preco"]
     #tranformando coluna em tipo data
@@ -55,16 +56,16 @@ def venda_por_dia_da_semana(request):
     #mudando o nome das linhas da coluna dia_sem
     entrada_bruta_sem["dia_sem"].replace({0:"Segunda-feira", 1: "Terça-feira", 2: "Quarta-feira", 3: "Quinta-feira", 4: "Sexta-feira", 5: "Sábado", 6: "Domingo"}, inplace=True)
 
-    #Plotando Gráfico
+    #Plotando Gráfico de renda total por dia da semana
     fig_entrada_por_dia = px.bar(entrada_bruta_sem,
                 x='dia_sem', y="total_preco",
-                labels={"dia_sem": "Dia da semana", "total_preco": "Renda bruta"},
+                labels={"dia_sem": "Dia da semana", "total_preco": "Receita bruta"},
                 barmode='stack')
     fig_entrada_por_dia.update_traces(marker = {'color': '#00CC96'})
-    fig_entrada_por_dia.update_layout(title = 'Entrada em renda bruta por dia da semana no mês de novembro',
+    fig_entrada_por_dia.update_layout(title = 'Entrada em receita bruta por dia da semana no mês de novembro',
     font = {'family': 'Arial','size': 14,'color': 'black'})
     fig_entrada_por_dia.update_xaxes(title = 'Dia da semana')
-    fig_entrada_por_dia.update_yaxes(title = 'Renda bruta')
+    fig_entrada_por_dia.update_yaxes(title = 'Receita bruta')
     
 
     # Alterando a cor do fundo
@@ -73,7 +74,20 @@ def venda_por_dia_da_semana(request):
 
     grafico_entrada_por_dia=fig_entrada_por_dia.to_html(full_html=False, config= {'displayModeBar': False})
 
+    fig_lucro_por_dia = px.bar(entrada_bruta_sem,
+                x='dia_sem', y="lucro",
+                labels={"dia_sem": "Dia da semana", "lucro": "Lucro total"},
+                barmode='stack')
+    fig_lucro_por_dia.update_traces(marker = {'color': '#00CC96'})
+    fig_lucro_por_dia.update_layout(title = 'Lucro total por dia da semana no mês de novembro', font = {'family': 'Arial','size': 14,'color': 'black'})
+    fig_lucro_por_dia.update_xaxes(title = 'Dia da semana')
+    fig_lucro_por_dia.update_yaxes(title = 'Lucro')
 
+    # Alterando a cor do fundo
+    fig_lucro_por_dia.layout.plot_bgcolor = '#F2F2F2'
+    fig_lucro_por_dia.layout.paper_bgcolor = '#F2F2F2'
+
+    grafico_lucro_por_dia=fig_lucro_por_dia.to_html(full_html=False, config= {'displayModeBar': False})
 
 
 
@@ -81,16 +95,16 @@ def venda_por_dia_da_semana(request):
 
     context = {
         "titulo": "Vendas por dia da semana",
-        "legenda_pergunta":"Você já se perguntou qual é dia da semana que mais vendemos produtos?",
-        "legenda_resposta":"Nessa página mostramos as estatísticas de vendas dos nossos produtos a cada dia da semana. Os dados são referentes ao mês de novembro de 2021",
+        "legenda_pergunta":"Você já se perguntou qual é dia da semana que mais obtemos receita bruta?",
+        "legenda_resposta":"Nessa página mostramos as estatísticas de vendas dos nossos produtos e os lucros por cada dia da semana. Os dados são referentes ao mês de novembro de 2021. Como indicado pelo gráfico, o domingo e a terça-feira, analisando o total, são os dias da semana mais lucrativos do mês, enquanto a quarta-feira participa com a menor parte no lucro total. Ainda, é visível que a receita bruta total e os lucros seguem as mesmas tendências.",
         "botoes": [
             #['nome', 'link']
             ['Produtos mais vendidos','produtos_mais_vendidos'],
-            ['Vendas em cada categoria','vendas_por_secao'],
+            ['Lucros por cada categoria','vendas_por_secao'],
             ['Consumidores mais ativos','consumidores_mais_ativos'],
-            ['Relação quantidade e lucro bruto','relacao_quantidade_lucro_bruto']
+            ['Relação quantidade e receita bruta','relacao_quantidade_lucro_bruto']
         ],
-        "graficos": [grafico_entrada_por_dia]
+        "graficos": [grafico_entrada_por_dia, grafico_lucro_por_dia]
         }
         
     return render(request, "visualizacao1.html",context)

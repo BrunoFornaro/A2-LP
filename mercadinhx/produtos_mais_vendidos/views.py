@@ -45,10 +45,10 @@ def produtos_mais_vendidos(request):
 
     #iniciando gráfico de barras das quantidades vendidas por produto
     #agrupando as tabelas venda_produtos_cliente por nome (groupby), somando os valores (sum), organizando os valores em ordem decrescente por quantidade vendida (sort_values) e redefinindo o index (reset_index)
-    venda_produtos_total=venda_produtos_cliente.groupby("nome").sum().sort_values('quantidade', ascending=False).reset_index()
+    venda_produtos_total_tudo=venda_produtos_cliente.groupby("nome").sum().sort_values('quantidade', ascending=False).reset_index()
 
     #selecionando apenas as colunas que serão analisadas
-    venda_produtos_total=venda_produtos_total[["nome", "quantidade"]]
+    venda_produtos_total=venda_produtos_total_tudo[["nome", "quantidade"]]
     #Ajustado uma tabela para adicionar seções
     produtos_nome_secao=produtos[["nome", "secao"]].drop_duplicates()
     #unindo tabelas venda_produtos_total e produtos_nome_secao
@@ -114,7 +114,17 @@ def produtos_mais_vendidos(request):
     #tranformando gráfico em html
     grafico_quantidade_secao = fig_quantidade_secao.to_html(full_html=False, config= {'displayModeBar': False})
 
-
+    #pltagem de um gráfico de disperção relacionado preço e quantidade
+    fig_preco_quantidade=px.scatter(venda_produtos_total_tudo, x = "quantidade", y = "preco",  hover_data=['nome'], labels={"preco": "Receita bruta total", "quantidade": "Quantidade vendida", "nome":"Nome do produto" })
+    fig_preco_quantidade.update_traces(marker = {'color': '#27430D'})
+    fig_preco_quantidade.update_layout(title = 'Relação entre receita bruta total e quantidade vendida', font = {'family': 'Arial','size': 14,'color': 'black'})
+    fig_preco_quantidade.update_xaxes(title = 'Quantidade vendida')
+    fig_preco_quantidade.update_yaxes(title = 'Receita bruta total')
+    # Alterando a cor do fundo
+    fig_preco_quantidade.layout.plot_bgcolor = '#F2F2F2'
+    fig_preco_quantidade.layout.paper_bgcolor = '#F2F2F2'
+    #tranformando gráfico em html
+    grafico_preco_quantidade = fig_preco_quantidade.to_html(full_html=False, config= {'displayModeBar': False})
 
 
     #figura_barras_quantidade_produto, grafico_quantidade_secao
@@ -134,15 +144,15 @@ def produtos_mais_vendidos(request):
     context = {
         "titulo": "Produtos mais vendidos",
         "legenda_pergunta":"Você já se perguntou qual é o nosso produto mais vendido?",
-        "legenda_resposta":"Nessa página mostramos as estatísticas de vendas dos nossos produtos. Em ordem decrescente são exibidos quais alimentos foram mais vendidos ao decorrer do mês de novembro de 2021",
+        "legenda_resposta":"Nessa página mostramos as estatísticas de vendas dos nossos produtos. Nos gráficos de barras, em ordem decrescente são exibidos quais alimentos foram mais vendidos ao decorrer do mês de novembro de 2021. O morango destaca-se pela ótima qualidade, mesmo tendo uma produção sem agrotóxicos, já a padaria do Mercadinhx faz sucesso com as preparações dos bolos e sanduíches. Além disso, temos um gráfico de correlação entre a entrada em receita bruta e as quantidade vendidas, a partir dele, visualiza-se que há uma correlação muito baixa entre o preço do produto e a quantidade vendida, ou seja, o consumidor não leva tem consideração os seus gastos na hora da compra. ",
         "botoes": [
             #['nome', 'link']
-            ['Venda em cada categoria','vendas_por_secao'],
+            ['Lucros por cada categoria','vendas_por_secao'],
             ['Venda por dia da semana','venda_por_dia_da_semana'],
             ['Consumidores mais ativos','consumidores_mais_ativos'],
-            ['Relação quantidade e lucro bruto','relacao_quantidade_lucro_bruto']
+            ['Relação quantidade e receita bruta','relacao_quantidade_lucro_bruto']
         ],
-        "graficos": [grafico_quantidade_secao, figura_barras_quantidade_produto]
+        "graficos": [grafico_quantidade_secao, figura_barras_quantidade_produto, grafico_preco_quantidade]
         }
 
     # "botoes": [
