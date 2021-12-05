@@ -82,16 +82,20 @@
                     <div class="col-12 fundo-amarelo">
                         <h2 class="titulo primeira-cor">Nossos planos de assinatura*:</h2>
                         <ul>
+                            <!-- Trecho para que todoa os tipos de assinatira sejam renderizados -->
                             {% for assinatura in assinaturas %}
                             <li class="tipos-de-assinatura">
                                 <div class="row justify-content-between">
                                     <div class="col-12">
+                                        <!-- Categoria de assinatura dinâmica -->
                                         <h3 class="primeira-cor">{{assinatura.categoria}}</h3>
                                     </div>
                                     <div class="col-12 col-md-6">
+                                        <!-- quantidade de pedidos dinâmico -->
                                         <p>Quantidade de pedidos: {{assinatura.quantidade_de_pedidos}}</p>
                                     </div>
                                     <div class="col-12 col-md-4">
+                                        <!-- Preço da assinatura dinâmico, com duas casas decimais -->
                                         <p>Preço: R$ {{assinatura.preco|floatformat:"2"}}</p>
                                     </div>
                                 </div>
@@ -121,12 +125,14 @@
     <!-- Banner promoção -->
     <div class="container" id="featured-container">
         <div id="featured-images">
+            <!-- Inclui banner de promoções -->
             {% include "banner_promocoes.html"%}
         </div>
     </div>
 
     <!-- RODAPÉ -->
     <footer class="container-fluid segundo-fundo" id="rodape">
+        <!-- Inclui footer -->
         {% include "footer.html"%}
     </footer>
 </body>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+<!-- Para a utilização de imagens e CSS -->
 {% load static %}
 
 <head>
@@ -20,6 +21,7 @@
             <div class="col-12 col-md-4 imagem-produtos">
                 <!-- Imagem do produto -->
                 <figure>
+                    <!-- Imagem dinâmica de cada produto -->
                     <img src="{% get_static_prefix %}img/{{imagem}}" alt="Informações do produto">
                 </figure>
             </div> 
@@ -27,15 +29,19 @@
             <div class="col-12 col-md-6">
                 <div class="row row-tipos-assinatura">
                     <div class="col-12 fundo-amarelo">
+                        <!-- Nome maiúsculo dinâmico de cada produto -->
                         <h1 class="titulo primeira-cor">{{nome|upper}}</h1>
                         <ul>
                             <li>
+                                <!-- Preço e unidade dinâmicos de cada produto -->
                                 <h4>R${{preco}} p/ {{unidade_de_medida_de_estoque}} </h4>
                             </li>
                             <li>
+                                <!-- Estoque e unidade dinâmicos de cada produto -->
                                 <h4>Estoque: {{estoque|floatformat:"0"}} {{unidade_de_medida_de_estoque}}s</h4>
                             </li>
                             <li>
+                                <!-- Prateleira dinâmica de cada produto -->
                                 <h4>Prateleira {{prateleira}}</h4>
                             </li>
                         </ul>
@@ -75,6 +81,7 @@
         <!-- Texto de informações complementares -->
         <div class="row justify-content-center informacoes-produto">
             <div class="col-12 col-md-10 fundo-amarelo tipos-de-assinatura">
+                <!-- Informações dinâmicas de cada produto -->
                 <p>{{informacoes}}</p>
             </div>
         </div>
@@ -98,7 +105,7 @@
                     <textarea placeholder="Mensagem/dúvida" rows="5" class="form-control md-textarea"></textarea>
                 </div>
             </div>
-            <!-- Botão para enviar dúvida -->
+            <!-- Botão para enviar dúvida (botão inativo)-->
             <div class="col-12 botao-mensagem-produto">
                 <button type="button" class="botao-laranja">
                     Enviar
@@ -109,12 +116,14 @@
     <!-- CATEGORIAS DE PRODUTO -->
     <div class="container" id="featured-container">
         <div id="featured-images">
+            <!-- Inclui banner de promoções -->
             {% include "banner_promocoes.html"%}
         </div>
     </div>
 
     <!-- RODAPÉ -->
     <footer class="container-fluid segundo-fundo" id="rodape">
+        <!-- Inclui rodapé -->
         {% include "footer.html"%}
     </footer>
 </body>

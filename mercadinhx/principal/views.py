@@ -1,21 +1,16 @@
+# Importando as bibliotecas necessárias
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http.response import HttpResponseNotFound, HttpResponseRedirect, Http404
 from django.urls import reverse
-from principal.models import Produtos, Clientes, Vendas, VendasProdutos
+from principal.models import Produtos
 from principal.funcoes import converter_query
-import pandas as pd
-
-import numpy as np
-from plotly.io import to_html
-import matplotlib.pyplot as plt
-import matplotlib as ptl
-import plotly.express as px
 from plotly.io import to_html
 
 
-
+# View da página principal do site (home)
 def home(request):
+    # Criando o dicionário com as informações para preencher os cards das seções dos produtos
     context = {
         "secoes": [
             {
@@ -42,7 +37,9 @@ def home(request):
     }
     return render(request, "index.html", context)
 
+# View da lista de produtos
 def lista_de_produtos(request, id='4', filtro="?"):
+    # Criando o dicionário com as informações para selecionar as seções
     secoes = {
         "0": ["padaria", "banner_padaria.png"],
         "1": ["acougue", "banner_acougue.png"],
@@ -52,18 +49,28 @@ def lista_de_produtos(request, id='4', filtro="?"):
     }
 
     secao = secoes[id]
+    # Se a página escolhida for a de promoções, são exibidos todos os produtos de acordo com a ordenação (o padrão retornar em ordem aleatória)
     if secao[0] == "promocoes":
+        # Carrega os dados do banco de dados
         produtos = converter_query(Produtos.objects.all().order_by(filtro))
+    # Se for escolhida uma seção (que não seja a de promoções) retorna os produtos da seção de acordo com a ordenação (o padrão retornar em ordem aleatória)
     else:
+        # Carrega os dados do banco de dados
         produtos = converter_query(Produtos.objects.filter(secao=secao[0]).order_by(filtro))
+    
+    # Criando o dicionário com as informações para preencher a página dinâmica (alterar as imagens dos banners e filtrar os produtos)
     context = {
         "dados": produtos,
         "banner": secao[1],
         "id": id,
     }
+
+    # Retorna a página dinâmica
     return render(request, "lista_de_produtos_dtl.html", context)
 
+# View de assinatura pró
 def assinatura(request):
+    # Criando o dicionário com as informações para preencher a página dinâmica (tipos de assinatura)
     context = {"assinaturas":
             [
                 {
@@ -94,26 +101,40 @@ def assinatura(request):
             ]
         }
 
+    # Retorna a página de assinatura pró
     return render(request, "assinatura_pro.html", context)
 
+# View da página de cadastro
 def cadastro(request):
+    # Retorna a página de cadastro
     return render(request, "cadastro.html")
 
+# View para o "fale conosco"
 def fale_conosco(request):
+    # Retorna a página de "fale conosco"
     return render(request, "fale_conosco.html")
 
+# View para "quem somos"
 def quem_somos(request):
+    # Retorna a página de quem somos
     return render(request, "quem_somos.html")
 
+# View para a página de recuperação de senha
 def recuperar_senha(request):
+    # Retorna a página de recuperação de senha
     return render(request, "recuperar_senha.html")
 
+# View para a página de login
 def login(request):
+    # Retorna a página de login
     return render(request, "login.html")
 
+# View para a página de produtos (com mais informações de um único produto)
 def produtos(request, id='3'):
+    # Carrega os dados dos produtos do banco de dados
     context = converter_query(Produtos.objects.all())[id]
 
+    # Cria um dicionario com as informações respectivas a cada uma das seções de produtos
     informacoes_secoes = {
         "padaria": f"Nosso produto {context['nome']} é comprado diretamente da fábrica. A produção é feita no município de São Paulo, sem a utilização de agentes químicos que podem ser prejudiciais à saúde, visando o bem estar dos clientes.",
         "acougue": f"Nosso produto {context['nome']} é comprado diretamente do frigorífico. A criação é feita no município de Nova Candelária, sem a utilização de agentes químicos que podem ser prejudiciais à saúde, visando o bem estar dos clientes e animais.",
@@ -121,14 +142,18 @@ def produtos(request, id='3'):
         "produtos_de_limpeza": f"Nosso produto {context['nome']} é comprado diretamente da fábrica. A produção é feita no município de Rio de Janeiro, sem a utilização de agentes químicos que podem ser nocivos, visando o bem estar dos clientes e bons cuidados com a natureza. Nenhum dos produtos é testado em animais.",
     }
 
+    # Dicionário com todas as informações para preencher a página dinãmica
     context["informacoes"] = informacoes_secoes[context["secao"]]
 
+    # Retorna a página dinâmica
     return render(request, "produtos.html", context)
 
-def testes(request):
-    context = converter_query(Produtos.objects.all())
-    # Produtos.objects.all().delete()
-    # Clientes.objects.all().delete()
-    # Vendas.objects.all().delete()
-    # VendasProdutos.objects.all().delete()
-    return HttpResponse(f"{context}")
+# # View para testes e para excluir o banco de dados caso necessário
+# def testes(request):
+#     context = converter_query(Produtos.objects.all())
+#     # # Deleta o banco de dados caso necessário (manter comentado quando não for ser usado)
+#     # Produtos.objects.all().delete()
+#     # Clientes.objects.all().delete()
+#     # Vendas.objects.all().delete()
+#     # VendasProdutos.objects.all().delete()
+#     return HttpResponse(f"{context}")

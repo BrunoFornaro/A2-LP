@@ -1,16 +1,25 @@
+ <!-- Extensão para utilização do html da lista de produtos-->
 {% extends "lista_de_produtos.html" %}
 
+ <!-- Bloco para a renderização dos cards contendo informações dos produtos -->
 {% block cards_produtos %}
+     <!-- Para utilização de imagens -->
     {% load static %}
+    <!-- Reperição ara que todo produto na lista de produtos seja renderizado-->
     {% for produto in dados %}
         <div class="col-12 col-md-3">
+             <!-- Imagem dinâmica de cada produto -->
             <img src="{% get_static_prefix %}img/{{produto.imagem}}" alt="Melancia">
             <div class="banner-content">
+                <!-- Para que ao clicar em cada produto seja redirecionado para a página individual do produto de acordo com o id -->
                 <button onclick="window.location.href='{% url 'produtos' id=produto.id %}'"
                     class="btn-outline-success btn-lg">{{produto.nome|title}}</button>
+                <!-- Preço e unidade de medida dinâmicos de cada produto -->
                 <h4>R${{produto.preco|floatformat:"2"}} p/ {{produto.unidade_de_medida_de_estoque}} </h4>
                 <br>
+                <!-- Estoques (número) e unidades de medida dinâmicos de cada produto -->
                 <h4>Estoque: {{produto.estoque|floatformat:"0"}} {{produto.unidade_de_medida_de_estoque}}s</h4>
+                <!-- Prateleira dinâmica de cada produto -->
                 <h4>Prateleira {{produto.prateleira}}</h4>
             </div>
         </div>

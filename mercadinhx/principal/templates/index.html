@@ -30,7 +30,8 @@
                     <!-- Adiciona os dois banners -->
                     <div class="carousel-inner ">
                         <div class="carousel-item active ">
-                            <img src="{% static 'img/banner_1.png' %}" alt="Economize dinheiro com o mercadinhx">
+                            <!-- Inclui banner 1 -->
+                            <img src="{% static 'img/banner_1.png' %}" alt="Economize dinheiro com o mercadinhx"><!-- legenda banner 1-->
                         </div>
                         <div class="carousel-item">
                             <img src="{% static 'img/banner_2.png' %}" alt="Diversas funções que ajudam você">
@@ -57,12 +58,17 @@
                 <!-- Cria uma linha para ser dividida em colunas -->
                 <div class="row g-4">
                     {% include "banner_promocoes.html"%}
-                    <!-- No mobile ocupa a tela toda (12/12 colunas) em telas maiores ocupa 3/12 colunas da tela -->
+                     <!-- Repetição para que todas as seções sejam renderizadas-->
                     {% for secao in secoes %}
+                    <!-- No mobile ocupa a tela toda (12/12 colunas) em telas maiores ocupa 3/12 colunas da tela -->
+                    
                         <div class="col-12 col-md-3">
+                            <!-- Renderização dinâmica das imagens de cada seção-->
                             <img src="{% get_static_prefix %}img/{{secao.imagem}}" alt="Clique para ir">
                             <div class="banner-content">
+                                <!-- Renderização dinâmica dos nomes de cada seção-->
                                 <button onclick="window.location.href='{% url 'lista_de_produtos' id=secao.id filtro='?' %}'"
+                                    
                                     class="btn-outline-success btn-lg">{{secao.nome}}</button>
                             </div>
                         </div>
@@ -82,6 +88,7 @@
 
         <!-- RODAPÉ -->
         <footer class="container-fluid segundo-fundo" id="rodape">
+             <!-- Inclui rodapé -->
             {% include "footer.html"%}
         </footer>
     </div>
