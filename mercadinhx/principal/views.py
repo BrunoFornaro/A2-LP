@@ -37,8 +37,16 @@ def home(request):
     }
     return render(request, "index.html", context)
 
-# View da lista de produtos
+# View da lista de produtos (ela irá redirecionar para uma view onde a URL vai aparecer melhor apresentada para o usuário)
 def lista_de_produtos(request, id='4', filtro="?"):
+    # Gera a URL de redirecionamento
+    url_redirecionamento = reverse("redirecionada_lista_de_produtos", args=[id,filtro])
+
+    # Redireciona a página (para a mesma página com a URL melhor formatada)
+    return HttpResponseRedirect(url_redirecionamento)
+    
+# View da lista de produtos redirecionada
+def redirecionada_lista_de_produtos(request, id='4', filtro="?"):
     # Criando o dicionário com as informações para selecionar as seções
     secoes = {
         "0": ["padaria", "banner_padaria.png"],
@@ -67,6 +75,7 @@ def lista_de_produtos(request, id='4', filtro="?"):
 
     # Retorna a página dinâmica
     return render(request, "lista_de_produtos_dtl.html", context)
+
 
 # View de assinatura pró
 def assinatura(request):
@@ -129,8 +138,16 @@ def login(request):
     # Retorna a página de login
     return render(request, "login.html")
 
-# View para a página de produtos (com mais informações de um único produto)
+# View de produtos (ela irá redirecionar para uma view onde a URL vai aparecer melhor apresentada para o usuário)
 def produtos(request, id='3'):
+    # Gera a URL de redirecionamento
+    url_redirecionamento = reverse("redirecionada_produtos", args=[id])
+
+    # Redireciona a página (para a mesma página com a URL melhor formatada)
+    return HttpResponseRedirect(url_redirecionamento)
+    
+# View para a página de produtos redirecionada (com mais informações de um único produto)
+def redirecionada_produtos(request, id='4'):
     # Carrega os dados dos produtos do banco de dados
     context = converter_query(Produtos.objects.all())[id]
 
