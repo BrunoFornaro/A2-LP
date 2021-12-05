@@ -42,17 +42,22 @@ def produtos_mais_vendidos(request):
     venda_produtos_cliente = pd.merge(venda_produtos_3, clientes, on = 'id_clientes', how='inner')
 
     #iniciando gráfico de barras das quantidades vendidas por produto
+    #criando uma tabela apenas com o nome do produto e o preço
+    produtos_precos=produtos[["nome", "preco"]]
+    #renomenado nome da coluna preco
+    produtos_precos.rename(columns={"preco": "preco_unidade"}, inplace = 1)
+    #Adicionando coluna de gastos por produto e compra
+    venda_produtos_cliente["total_preco"]=venda_produtos_cliente["quantidade"]*venda_produtos_cliente["preco"]
     #agrupando as tabelas venda_produtos_cliente por nome (groupby), somando os valores (sum), organizando os valores em ordem decrescente por quantidade vendida (sort_values) e redefinindo o index (reset_index)
     venda_produtos_total_tudo=venda_produtos_cliente.groupby("nome").sum().sort_values('quantidade', ascending=False).reset_index()
-
     #selecionando apenas as colunas que serão analisadas
     venda_produtos_total=venda_produtos_total_tudo[["nome", "quantidade"]]
-    #Ajustado uma tabela para adicionar seções
-
+    #Ajustando uma tabela para adicionar seções
     produtos_nome_secao=produtos[["nome", "secao"]].drop_duplicates()
     # Unindo tabelas venda_produtos_total e produtos_nome_secao
     venda_produtos_quantidade_total=pd.merge(produtos_nome_secao, venda_produtos_total, on = 'nome', how='right')
-
+    # Unindo tabelas venda_produtos_quantidade_total e produtos_nome_secao
+    venda_produtos_quantidade_total=pd.merge(venda_produtos_quantidade_total, produtos_precos, on = 'nome', how='right')
     # Plotagem do gráfico de barras sobre o total de vendas por produto usando plotly
     fig_quantidade_produto = px.bar(venda_produtos_quantidade_total,
                 x='nome', y="quantidade", color="secao", 
@@ -114,11 +119,11 @@ def produtos_mais_vendidos(request):
     grafico_quantidade_secao = fig_quantidade_secao.to_html(full_html=False, config= {'displayModeBar': False})
 
     #pltagem de um gráfico de disperção relacionado preço e quantidade
-    fig_preco_quantidade=px.scatter(venda_produtos_total_tudo, x = "quantidade", y = "preco",  hover_data=['nome'], labels={"preco": "Receita bruta total", "quantidade": "Quantidade vendida", "nome":"Nome do produto" })
+    fig_preco_quantidade=px.scatter(venda_produtos_quantidade_total, x = "quantidade", y = "preco_unidade",  hover_data=['nome'], labels={"preco_unidade": "Preço do produto", "quantidade": "Quantidade vendida", "nome":"Nome do produto" })
     fig_preco_quantidade.update_traces(marker = {'color': '#27430D'})
-    fig_preco_quantidade.update_layout(title = 'Relação entre receita bruta total e quantidade vendida', font = {'family': 'Arial','size': 14,'color': 'black'})
+    fig_preco_quantidade.update_layout(title = 'Relação entre preço do produto e quantidade vendida', font = {'family': 'Arial','size': 14,'color': 'black'})
     fig_preco_quantidade.update_xaxes(title = 'Quantidade vendida')
-    fig_preco_quantidade.update_yaxes(title = 'Receita bruta total')
+    fig_preco_quantidade.update_yaxes(title = 'Preço do produto')
     # Alterando a cor do fundo
     fig_preco_quantidade.layout.plot_bgcolor = '#F2F2F2'
     fig_preco_quantidade.layout.paper_bgcolor = '#F2F2F2'
@@ -133,7 +138,7 @@ def produtos_mais_vendidos(request):
     context = {
         "titulo": "Produtos mais vendidos",
         "legenda_pergunta":"Você já se perguntou qual é o nosso produto mais vendido?",
-        "legenda_resposta":"Nessa página mostramos as estatísticas de vendas dos nossos produtos. Nos gráficos de barras, em ordem decrescente são exibidos quais alimentos foram mais vendidos ao decorrer do mês de novembro de 2021. O morango destaca-se pela ótima qualidade, mesmo tendo uma produção sem agrotóxicos, já a padaria do Mercadinhx faz sucesso com as preparações dos bolos e sanduíches. Além disso, temos um gráfico de correlação entre a entrada em receita bruta e as quantidade vendidas, a partir dele, visualiza-se que há uma correlação muito baixa entre o preço do produto e a quantidade vendida, ou seja, o consumidor não leva tem consideração os seus gastos na hora da compra. ",
+        "legenda_resposta":"Nessa página mostramos as estatísticas de vendas dos nossos produtos. Nos gráficos de barras, em ordem decrescente são exibidos quais alimentos foram mais vendidos ao decorrer do mês de novembro de 2021. O morango destaca-se pela ótima qualidade, mesmo tendo uma produção sem agrotóxicos, já a padaria do Mercadinhx faz sucesso com as preparações dos bolos e sanduíches. Além disso, temos um gráfico de dispersão entre o preço do produto e as quantidade vendidas, a partir dele, visualiza-se que há uma correlação muito baixa entre os dados, ou seja, o consumidor não leva em consideração os seus gastos na hora da compra. ",
         "botoes": [
             #['nome', 'link']
             ['Lucros por cada categoria','vendas_por_secao'],
